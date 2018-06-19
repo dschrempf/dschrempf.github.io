@@ -6,19 +6,10 @@
     <description>Recent content on Concept → IO ()</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Jun 2018 11:45:00 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 17 Jun 2018 00:00:00 +0200</lastBuildDate>
     
 	<atom:link href="https://dschrempf.github.io/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>LICENCE</title>
-      <link>https://dschrempf.github.io/license/</link>
-      <pubDate>Tue, 19 Jun 2018 11:45:00 +0200</pubDate>
-      
-      <guid>https://dschrempf.github.io/license/</guid>
-      <description>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 Copyright (C) 2007 Free Software Foundation, Inc. &amp;lt;https://fsf.org/&amp;gt; Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU General Public License is a free, copyleft license for software and other kinds of works. The licenses for most software and other practical works are designed to take away your freedom to share and change the works.</description>
-    </item>
     
     <item>
       <title>Links to newspaper articles</title>
@@ -253,6 +244,15 @@ Interests  Evolutionary Biology Phylogenetics Markov Chains Functional Programmi
 The usage is very straight forward:
 import qualified Text.Show.Pretty as Pr  This provides Pr.ppShow which can be used in GHCi (or other interpreters):
 putStrLn $ Pr.</description>
+    </item>
+    
+    <item>
+      <title>LICENCE</title>
+      <link>https://dschrempf.github.io/license/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://dschrempf.github.io/license/</guid>
+      <description>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 Copyright (C) 2007 Free Software Foundation, Inc. &amp;lt;https://fsf.org/&amp;gt; Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed. Preamble The GNU General Public License is a free, copyleft license for software and other kinds of works. The licenses for most software and other practical works are designed to take away your freedom to share and change the works.</description>
     </item>
     
   </channel>
