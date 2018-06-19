@@ -1,8 +1,4 @@
-# Org Mode source files
+# Blog
 
-Source code of my [blog](https://dschrempf.github.io/) built with
-
-- [Org Mode](https://orgmode.org/)
-- [Hugo](https://gohugo.io/)
-- [ox-hugo](https://ox-hugo.scripter.co/)
-- [Hyde-X](https://github.com/zyro/hyde-x)
+Repository of my [blog](https://dschrempf.github.io/). Please refer to the
+[source code](https://github.com/dschrempf/blog).
