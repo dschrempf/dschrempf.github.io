@@ -3,6 +3,12 @@
     padding-bottom: 4rem;
 }
 
+@media (min-width: 48em) {
+    .content {
+        max-width: 40rem;
+    }
+}
+
 .sidebar-about h1 {
     color: #fff;
     margin-top: 0;
@@ -82,12 +88,6 @@ pre {
     white-space: pre;
 }
 
-@media (min-width: 48em) {
-    .content {
-        max-width: 40rem;
-    }
-}
-
 /* Adjust width of code blocks when the mouse is over the block. */
 /* @media (min-width: 64em) { */
 /*     pre:hover { */
@@ -103,4 +103,14 @@ pre {
 .theme-base-darkblue .content a,
 .theme-base-darkblue .related-posts li a:hover {
     color: #336699;
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 20px 0px 40px 0px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
