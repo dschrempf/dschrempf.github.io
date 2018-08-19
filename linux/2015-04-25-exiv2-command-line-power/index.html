@@ -1,121 +1,97 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
 <head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <title>exiv2 command line power &middot; Dominik Schrempf</title>
-
-  
-  <link rel="stylesheet" href="https://dschrempf.github.io/css/poole.css">
-  <link rel="stylesheet" href="https://dschrempf.github.io/css/hyde.css">
-  <link rel="stylesheet" href="https://dschrempf.github.io/css/poole-overrides.css">
-  <link rel="stylesheet" href="https://dschrempf.github.io/css/hyde-overrides.css">
-  <link rel="stylesheet" href="https://dschrempf.github.io/css/hyde-x.css">
-  <link rel="stylesheet" href="https://dschrempf.github.io/css/highlight/github.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
-  <link rel="stylesheet" href="https://dschrempf.github.io/css/myblog.css">
-
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
-  
-
-  
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://dschrempf.github.io/touch-icon-144-precomposed.png">
-  <link href="https://dschrempf.github.io/favicon.png" rel="icon">
-
-  
-  
-  
-  
-
-  <meta name="description" content="Manipulate multiple image files and their Exif data on the command line.">
-  <meta name="keywords" content="Image,,,,,Line,,Manipulation,">
-
-  
-
-  <script>
-   $(document).ready(function() {
-       $.scrollTo( $('#top'), 500);
-   });
-  </script>
-
-</head>
-<body class="theme-base-darkblue">
-    <div class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      
-        <img style="border-radius:50%"
-             src="https://www.gravatar.com/avatar/b05a00fb86fa378973181afd07c7e548?s=200"
-             alt="gravatar" title="Dominik Schrempf">
-      
-      <h1>Concept → IO ()</h1>
-      <p class="lead">A collection of articles about Linux, Emacs, coding and music.</p>
-    </div>
-
-    <ul class="sidebar-nav">
-      <li class="sidebar-nav-item"><a href="https://dschrempf.github.io/">Blog</a></li>
-      
-      <li class="sidebar-nav-item">&bull;&nbsp;<a href="https://dschrempf.github.io/linux/">Linux</a></li>
-      
-      <li class="sidebar-nav-item">&bull;&nbsp;<a href="https://dschrempf.github.io/emacs/">Emacs</a></li>
-      
-      <li class="sidebar-nav-item">&bull;&nbsp;<a href="https://dschrempf.github.io/coding/">Coding</a></li>
-      
-      <li class="sidebar-nav-item">&bull;&nbsp;<a href="https://dschrempf.github.io/music/">Music</a></li>
-      
-      
-      <li class="sidebar-nav-item"><a href="https://dschrempf.github.io/links/">Links</a></li>
-      
-      <li class="sidebar-nav-item"><a href="https://dschrempf.github.io/about/">About</a></li>
-      
-      
-      <li class="sidebar-nav-item"><a href="https://dschrempf.github.io/search/">Search</a></li>
-      
-    </ul><br/>
-
-    <ul class="sidebar-nav">
-        <li class="sidebar-nav-item">
-            <a href="https://github.com/dschrempf" target="_blank"><i class="fa fa-github fa-1x"></i></a>
-            
-            <a href="https://www.stackoverflow.com/users/3536806" target="_blank"><i class="fa fa-stack-overflow fa-1x"></i></a>
-            
-            
-            
-            <a href="https://twitter.com/fazky" target="_blank"><i class="fa fa-twitter fa-1x"></i></a>
-            
-            <a href="https://orcid.org/0000-0001-8865-9237" target="_blank"><i class="ai ai-orcid ai-1x"></i></a>
-            <a href="mailto:dominik.schrempf@gmail.com"><i class="fa fa-envelope fa-1x"></i></a>
-            <a href="/gpg_public_key.txt"><i class="fa fa-key fa-1x"></i></a>
-            
-      </li>
-    </ul>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-    <div class= "footer">
-    <p>
-        &copy; 2018 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
-        Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/hyde-x">Hyde-X</a><br/>
+    
+    <title>exiv2 command line power &middot; Dominik Schrempf</title>
+    <meta name="description" content="Manipulate multiple image files and their Exif data on the command line.">
+    <meta name="keywords" content="Image,,,,,Line,,Manipulation,">
+
+    
+    <link rel="stylesheet" href="https://dschrempf.github.io/css/poole.css">
+    <link rel="stylesheet" href="https://dschrempf.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://dschrempf.github.io/css/poole-overrides.css">
+    <link rel="stylesheet" href="https://dschrempf.github.io/css/hyde-overrides.css">
+    <link rel="stylesheet" href="https://dschrempf.github.io/css/hyde-x.css">
+    <link rel="stylesheet" href="https://dschrempf.github.io/css/highlight/github.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+    <link rel="stylesheet" href="https://dschrempf.github.io/css/myblog.css">
+</head>
+
+<body class="theme-base-darkblue">
+    <div class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            
+            <img style="border-radius:50%"
+                 src="https://www.gravatar.com/avatar/b05a00fb86fa378973181afd07c7e548?s=200"
+                 alt="gravatar" title="Dominik Schrempf">
+            
+            <h1>Concept → IO ()</h1>
+            <p class="lead">A collection of articles about Linux, Emacs, coding and music.</p>
+        </div>
+
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav-item"><a href="https://dschrempf.github.io/">Blog</a></li>
+            
+            <li class="sidebar-nav-item">&bull;&nbsp;<a href="https://dschrempf.github.io/linux/">Linux</a></li>
+            
+            <li class="sidebar-nav-item">&bull;&nbsp;<a href="https://dschrempf.github.io/emacs/">Emacs</a></li>
+            
+            <li class="sidebar-nav-item">&bull;&nbsp;<a href="https://dschrempf.github.io/coding/">Coding</a></li>
+            
+            <li class="sidebar-nav-item">&bull;&nbsp;<a href="https://dschrempf.github.io/music/">Music</a></li>
+            
+            
+            <li class="sidebar-nav-item"><a href="https://dschrempf.github.io/links/">Links</a></li>
+            
+            <li class="sidebar-nav-item"><a href="https://dschrempf.github.io/about/">About</a></li>
+            
+            
+            <li class="sidebar-nav-item"><a href="https://dschrempf.github.io/search/">Search</a></li>
+            
+        </ul><br/>
+
+        <ul class="sidebar-nav">
+            <li class="sidebar-nav-item">
+                <a href="https://github.com/dschrempf" target="_blank"><i class="fa fa-github fa-1x"></i></a>
+                
+                <a href="https://www.stackoverflow.com/users/3536806" target="_blank"><i class="fa fa-stack-overflow fa-1x"></i></a>
+                
+                
+                
+                <a href="https://twitter.com/fazky" target="_blank"><i class="fa fa-twitter fa-1x"></i></a>
+                
+                <a href="https://orcid.org/0000-0001-8865-9237" target="_blank"><i class="ai ai-orcid ai-1x"></i></a>
+                <a href="mailto:dominik.schrempf@gmail.com"><i class="fa fa-envelope fa-1x"></i></a>
+                <a href="/gpg_public_key.txt"><i class="fa fa-key fa-1x"></i></a>
+                
+            </li>
+        </ul>
+
         
-        <a href="https://www.iubenda.com/privacy-policy/76967501" class="" title="Privacy Policy">Privacy Policy</a>
-    </p>
-</div>
 
-  </div>
+        <div class= "footer">
+            <p>
+                &copy; 2018 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+                Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/hyde-x">Hyde-X</a><br/>
+                <a href="https://www.iubenda.com/privacy-policy/76967501" class="" title="Privacy Policy">Privacy Policy</a>
+            </p>
+        </div>
+    </div>
 </div>
 
 
     
     <div id="top"></div>
 
+    
 
 <div class="content container">
   <div class="post">
@@ -223,12 +199,25 @@ something very useful.</p>
 
 
 
-<script src="https://dschrempf.github.io/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
 
+    
+    
+    <script src="https://dschrempf.github.io/js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
 
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    
+    <script>
+     $(document).ready(function() {
+         $.scrollTo( $('#top'), 500);
+     });
+    </script>
 
-
+    
+    
 </body>
 </html>
-
