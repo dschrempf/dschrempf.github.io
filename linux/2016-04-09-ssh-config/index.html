@@ -17,16 +17,18 @@
     <link rel="stylesheet" href="https://dschrempf.github.io/css/poole-overrides.css">
     <link rel="stylesheet" href="https://dschrempf.github.io/css/hyde-overrides.css">
     <link rel="stylesheet" href="https://dschrempf.github.io/css/hyde-x.css">
-    <link rel="stylesheet" href="https://dschrempf.github.io/css/highlight/github.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+	  <link href="https://dschrempf.github.io/css/prism.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://dschrempf.github.io/css/myblog.css">
 </head>
 
 <body class="theme-base-darkblue">
     <div class="sidebar">
     <div class="container sidebar-sticky">
+
+        
         <div class="sidebar-about">
             
             <img style="border-radius:50%"
@@ -37,6 +39,7 @@
             <p class="lead">A collection of articles about Linux, Emacs, coding and music.</p>
         </div>
 
+        
         <ul class="sidebar-nav">
             <li class="sidebar-nav-item"><a href="https://dschrempf.github.io/">Blog</a></li>
             
@@ -92,7 +95,7 @@
     <div id="top"></div>
 
     
-
+    
 <div class="content container">
   <div class="post">
     <h1 class="post-title">Configure SSH</h1>
@@ -100,10 +103,6 @@
         Apr 9, 2016
         
         &middot; 2 minute read
-        
-        
-        
-        
         
         
         &middot;
@@ -123,7 +122,7 @@ host names, IP addresses or passwords.</p>
 <p>First, you want to create your own <a href="https://wiki.archlinux.org/index.php/SSH%5Fkeys">SSH key</a> so that your server accepts
 your login without any password.</p>
 
-<pre><code class="language-sh"># Create an SSH key (use the standard path).  Be careful, if you do
+<pre><code class="language-bash"># Create an SSH key (use the standard path).  Be careful, if you do
 # not set a passphrase, anybody that has access to your computer can
 # log into servers that have been set up to accept your key.
 ssh-keygen
@@ -147,7 +146,7 @@ Host server
 
 <p>Try to log into <code>yourserver</code> (now aliased <code>server</code>):</p>
 
-<pre><code class="language-sh">ssh server
+<pre><code class="language-bash">ssh server
 </code></pre>
 
 <p>Wow, that was fast.</p>
@@ -170,7 +169,7 @@ in turn has access to <code>private</code>.</p>
 
 <p>Hmm, normally, you would need to</p>
 
-<pre><code class="language-sh"># Log into the server.
+<pre><code class="language-bash"># Log into the server.
 ssh yourusername@yourserver.example.com
 # Wait.  Enter password.  Wait.
 ssh privateusername@privatecomputer.local
@@ -201,7 +200,7 @@ your <code>~/.ssh/config</code>:</p>
 
 <p>And try it out:</p>
 
-<pre><code class="language-sh">ssh private
+<pre><code class="language-bash">ssh private
 </code></pre>
 
 <p>Wow.</p>
@@ -225,19 +224,21 @@ your <code>~/.ssh/config</code>:</p>
      (d.head || d.body).appendChild(s);
  })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view <a href="https://disqus.com/?ref_noscript">comments.</a></noscript>
+
 
 
 
 
     
     
-    <script src="https://dschrempf.github.io/js/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+	  <script src="https://dschrempf.github.io/js/prism.js"></script>
     
 
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
     
@@ -247,6 +248,7 @@ your <code>~/.ssh/config</code>:</p>
      });
     </script>
 
+    
     
     
 </body>

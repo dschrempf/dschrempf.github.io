@@ -17,16 +17,18 @@
     <link rel="stylesheet" href="https://dschrempf.github.io/css/poole-overrides.css">
     <link rel="stylesheet" href="https://dschrempf.github.io/css/hyde-overrides.css">
     <link rel="stylesheet" href="https://dschrempf.github.io/css/hyde-x.css">
-    <link rel="stylesheet" href="https://dschrempf.github.io/css/highlight/github.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css">
+	  <link href="https://dschrempf.github.io/css/prism.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://dschrempf.github.io/css/myblog.css">
 </head>
 
 <body class="theme-base-darkblue">
     <div class="sidebar">
     <div class="container sidebar-sticky">
+
+        
         <div class="sidebar-about">
             
             <img style="border-radius:50%"
@@ -37,6 +39,7 @@
             <p class="lead">A collection of articles about Linux, Emacs, coding and music.</p>
         </div>
 
+        
         <ul class="sidebar-nav">
             <li class="sidebar-nav-item"><a href="https://dschrempf.github.io/">Blog</a></li>
             
@@ -92,7 +95,7 @@
     <div id="top"></div>
 
     
-
+    
 <div class="content container">
   <div class="post">
     <h1 class="post-title">A simulator for continuous-time Markov chains</h1>
@@ -100,10 +103,6 @@
         Apr 9, 2016
         
         &middot; 1 minute read
-        
-        
-        
-        
         
         
         &middot;
@@ -128,7 +127,7 @@ Species Tree Estimation. Systematic Biology, 64(6),
 
 <p>Using the chain is as easy as:</p>
 
-<pre><code class="language-C++">// Define a GNU Scientific Library Matrix object.
+<pre><code class="language-cpp">// Define a GNU Scientific Library Matrix object.
 gsl_matrix * my_transition_rate_matrix = alloc_and_set_matrix();
 CTMC my_chain(my_transition_rate_matrix, number_of_states);
 my_chain.run(a_specific_time);
@@ -141,7 +140,7 @@ my_chain.print_invariant_distribution(std::cout);
 <p>If you want to log the path of the chain, you have to activate the log
 path upon initialization:</p>
 
-<pre><code class="language-C++">CTMC my_chain(my_transition_rate_matrix, number_of_states, true);
+<pre><code class="language-cpp">CTMC my_chain(my_transition_rate_matrix, number_of_states, true);
 
 // Print the path.
 my_chain.print_path(std::cout);
@@ -169,19 +168,21 @@ memory.</p>
      (d.head || d.body).appendChild(s);
  })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view <a href="https://disqus.com/?ref_noscript">comments.</a></noscript>
+
 
 
 
 
     
     
-    <script src="https://dschrempf.github.io/js/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+	  <script src="https://dschrempf.github.io/js/prism.js"></script>
     
 
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
     
@@ -191,6 +192,7 @@ memory.</p>
      });
     </script>
 
+    
     
     
 </body>
