@@ -9,7 +9,7 @@
     
     <title>How to create this homepage &middot; Dominik Schrempf</title>
     <meta name="description" content="Linux, Emacs, coding and more.">
-    <meta name="keywords" content="Emacs,,,Mode,,,,">
+    <meta name="keywords" content="Emacs,Org-Mode,Org Mode,Disqus,Homepage,Publish,Export">
 
     
     <link rel="stylesheet" href="https://dschrempf.github.io/css/skeria.css">
@@ -94,7 +94,7 @@
 
         <div class= "footer">
             <p>
-                &copy; 2018 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+                &copy; 2019 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
                 Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/skeria">Skeria</a><br/>
                 
                 <a href="https://www.iubenda.com/privacy-policy/76967501" class="" title="Privacy Policy">Privacy Policy</a>
@@ -188,7 +188,7 @@ framework</a>.</p>
 <p>This is the main step.  Org mode has to know how to export your Org
 files so that they can be hosted by GitHub:</p>
 
-<p><a id="org54c2e9f"></a></p>
+<p><a id="code-snippet--Org publish setup"></a></p>
 
 <pre><code class="language-lisp">(setq org-publish-project-alist
       '(
@@ -239,7 +239,7 @@ preamble includes a small header; the postamble includes the Disqus
 comment section and Google Analytics (make sure to replace you
 user name and tracking ID).</p>
 
-<p><a id="org463761d"></a></p>
+<p><a id="code-snippet--Preamble and postamble"></a></p>
 
 <pre><code class="language-lisp">;; BugFix: Manually disable home/up links in preamble.
 (setq org-html-home/up-format &quot;&quot;)
