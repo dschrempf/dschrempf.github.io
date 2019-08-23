@@ -2,19 +2,19 @@
 /* Main. */
 
 * {
-    box-sizing: border-box
+    box-sizing: border-box;
 }
 
 body,
 html {
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 html {
     font-size: 16px;
     font-family: 'Merriweather', serif;
-    line-height: 1.5
+    line-height: 1.5;
 }
 
 body {
@@ -27,16 +27,16 @@ body {
 
 a {
     color: #268bd2;
-    text-decoration: none
+    text-decoration: none;
 }
 
 a strong {
-    color: inherit
+    color: inherit;
 }
 
 a:focus,
 a:hover {
-    text-decoration: underline
+    text-decoration: underline;
 }
 
 /******************************************************************************/
@@ -313,10 +313,17 @@ select {
 /* Content. */
 
 .content {
-    margin: 4rem 2rem 4rem 2rem;
+    padding: 4rem 2rem 4rem 2rem;
 }
 
 @media (min-width:48em) {
+    .content {
+        max-width: 48rem;
+        margin-left: 20rem;
+    }
+}
+
+@media (min-width:64em) {
     .content {
         max-width: 48rem;
         margin-left: 22rem;
