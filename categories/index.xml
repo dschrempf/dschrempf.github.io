@@ -6,6 +6,7 @@
     <description>Recent content in Categories on Concept → IO ()</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sat, 10 Feb 2018 00:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://dschrempf.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -16,15 +17,6 @@
       <pubDate>Sat, 10 Feb 2018 00:00:00 +0100</pubDate>
       
       <guid>https://dschrempf.github.io/categories/coding/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Emacs</title>
-      <link>https://dschrempf.github.io/categories/emacs/</link>
-      <pubDate>Wed, 24 Jun 2015 00:00:00 +0200</pubDate>
-      
-      <guid>https://dschrempf.github.io/categories/emacs/</guid>
       <description></description>
     </item>
     
@@ -43,6 +35,15 @@
       <pubDate>Mon, 31 Aug 2015 00:00:00 +0200</pubDate>
       
       <guid>https://dschrempf.github.io/categories/music/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Emacs</title>
+      <link>https://dschrempf.github.io/categories/emacs/</link>
+      <pubDate>Wed, 24 Jun 2015 00:00:00 +0200</pubDate>
+      
+      <guid>https://dschrempf.github.io/categories/emacs/</guid>
       <description></description>
     </item>
     

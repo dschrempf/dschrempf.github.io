@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dschrempf.github.io/</loc>
+    <lastmod>2019-03-01T09:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dschrempf.github.io/search/</loc>
     <lastmod>2019-03-01T09:00:00+01:00</lastmod>
   </url>
@@ -13,8 +18,33 @@
   </url>
   
   <url>
+    <loc>https://dschrempf.github.io/categories/</loc>
+    <lastmod>2018-02-10T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dschrempf.github.io/categories/coding/</loc>
+    <lastmod>2018-02-10T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dschrempf.github.io/coding/</loc>
+    <lastmod>2018-02-10T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dschrempf.github.io/coding/2018-02-10-markov-chains-in-haskell/</loc>
     <lastmod>2018-02-10T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dschrempf.github.io/categories/linux/</loc>
+    <lastmod>2017-09-13T00:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dschrempf.github.io/linux/</loc>
+    <lastmod>2017-09-13T00:00:00+02:00</lastmod>
   </url>
   
   <url>
@@ -58,7 +88,27 @@
   </url>
   
   <url>
+    <loc>https://dschrempf.github.io/categories/music/</loc>
+    <lastmod>2015-08-31T00:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dschrempf.github.io/music/</loc>
+    <lastmod>2015-08-31T00:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dschrempf.github.io/emacs/2015-06-24-debugging-with-emacs-and-gdb/</loc>
+    <lastmod>2015-06-24T00:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dschrempf.github.io/categories/emacs/</loc>
+    <lastmod>2015-06-24T00:00:00+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dschrempf.github.io/emacs/</loc>
     <lastmod>2015-06-24T00:00:00+02:00</lastmod>
   </url>
   
@@ -118,66 +168,7 @@
   </url>
   
   <url>
-    <loc>https://dschrempf.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dschrempf.github.io/categories/coding/</loc>
-    <lastmod>2018-02-10T00:00:00+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dschrempf.github.io/coding/</loc>
-    <lastmod>2018-02-10T00:00:00+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dschrempf.github.io/</loc>
-    <lastmod>2019-03-01T09:00:00+01:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dschrempf.github.io/emacs/</loc>
-    <lastmod>2015-06-24T00:00:00+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dschrempf.github.io/categories/emacs/</loc>
-    <lastmod>2015-06-24T00:00:00+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://dschrempf.github.io/license/</loc>
-  </url>
-  
-  <url>
-    <loc>https://dschrempf.github.io/categories/linux/</loc>
-    <lastmod>2017-09-13T00:00:00+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dschrempf.github.io/linux/</loc>
-    <lastmod>2017-09-13T00:00:00+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dschrempf.github.io/categories/music/</loc>
-    <lastmod>2015-08-31T00:00:00+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://dschrempf.github.io/music/</loc>
-    <lastmod>2015-08-31T00:00:00+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
 </urlset>

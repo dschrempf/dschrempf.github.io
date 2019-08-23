@@ -43,10 +43,6 @@
         
         <div class="sidebar-about">
             
-            <img style="border-radius:50%"
-                 src="https://www.gravatar.com/avatar/b05a00fb86fa378973181afd07c7e548?s=200"
-                 alt="gravatar" title="Dominik Schrempf">
-            
             <h1>Concept → IO ()</h1>
             <p class="lead">A collection of articles about Linux, Emacs, coding and music.</p>
         </div>
@@ -131,18 +127,16 @@ Parallel</a> is a shell tool to execute jobs in parallel. Here, I show one of
 possibly many methods to use it to zip many folders (or files) in parallel.</p>
 
 <ol>
-<li>Create a file with all folders that you want to zip, e.g with:</li>
-</ol>
+<li><p>Create a file with all folders that you want to zip, e.g with:</p>
 
 <pre><code class="language-sh">ls -1 &gt; folders
-</code></pre>
+</code></pre></li>
 
-<ol>
-<li>Use GNU Parallel to zip them:</li>
-</ol>
+<li><p>Use GNU Parallel to zip them:</p>
 
 <pre><code class="language-sh">parallel -a folders &quot;tar -czf {}.tar.gz {}&quot;
-</code></pre>
+</code></pre></li>
+</ol>
 
 <p>In order to unzip many files at ones (this method can also be used to
 zip the files if their names follow certain patterns):</p>
