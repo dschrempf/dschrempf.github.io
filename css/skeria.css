@@ -16,11 +16,6 @@ html {
     font-family: 'Merriweather', serif;
     line-height: 1.5
 }
-/* @media (min-width:48em) { */
-/*     html { */
-/*         font-size: 16px */
-/*     } */
-/* } */
 
 body {
     color: #515151;
@@ -234,10 +229,8 @@ select {
 /******************************************************************************/
 /* Sidebar. */
 
-/* .sidebar .lead { */
-/*     font-size: 1.25rem; */
-/*     font-weight: 300 */
-/* } */
+.sidebar .lead {
+}
 
 .sidebar {
     text-align: center;
@@ -245,13 +238,14 @@ select {
     color: rgba(255,255,255,.5);
     background-color: #202020
 }
+
 @media (min-width:48em) {
     .sidebar {
         position: fixed;
         top: 0;
         left: 0;
         bottom: 0;
-        width: 18rem;
+        width: 20rem;
         text-align: left
     }
 }
@@ -270,6 +264,7 @@ select {
     width: 100px;
     height: 100px
 }
+
 @media (min-width:48em) {
     .sidebar-about img {
         margin: 0 auto .75rem;
@@ -277,6 +272,7 @@ select {
         height: 125px
     }
 }
+
 @media (min-width:64em) {
     .sidebar-about img {
         margin: 0 auto 1rem;
@@ -287,7 +283,6 @@ select {
 
 .sidebar-about h1 {
     color: #fff;
-    /* font-family: serif; */
     font-weight: 400;
     font-size: 1.75rem
 }
@@ -318,20 +313,13 @@ select {
 /* Content. */
 
 .content {
-    padding-top: 4rem;
-    padding-bottom: 4rem
+    margin: 4rem 2rem 4rem 2rem;
 }
+
 @media (min-width:48em) {
     .content {
-        max-width: 50rem;
-        margin-left: 20rem;
-        margin-right: 2rem
-    }
-}
-@media (min-width:64em) {
-    .content {
+        max-width: 48rem;
         margin-left: 22rem;
-        margin-right: 4rem
     }
 }
 
