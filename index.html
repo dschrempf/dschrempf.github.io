@@ -494,7 +494,7 @@ ddiff -i '%H:%M:%S' '19:09:43,683' '19:34:10,350'
                 
             </span>
             Working with large files takes a long time. Sometimes, it is worth to zip folders individually, so that a single archive does not get too large. GNU Parallel is a shell tool to execute jobs in parallel. Here, I show one of possibly many methods to use it to zip many folders (or files) in parallel.
- Create a file with all folders that you want to zip, e.g with:
+ Create a file with all folders that you want to zip, e.g with:   ls -1 &gt; folders   Use GNU Parallel to zip them:   parallel -a folders &quot;tar -czf {}.
             <a href="https://dschrempf.github.io/linux/2015-01-07-gnu-parallel/">&nbsp;Read on &rarr;</a>
         </div>
         
