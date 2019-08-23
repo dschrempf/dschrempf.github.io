@@ -48,11 +48,10 @@ h3,
 h4,
 h5,
 h6 {
-    margin-bottom: .5rem;
-    font-weight: 700;
+    margin-bottom: 0.8rem;
+    font-weight: 400;
     line-height: 1.25;
     color: #313131;
-    text-rendering: optimizeLegibility
 }
 
 h1 {
@@ -188,7 +187,6 @@ a.label:hover {
 
 /* See also timestamp class. */
 .label {
-    font-weight: 700;
     background-color: #eee;
     display: inline;
     border-radius: .25em;
