@@ -217,7 +217,6 @@ select {
 /* Containers. */
 
 .container {
-    /* max-width: 38rem; */
     padding-left: 1rem;
     padding-right: 1rem;
     margin-left: auto;
@@ -232,7 +231,7 @@ select {
 
 .sidebar {
     text-align: center;
-    padding: 2rem 1rem;
+    /* padding: 2rem 2rem; */
     color: rgba(255,255,255,.5);
     background-color: #202020
 }
@@ -250,10 +249,9 @@ select {
 
 @media (min-width:48em) {
     .sidebar-sticky {
+        padding: 0 1rem 1rem 2rem;
         position: absolute;
-        right: 1rem;
-        bottom: 1rem;
-        left: 1rem
+        bottom: 0rem;
     }
 }
 
