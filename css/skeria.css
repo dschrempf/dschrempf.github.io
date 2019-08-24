@@ -246,7 +246,9 @@ select {
 }
 
 .topbar-about img {
-
+    margin: 0 auto .5rem;
+    width: 100px;
+    height: 100px
 }
 
 .topbar-about h1 {
