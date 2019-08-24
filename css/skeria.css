@@ -1,15 +1,15 @@
 /******************************************************************************/
 /* Main. */
 
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    vertical-align: baseline;
-    background: transparent;
-    box-sizing: border-box;
-}
+/* * { */
+/*     margin: 0; */
+/*     padding: 0; */
+/*     border: 0; */
+/*     outline: 0; */
+/*     vertical-align: baseline; */
+/*     background: transparent; */
+/*     box-sizing: border-box; */
+/* } */
 
 body,
 html {
@@ -253,9 +253,12 @@ select {
     }
 }
 
+.sidebar-sticky {
+    padding: 1rem 2rem 1rem 2rem;
+}
+
 @media (min-width:48em) {
     .sidebar-sticky {
-        padding: 0 1rem 1rem 2rem;
         position: absolute;
         bottom: 0rem;
     }
