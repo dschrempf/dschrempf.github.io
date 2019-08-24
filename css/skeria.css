@@ -1,16 +1,6 @@
 /******************************************************************************/
 /* Main. */
 
-/* * { */
-/*     margin: 0; */
-/*     padding: 0; */
-/*     border: 0; */
-/*     outline: 0; */
-/*     vertical-align: baseline; */
-/*     background: transparent; */
-/*     box-sizing: border-box; */
-/* } */
-
 body,
 html {
     margin: 0;
@@ -77,6 +67,9 @@ h4,
 h5,
 h6 {
     font-size: 1rem
+}
+
+.lead {
 }
 
 /******************************************************************************/
@@ -231,15 +224,79 @@ select {
 }
 
 /******************************************************************************/
-/* Sidebar. */
+/* Topbar. */
 
-.sidebar .lead {
+.topbar {
+    text-align: center;
+    color: rgba(255,255,255,.5);
 }
+
+@media (min-width:48em) {
+    .topbar {
+        display: none;
+    }
+}
+
+.topbar a {
+    color: #fff
+}
+
+.topbar-sticky {
+    padding: 0.5rem 2rem 0.5rem 2rem;
+}
+
+.topbar-about img {
+
+}
+
+.topbar-about h1 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.75rem
+}
+
+
+/******************************************************************************/
+/* Bottombar. */
+
+.bottombar {
+    text-align: center;
+    color: rgba(255,255,255,.5);
+}
+
+@media (min-width:48em) {
+    .bottombar {
+        display: none;
+    }
+}
+
+.bottombar a {
+    color: #fff
+}
+
+.bottombar-sticky {
+    padding: 0.5rem 2rem 0.5rem 2rem;
+}
+
+.bottombar-nav {
+}
+
+.bottombar-nav-item {
+    margin: 0.5rem;
+}
+
+/******************************************************************************/
+/* Sidebar. */
 
 .sidebar {
     text-align: center;
     color: rgba(255,255,255,.5);
-    background-color: #202020
+}
+
+@media (max-width:48em) {
+    .sidebar {
+        display: none;
+    }
 }
 
 @media (min-width:48em) {
@@ -253,15 +310,14 @@ select {
     }
 }
 
-.sidebar-sticky {
-    padding: 1rem 2rem 1rem 2rem;
+.sidebar a {
+    color: #fff
 }
 
-@media (min-width:48em) {
-    .sidebar-sticky {
-        position: absolute;
-        bottom: 0rem;
-    }
+.sidebar-sticky {
+    padding: 1rem 2rem 1rem 2rem;
+    position: absolute;
+    bottom: 0rem;
 }
 
 .sidebar-about img {
@@ -292,10 +348,6 @@ select {
     font-size: 1.75rem
 }
 
-.sidebar a {
-    color: #fff
-}
-
 .sidebar-nav {
     padding-left: 0;
     list-style: none;
@@ -309,15 +361,29 @@ select {
     text-align: left
 }
 
-.sidebar .footer {
+/******************************************************************************/
+/* Footer. */
+
+.footer {
     font-size: .8rem
+}
+
+/******************************************************************************/
+/* Icons. */
+
+.icons {
+    margin-bottom: 1rem;
+}
+
+.icons-item {
+
 }
 
 /******************************************************************************/
 /* Content. */
 
 .content {
-    padding: 4rem 2rem 4rem 2rem;
+    margin: 4rem 2rem 4rem 2rem;
 }
 
 @media (min-width:48em) {
@@ -338,7 +404,7 @@ select {
 /* Posts. */
 
 .post {
-    padding-bottom: 4em
+    margin-bottom: 4em
 }
 
 .post-title,
@@ -729,6 +795,12 @@ a.pagination-item:hover {
 
 /* Dark blue theme. */
 .theme-base-darkblue .sidebar {
+    background-color: #369
+}
+.theme-base-darkblue .topbar {
+    background-color: #369
+}
+.theme-base-darkblue .bottombar {
     background-color: #369
 }
 .theme-base-darkblue .content a,
