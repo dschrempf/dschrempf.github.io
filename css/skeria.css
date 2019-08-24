@@ -2,6 +2,13 @@
 /* Main. */
 
 * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
     box-sizing: border-box;
 }
 
@@ -231,7 +238,6 @@ select {
 
 .sidebar {
     text-align: center;
-    /* padding: 2rem 2rem; */
     color: rgba(255,255,255,.5);
     background-color: #202020
 }
@@ -294,7 +300,6 @@ select {
     display: inline-block
 }
 
-/* Improve alignment when centered on small screens. */
 .sidebar-nav-item {
     display: block;
     line-height: 1.75;
