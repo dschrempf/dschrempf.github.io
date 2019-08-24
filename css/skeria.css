@@ -332,7 +332,7 @@ select {
 /* Posts. */
 
 .post {
-    margin-bottom: 4em
+    padding-bottom: 4em
 }
 
 .post-title,
