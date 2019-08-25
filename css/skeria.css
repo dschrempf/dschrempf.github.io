@@ -49,8 +49,8 @@ h3,
 h4,
 h5,
 h6 {
-    margin-top: 1.5em;
-    margin-bottom: 0.8em;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
     font-weight: 400;
     line-height: 1.25;
     color: #313131;
@@ -82,7 +82,7 @@ h6 {
 
 p {
     margin-top: 0;
-    margin-bottom: 1em
+    margin-bottom: 1em;
 }
 
 dl,
@@ -251,7 +251,7 @@ select {
 }
 
 .topbar-about img {
-    margin: 0 auto .5em;
+    margin: 0.5em auto 0.5em;
     width: 100px;
     height: 100px
 }
@@ -259,7 +259,8 @@ select {
 .topbar-about h1 {
     color: #fff;
     font-weight: 400;
-    font-size: 1.75em
+    font-size: 1.75em;
+    margin: 0.5em;
 }
 
 
@@ -298,7 +299,7 @@ select {
 /* We have to use two different ways of positioning the sidebar, since for
    displays with low height, fixed positioning is not possible. */
 
-@media (max-height:40em) {
+@media (max-height:42em) {
     .sidebar {
         color: rgba(255,255,255,.5);
         position: absolute;
@@ -307,13 +308,14 @@ select {
         bottom: 0;
         left: 0;
         width: 20em;
+        min-height: 42em;
     }
     .sidebar-sticky {
         padding: 1.5em 2em 1em 2em;
     }
 }
 
-@media (min-height:40em) {
+@media (min-height:42em) {
     .sidebar {
         display: flex;
         color: rgba(255,255,255,.5);
@@ -342,7 +344,7 @@ select {
 
 
 .sidebar-about img {
-    margin: 0 auto 1em;
+    margin: 1.5em auto 1em;
     width: 150px;
     height: 150px
 }
@@ -350,7 +352,8 @@ select {
 .sidebar-about h1 {
     color: #fff;
     font-weight: 400;
-    font-size: 1.75em
+    font-size: 1.75em;
+    margin-top: 1.5em;
 }
 
 .sidebar-nav {
