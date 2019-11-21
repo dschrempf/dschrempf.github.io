@@ -12,9 +12,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
         
-        <title>Codings &middot; Dominik Schrempf</title>
-        <meta name="description" content="Linux, Emacs, coding and more.">
-        <meta name="keywords" content="Arch Linux, Emacs, Haskell, C&#43;&#43;, Python">
+        <title>Algebraic graphs &middot; Dominik Schrempf</title>
+        <meta name="description" content="A great way to think and reason about graphs">
+        <meta name="keywords" content="Graph,Algebra,Alga,Tree,Sum,Product,Group,Semigroup,Monoid,Haskell">
 
         
         <link rel="stylesheet" href="https://dschrempf.github.io/css/skeria.css">
@@ -53,6 +53,8 @@
         <div class="topbar-about">
             
 
+
+
             <a href="https://dschrempf.github.io/"
    style="text-decoration: none">
     <h1>Concept → IO ()</h1>
@@ -67,6 +69,8 @@
     <div class="sidebar-sticky">
         <div class="sidebar-about">
             
+
+
 
             <a href="https://dschrempf.github.io/"
    style="text-decoration: none">
@@ -133,60 +137,190 @@
         
         
 <div class="content container">
-    <h1 class="post-title">Coding</h1>
-    <style>
-     table {
-         border: none;
-     }
-     td, th {
-         border: none;
-         padding: 5px 0px 5px 0px;
-         vertical-align: top;
-     }
-     tbody tr:nth-child(odd) td,
-     tbody tr:nth-child(odd) th {
-         background-color: white;
-     }
-    </style>
-    <table>
+  <div class="post">
+    <h1 class="post-title">Algebraic graphs</h1>
+    <span class="post-date">
+        Nov 21, 2019
         
-        <tr>
-            <td><time>Nov 21, 2019</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2019-11-21-algebraic-graphs/">Algebraic graphs</a></td>
-        </tr>
+        &middot; 4 minute read
         
-        <tr>
-            <td><time>Feb 10, 2018</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2018-02-10-markov-chains-in-haskell/">Markov chains in Haskell</a></td>
-        </tr>
         
-        <tr>
-            <td><time>Jul 20, 2017</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2017-07-20-folding-around-monads-in-haskell/">Happy folding around monads in Haskell</a></td>
-        </tr>
+        &middot;
         
-        <tr>
-            <td><time>Apr 9, 2016</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2016-04-09-continuous-time-markov-chain/">A simulator for continuous-time Markov chains</a></td>
-        </tr>
+        <a class="label" href="https://dschrempf.github.io/coding">Coding</a>
         
-        <tr>
-            <td><time>Mar 26, 2015</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2015-03-26-popgen-cpp-programs/">Population genetics C&#43;&#43; programs</a></td>
-        </tr>
         
-        <tr>
-            <td><time>Jan 15, 2015</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2015-01-15-mcmc-coin-toss/">A simple MCMC simulation</a></td>
-        </tr>
-        
-        <tr>
-            <td><time>Dec 23, 2014</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2014-12-23-haskell-pretty-print/">Easy pretty print in Haskell</a></td>
-        </tr>
-        
-    </table>
+    </span>
+    <p>The <a href="https://hackage.haskell.org/package/algebraic-graphs">Algebraic Graphs Haskell library</a> (Alga) is a fast, minimalist, and elegant
+approach to working with graphs that allows for equational reasoning about the
+correctness of algorithms. For reference, please also see the <a href="https://github.com/snowleopard/alga-paper">accompanying
+paper</a>.</p>
+
+<p>The advantages are:</p>
+
+<ul>
+<li>algebraic graphs have a small core with just four graph construction primitives;</li>
+<li>the core has a mathematical structure characterized by a set of laws or
+properties.</li>
+</ul>
+
+<p>A <strong>directed graph</strong> in the mathematical sense is a set \(V\) of vertices \(v_i\)
+together with a set \(E\) of directed edges \((v_i, v_j)\), and is denoted
+\((V,E)\). The beauty about algebraic graphs is that they are not defined
+explicitly by lists of vertices and edges but in a recursive manner, similar to
+the definition of algebraic trees.</p>
+
+<pre><code class="language-haskell">data Graph a = Empty
+  | Vertex a
+  | Overlay (Graph a) (Graph a)
+  | Connect (Graph a) (Graph a)
+</code></pre>
+
+<p>A graph is either empty <code>ε</code>, consists of a single vertex <code>v</code>, or it is somehow
+constructed by a combination of two sub-graphs using the binary construction
+operators <code>Overlay</code> \((+)\) or <code>Connect</code> \((*)\).</p>
+
+<ul>
+<li><p>The <strong>overlay</strong> of two graphs is the union of vertices and edges</p>
+
+<p>\begin{align}
+  (V_1, E_1) + (V_2, E_2) = (V_1 \cup V_2, E_1 \cup E_2).
+\end{align}</p></li>
+
+<li><p>The <strong>connection</strong> of two graphs additionally creates edges between the vertices
+of the two graphs</p>
+
+<p>\begin{align}
+  (V_1, E_1) * (V_2, E_2) = (V_1 \cup V_2, E_1 \cup E_2 \cup V_1 \times V_2).
+\end{align}</p>
+
+<p>\((V_1 \times V_2)\) is the set of all edges from vertices of \(V_1\) to
+vertices of \(V_2\). For example, if \(V_1 = \{1,2\}\), and \(V_2 = \{3,4\}\),
+then</p>
+
+<p>\begin{align}
+  (V_1 \times V_2) = \{ (1,3), (1,4), (2,3), (2,4) \}.
+\end{align}</p>
+
+<p>Only the connect operation allows the creation of new edges.</p></li>
+</ul>
+
+<p>The algebraic properties of the the <code>Graph</code> data type are collected in a type
+class which is also called <code>Graph</code>.</p>
+
+<pre><code class="language-haskell">class Graph g where
+  type Vertex g
+  empty :: g
+  vertex :: Vertex g -&gt; g
+  overlay :: g -&gt; g -&gt; g
+  connect :: g -&gt; g -&gt; g
+</code></pre>
+
+<p>The definition involves a <a href="https://wiki.haskell.org/GHC/Type%5Ffamilies">type synonym family</a>, which is a function on the type
+level. The type synonym family specifies how the type of a vertex can be
+extracted from the data type instance.</p>
+
+<p>A valid <code>Graph</code> instance should fulfill the following <strong>laws</strong>:</p>
+
+<ul>
+<li>\((G, +, \epsilon)\) is an idempotent commutative <a href="https://en.wikipedia.org/wiki/Monoid">monoid</a>. A monoid is an
+algebraic structure with an associative binary operation and an identity
+element. Idempotent means that \(\forall x \in G: x + x = x\).</li>
+<li>\((G, \ast, \epsilon)\) is a monoid.</li>
+<li>\(\ast\) distributes over \(+\). That is, \(1 \ast (2 + 3) = (1 + 2) \ast (1 +
+  3)\).</li>
+</ul>
+
+<p>This structure is very close to an idempotent <a href="https://en.wikipedia.org/wiki/Semiring">semiring</a>. The differences are:</p>
+
+<ul>
+<li>The identity elements \(\epsilon_+\) and \(\epsilon_{\ast}\) are the same.</li>
+<li>Consequently, \(\epsilon_+\) is not an annihilating element and it is wrong
+that \( \forall x \in G: \epsilon_+ \ast x = 0 \).</li>
+</ul>
+
+<p>Further, we have the <strong>decomposition law</strong>:</p>
+
+<p>\begin{align}
+  x \ast y \ast z = x \ast y + x \ast z + y \ast z.
+\end{align}</p>
+
+<p>The string decomposition law is a sufficient condition to induce the following
+statements.</p>
+
+<ul>
+<li>The identities of \(+\) and \(\ast\) are equal.</li>
+<li>\(+\) is idempotent.</li>
+</ul>
+
+<p>The binary operators \(+\) and \(\ast\) are closed, and together with
+\(\epsilon\) and \(v\), algebraic graphs are complete. In particular, we cannot
+create algebraic graphs that are not graphs in the mathematical sense, and all
+graphs can be represented using algebraic graphs.</p>
+
+<p><em>The construction of a specific graph is <strong>not identifiable</strong>.</em> Similar to \(8=5+3\)
+and \(8=4+4\), we can generate a graph by choosing two difference bipartitions
+and overlay them. More basic, \( \forall x \in G\) we have</p>
+
+<p>\begin{align}
+  x = x \ast \epsilon.
+\end{align}</p>
+
+<p><em>The <a href="https://en.wikipedia.org/wiki/Canonical%5Fform">canonical form</a> of a given graph \(g = (V_g, E_g)\) is</em></p>
+
+<p>\begin{align}
+  g = \sum_{v \in V_g} v + \sum_{(u,v) \in E_g} u \ast v.
+\end{align}</p>
+
+<p>We can define a <strong>partial order</strong> on graphs by</p>
+
+<p>\begin{align}
+  x \le y \iff x + y = y.
+\end{align}</p>
+
+<p>This is exactly the usual definition of a sub graph.</p>
+
+<p>\begin{align}
+  x \subseteq y \equiv x + y = y.
+\end{align}</p>
+
+<p>A graph instance, additionally having multiplicative commutativity</p>
+
+<p>\begin{align}
+  x \ast y = y \ast x
+\end{align}</p>
+
+<p>represents an <strong>undirected graph</strong>. In this case, the strong decomposition law
+also induces associativity of \(\ast\).</p>
+
+<p>The algebraic way of thinking about graphs and how to manipulate them was new to
+me. Nonsense graph objects cannot be created at all, and so, an important source
+of bugs is eliminated. This principle is an excellent example of the dogma
+<a href="https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/">*parse, don&rsquo;t validate</a>, for which Haskell forms an excellent framework.</p>
+
+  </div>
+  <div id="disqus_thread"></div>
 </div>
+
+
+<script id="dsq-count-scr" src="//dschrempf.disqus.com/count.js" async></script>
+<script>
+ var disqus_shortname = "dschrempf";
+ var disqus_config = function () {
+     this.page.url = "https://dschrempf.github.io/coding/2019-11-21-algebraic-graphs/";
+     this.page.identifier = "Algebraic graphs";
+ };
+ (function() {
+     var d = document, s = d.createElement('script');
+     s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     s.setAttribute('data-timestamp', +new Date());
+     (d.head || d.body).appendChild(s);
+ })();
+</script>
+<noscript>Please enable JavaScript to view <a href="https://disqus.com/?ref_noscript">comments.</a></noscript>
+
+
+
 
 
         

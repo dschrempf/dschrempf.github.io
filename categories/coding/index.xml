@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Coding on Concept → IO ()</title>
@@ -6,10 +6,21 @@
     <description>Recent content in Coding on Concept → IO ()</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Feb 2018 00:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Thu, 21 Nov 2019 00:00:00 +0100</lastBuildDate>
     
 	<atom:link href="https://dschrempf.github.io/categories/coding/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Algebraic graphs</title>
+      <link>https://dschrempf.github.io/coding/2019-11-21-algebraic-graphs/</link>
+      <pubDate>Thu, 21 Nov 2019 00:00:00 +0100</pubDate>
+      
+      <guid>https://dschrempf.github.io/coding/2019-11-21-algebraic-graphs/</guid>
+      <description>The Algebraic Graphs Haskell library (Alga) is a fast, minimalist, and elegant approach to working with graphs that allows for equational reasoning about the correctness of algorithms. For reference, please also see the accompanying paper.
+The advantages are:
+ algebraic graphs have a small core with just four graph construction primitives; the core has a mathematical structure characterized by a set of laws or properties.  A directed graph in the mathematical sense is a set \(V\) of vertices \(v_i\) together with a set \(E\) of directed edges \((v_i, v_j)\), and is denoted \((V,E)\).</description>
+    </item>
     
     <item>
       <title>Markov chains in Haskell</title>
