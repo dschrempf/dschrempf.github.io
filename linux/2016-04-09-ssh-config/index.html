@@ -151,80 +151,56 @@
         
         
     </span>
-    
-
-<p>Did you ever get sick of typing the IP of your SSH server.  There is
+    <p>Did you ever get sick of typing the IP of your SSH server.  There is
 an incredible feature of SSH that saves you a lot of time typing
 host names, IP addresses or passwords.</p>
-
 <h2 id="login-with-ssh-key">Login with SSH key</h2>
-
 <p>First, you want to create your own <a href="https://wiki.archlinux.org/index.php/SSH%5Fkeys">SSH key</a> so that your server accepts
 your login without any password.</p>
-
-<pre><code class="language-bash"># Create an SSH key (use the standard path).  Be careful, if you do
-# not set a passphrase, anybody that has access to your computer can
-# log into servers that have been set up to accept your key.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Create an SSH key (use the standard path).  Be careful, if you do</span>
+<span style="color:#75715e"># not set a passphrase, anybody that has access to your computer can</span>
+<span style="color:#75715e"># log into servers that have been set up to accept your key.</span>
 ssh-keygen
 
-# Copy the key on your server.
+<span style="color:#75715e"># Copy the key on your server.</span>
 ssh-copy-id yourusername@yourserver.example.com
 
-# Try it out and be happy!
+<span style="color:#75715e"># Try it out and be happy!</span>
 ssh yourusername@yourserver.example.com
-</code></pre>
-
-<h2 id="use-dot-ssh-config">Use <code>~/.ssh/config</code></h2>
-
+</code></pre></div><h2 id="use-dot-ssh-config">Use <code>~/.ssh/config</code></h2>
 <p>Now, it is getting better; edit or create the file <code>~/.ssh.config</code>:</p>
-
-<pre><code class="language-text">#~/.ssh/config
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#~/.ssh/config
 Host server
      HostName yourserver.example.com
      User yourusername
-</code></pre>
-
-<p>Try to log into <code>yourserver</code> (now aliased <code>server</code>):</p>
-
-<pre><code class="language-bash">ssh server
-</code></pre>
-
-<p>Wow, that was fast.</p>
-
+</code></pre></div><p>Try to log into <code>yourserver</code> (now aliased <code>server</code>):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh server
+</code></pre></div><p>Wow, that was fast.</p>
 <h2 id="proxycommand">ProxyCommand</h2>
-
 <p>And it can get better.  Very often, the computer <code>privatecomputer</code>
 that you want to log in, is only accessible from the local network but
 not from the outside.  However, you have access to <code>server</code> which,
 in turn has access to <code>private</code>.</p>
-
 <figure>
     <img src="/ox-hugo/ssh-proxy.png"/> 
 </figure>
 
-
 <p>Hmm, normally, you would need to</p>
-
-<pre><code class="language-bash"># Log into the server.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Log into the server.</span>
 ssh yourusername@yourserver.example.com
-# Wait.  Enter password.  Wait.
+<span style="color:#75715e"># Wait.  Enter password.  Wait.</span>
 ssh privateusername@privatecomputer.local
-# Wait.  Enter password.  Wait.
-# That sucks.
-</code></pre>
-
-<p>We can setup SSH keys so that we do not have to enter passwords</p>
-
+<span style="color:#75715e"># Wait.  Enter password.  Wait.</span>
+<span style="color:#75715e"># That sucks.</span>
+</code></pre></div><p>We can setup SSH keys so that we do not have to enter passwords</p>
 <ul>
 <li>from <code>home</code> to <code>server</code> (we already did that);</li>
 <li>from <code>server</code> to <code>privatecomputer.local</code> (you can do that now,
 if you want).</li>
 </ul>
-
 <p>However, we can also do something much more awesome.  Put this into
 your <code>~/.ssh/config</code>:</p>
-
-<pre><code class="language-text">#~/.ssh/config
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#~/.ssh/config
   Host server
        HostName yourserver.example.com
        User yourusername
@@ -232,14 +208,9 @@ your <code>~/.ssh/config</code>:</p>
   Host private
        ProxyCommand ssh -q server -W privatecomputer.local:22
        User privateusername
-</code></pre>
-
-<p>And try it out:</p>
-
-<pre><code class="language-bash">ssh private
-</code></pre>
-
-<p>Wow.</p>
+</code></pre></div><p>And try it out:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh private
+</code></pre></div><p>Wow.</p>
 
   </div>
   <div id="disqus_thread"></div>

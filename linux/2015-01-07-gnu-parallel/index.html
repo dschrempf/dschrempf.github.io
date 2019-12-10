@@ -155,31 +155,20 @@
 folders individually, so that a single archive does not get too large. <a href="http://www.gnu.org/s/parallel">GNU
 Parallel</a> is a shell tool to execute jobs in parallel. Here, I show one of
 possibly many methods to use it to zip many folders (or files) in parallel.</p>
-
 <ol>
 <li>Create a file with all folders that you want to zip, e.g with:</li>
 </ol>
-
-<!--listend-->
-
-<pre><code class="language-sh">ls -1 &gt; folders
-</code></pre>
-
-<ol>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">ls -1 &gt; folders
+</code></pre></div><ol>
 <li>Use GNU Parallel to zip them:</li>
 </ol>
-
-<!--listend-->
-
-<pre><code class="language-sh">parallel -a folders &quot;tar -czf {}.tar.gz {}&quot;
-</code></pre>
-
-<p>In order to unzip many files at ones (this method can also be used to
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">parallel -a folders <span style="color:#e6db74">&#34;tar -czf {}.tar.gz {}&#34;</span>
+</code></pre></div><p>In order to unzip many files at ones (this method can also be used to
 zip the files if their names follow certain patterns):</p>
-
-<pre><code class="language-sh">parallel &quot;tar -xzf {}&quot; ::: *.tar.gz
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">parallel <span style="color:#e6db74">&#34;tar -xzf {}&#34;</span> ::: *.tar.gz
+</code></pre></div>
   </div>
   <div id="disqus_thread"></div>
 </div>

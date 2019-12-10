@@ -151,50 +151,37 @@
         
         
     </span>
-    
-
-<p>Recently, I stumbled upon two nice Emacs minor modes.</p>
-
+    <p>Recently, I stumbled upon two nice Emacs minor modes.</p>
 <h2 id="helm-mode">Helm mode</h2>
-
 <p>Helm mode offers an <strong>incremental completion</strong> and <strong>selection narrowing</strong>
-framework.  It will help you to find what you&rsquo;re looking for in Emacs
+framework.  It will help you to find what you're looking for in Emacs
 (like buffers, files, commands etc).  Resources and discussions can be
 found at the following homepages:</p>
-
 <ul>
 <li>development and installation instructions at the <a href="https://github.com/emacs-helm/helm">Helm mode GitHub page</a>;</li>
 <li>the Emacs initialization files and <a href="https://github.com/thierryvolpiatto/emacs-tv-config">configuration of the Helm maintainer</a>;</li>
 <li><a href="http://tuhdo.github.io/helm-intro.html">a good overview of the features</a> and a sample configuration.</li>
 </ul>
-
 <p>I can recommend to use the <code>TAB</code> key for completion and not for other
 actions.  You can bind the <code>TAB</code> key back to
 <code>helm-execute-persistent-action</code> with</p>
-
-<pre><code class="language-lisp">;; Bind TAB to complete stuff.
-(define-key helm-map (kbd &quot;TAB&quot;)         'helm-execute-persistent-action)
-;; Rebind `helm-select-action' (originally bound to TAB).
-(define-key helm-map (kbd &quot;C-j&quot;)         'helm-select-action)
-</code></pre>
-
-<p>I had used <a href="http://emacswiki.org/emacs/InteractivelyDoThings">Ido mode</a> extensively before I switched to Helm mode.  I
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">;; Bind TAB to complete stuff.</span>
+(define-key helm-map (kbd <span style="color:#e6db74">&#34;TAB&#34;</span>)         <span style="color:#e6db74">&#39;helm-execute-persistent-action</span>)
+<span style="color:#75715e">;; Rebind `helm-select-action&#39; (originally bound to TAB).</span>
+(define-key helm-map (kbd <span style="color:#e6db74">&#34;C-j&#34;</span>)         <span style="color:#e6db74">&#39;helm-select-action</span>)
+</code></pre></div><p>I had used <a href="http://emacswiki.org/emacs/InteractivelyDoThings">Ido mode</a> extensively before I switched to Helm mode.  I
 must admit that the first thought was: too heavy and, oh, I miss the
 insertion with <code>RET</code> as well as that Ido remembers which files I had
 visited earlier.  Also, completion cannot be used when looking for
 commands with <code>helm-M-x</code>.  However, with Helm mode I enjoy most that I
 get an overview of what is out there.  That is what I miss with Ido
 mode.  Try it out yourself!</p>
-
 <h2 id="hydra-mode">Hydra mode</h2>
-
 <p>Hydra mode makes Emacs key bindings stick around so that they can be
 used without modifiers.  It also displays them on the screen, so that
 rarely used shortcuts can be remembered without looking into the
 configuration files again (and again and again).  It is very useful!</p>
-
 <p>Check it out:</p>
-
 <ul>
 <li>source code and introduction at <a href="https://github.com/abo-abo/hydra">Hydra mode on GitHub</a>;</li>
 <li>some blog entries of the creator at <a href="http://oremacs.com/archive/">(or emacs irrelevant)</a>.</li>

@@ -151,17 +151,13 @@
         
         
     </span>
-    
-
-<p>I like a lot of stuff that Google is doing, especially that it
+    <p>I like a lot of stuff that Google is doing, especially that it
 supports open source.  However, I really dislike their attitude
 towards user privacy.  That is why I decided to get rid of Google on
 my Android phone.  However, I had to solve some problems in order to
 keep user-friendliness at a high level and to be able to use all
 applications that I need.</p>
-
 <p>The main issues are:</p>
-
 <ol>
 <li>Which <a href="#cyanogenmod-without-open-gapps">ROM</a> do I use?</li>
 <li>How do I <a href="#application-management">install software</a> and keep it up to date?</li>
@@ -169,21 +165,15 @@ applications that I need.</p>
 <li>Can I <a href="#replacement-of-google-applications">replace applications</a> that do not run without Google Play
 Services?</li>
 </ol>
-
 <p>The answers are:</p>
-
 <h2 id="cyanogenmod-without-open-gapps">Cyanogenmod without Open GApps</h2>
-
 <p>I have been using <a href="http://www.cyanogenmod.org/">Cyanogenmod</a> for quite some time now and I am very
 happy with it.  After a complete backup, I formatted every possible
 partition on my phone and did a clean reinstall without Open GApps.
 This left me with a Google-less Android install.</p>
-
 <h2 id="application-management">Application management</h2>
-
 <p>Use <a href="https://f-droid.org/">F-Droid</a>.  For applications that are not available in F-Droid, use
 a <em>service</em> that provides APK files of Google Play Store applications.</p>
-
 <p>This is the main drawback, because this <em>service</em> has to be trusted in
 that it does not alter the APK files in any way.  I decided to use
 <a href="https://apkpure.com/">APKPure</a> because it comes with an application that can update all
@@ -193,39 +183,28 @@ Store and could not find any differences.  This problem of completely
 trusting an unknown organization is still bugging me but I did not
 find another solution so far (especially because all application
 stores are incomplete).</p>
-
 <h2 id="contact-and-calendar">Contact and calendar</h2>
-
 <p>For contact and calendar synchronization, I use a Raspberry Pi with
 <a href="https://nextcloud.com/">Nextcloud</a> (or <a href="https://owncloud.org/">Owncloud</a>) together with <a href="https://davdroid.bitfire.at/">DavDroid</a> on the phone (which is
 available on F-Droid).  I am sure there are other services available
 that do not require an extensive server setup like this one.</p>
-
 <h2 id="replacement-of-google-applications">Replacement of Google applications</h2>
-
 <p>I replaced Google Maps with OsmAnd; Gmail with the native Android mail
 client; I never used Google Now nor Hangouts nor any other Google
 application.</p>
-
 <p>So far, this was way easier than I thought.  Ironically, a local
 application that provides information about public transport was the
 only one that complained about Google Play Services being
-non-existent.  That&rsquo;s when I dived into this issue and found <a href="https://microg.org/">microG</a>,
+non-existent.  That's when I dived into this issue and found <a href="https://microg.org/">microG</a>,
 an open source library that provides replacements for a lot of
 functions usually provided by Google Play Services.</p>
-
 <h3 id="microg">microG</h3>
-
 <p>The setup on Cyanogenmod with Android 6.0.1 is tough because system
 spoofing needs to be available.  This can be done using Haystack or
 Xposed (do not follow both instruction sets).</p>
-
 <h4 id="installation-of-haystack">Installation of Haystack</h4>
-
 <p>A detailed explanation can be found on the <a href="https://github.com/Lanchon/haystack">GitHub page</a>.</p>
-
 <h4 id="installation-of-xposed">Installation of Xposed</h4>
-
 <ul>
 <li>With F-Droid, install Xposed Downloader.</li>
 <li>With Xposed Downloader, download the latest Xposed framework and the Xposed
@@ -236,9 +215,7 @@ cache).</li>
 correctly (start Xposed installer).</li>
 <li>With Xposed, download FakeGApps and activate it; reboot.</li>
 </ul>
-
 <h4 id="installation-of-microg-services-core">Installation of microG Services Core</h4>
-
 <ul>
 <li>With F-Droid, activate the <a href="https://microg.org/fdroid.html">microG repository</a>.</li>
 <li>With F-Droid, install microG Services Core, microG Services
@@ -253,9 +230,7 @@ provider backend.</li>
 re-register to the Google servers, otherwise message delivery may be
 delayed.</li>
 </ul>
-
 <h2 id="conclusion">Conclusion</h2>
-
 <p>Installing Android without Google Play Services was way easier than I
 thought.  However, to enable applications that require certain
 features like the messaging or the location interface of Google Play

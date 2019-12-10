@@ -155,17 +155,11 @@
 look at them and analyze them. Today I came accross <a href="https://hackage.haskell.org/package/pretty-show">pretty-show</a>, a haskell
 package that allows pretty printing of all objects that are instances of the
 type class Show.</p>
-
 <p>The usage is very straight forward:</p>
-
-<pre><code class="language-haskell">import qualified Text.Show.Pretty as Pr
-</code></pre>
-
-<p>This provides Pr.ppShow which can be used in GHCi (or other interpreters):</p>
-
-<pre><code class="language-haskell">putStrLn $ Pr.ppShow object
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">import</span> <span style="color:#66d9ef">qualified</span> Text.Show.Pretty <span style="color:#66d9ef">as</span> Pr
+</code></pre></div><p>This provides Pr.ppShow which can be used in GHCi (or other interpreters):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">putStrLn</span> <span style="color:#f92672">$</span> <span style="color:#66d9ef">Pr</span><span style="color:#f92672">.</span>ppShow object
+</code></pre></div>
   </div>
   <div id="disqus_thread"></div>
 </div>

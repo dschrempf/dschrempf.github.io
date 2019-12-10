@@ -151,18 +151,12 @@
         
         
     </span>
-    
-
-<p>This homepage was created with Emacs and <a href="http://orgmode.org/">Org mode</a>. It is hosted at <a href="https://pages.github.com/">github.io</a> and
+    <p>This homepage was created with Emacs and <a href="http://orgmode.org/">Org mode</a>. It is hosted at <a href="https://pages.github.com/">github.io</a> and
 comments can be done using <a href="https://disqus.com/">Disqus</a>. I assume a working Org mode setup and a
 GitHub as well as a Disqus account.</p>
-
-<p><span class="timestamp-wrapper"><span class="timestamp">&lt;2015-03-26 Thu&gt; </span></span> Update; general revision of code and text.</p>
-
-<p><span class="timestamp-wrapper"><span class="timestamp">&lt;2016-04-09 Sat&gt; </span></span> Another update.</p>
-
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->&lt;2015-03-26 Thu&gt; <!-- raw HTML omitted --><!-- raw HTML omitted --> Update; general revision of code and text.</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted -->&lt;2016-04-09 Sat&gt; <!-- raw HTML omitted --><!-- raw HTML omitted --> Another update.</p>
 <h2 id="general-idea">General idea</h2>
-
 <dl>
 <dt>Org mode</dt>
 <dd>A great tool for taking notes and exporting them to
@@ -176,19 +170,15 @@ to make the website available.</dd>
 <dt>Disqus</dt>
 <dd>Provides the ability to comment posts.</dd>
 </dl>
-
 <p>Many people also use <a href="http://jekyllrb.com/">Jekyll</a> to create homepages and blogs together
 with Org mode and GitHub.  This is certainly a very appealing
 alternative but I prefer a setting that is easier to set up and has
 fewer options.</p>
-
 <h2 id="folder-structure">Folder structure</h2>
-
 <p>I decided to use the following folder structure; it is somehow
 arbitrary but the Org mode publishing setup has to be adjusted
 accordingly:</p>
-
-<pre><code class="language-text">/home/dominik/Shared/blog
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">/home/dominik/Shared/blog
 ├── dschrempf.github.io
 └── org
     ├── css
@@ -196,9 +186,7 @@ accordingly:</p>
     └── posts
 
 8 directories
-</code></pre>
-
-<p>The folders <code>css</code> and <code>js</code> are self explanatory.  Good style sheets
+</code></pre></div><p>The folders <code>css</code> and <code>js</code> are self explanatory.  Good style sheets
 are hard to get.  I use a <a href="../../css/site.css">neat one</a> from <a href="http://orgmode.org/worg/">Worg</a> with a few changes.  For
 this setup, it has to be saved as <code>/blog/org/css/site.css</code>.
 <a href="https://github.com/dschrempf/dschrempf.github.io">dschrempf.github.io</a> is the git repository of the GitHub homepage
@@ -208,122 +196,111 @@ important that you create an <code>index.org</code> file because GitHub is
 looking for an <code>index.html</code> file and displays it as the main page.
 You can use all capabilities of Org mode and its <a href="http://orgmode.org/manual/HTML-export.html#HTML-export">export and publishing
 framework</a>.</p>
-
 <h2 id="org-mode-publishing-setup">Org Mode publishing setup</h2>
-
 <p>This is the main step.  Org mode has to know how to export your Org
 files so that they can be hosted by GitHub:</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#66d9ef">setq</span> org-publish-project-alist
+      <span style="color:#f92672">&#39;</span>(
+        <span style="color:#75715e">;; Blog posts in Org mode that are exported to html and hosted</span>
+        <span style="color:#75715e">;; by GitHub.</span>
+        (<span style="color:#e6db74">&#34;blog&#34;</span>
+         <span style="color:#75715e">;; Directory with Org files.</span>
+         <span style="color:#e6db74">:base-directory</span> <span style="color:#e6db74">&#34;~/Shared/blog/org/&#34;</span>
+         <span style="color:#e6db74">:base-extension</span> <span style="color:#e6db74">&#34;org&#34;</span>
+         <span style="color:#75715e">;; Output directory for html files on GitHub.</span>
+         <span style="color:#e6db74">:publishing-directory</span> <span style="color:#e6db74">&#34;~/Shared/blog/dschrempf.github.io/&#34;</span>
+         <span style="color:#e6db74">:publishing-function</span> (org-html-publish-to-html)
+         <span style="color:#e6db74">:html-extension</span> <span style="color:#e6db74">&#34;html&#34;</span>
+         <span style="color:#75715e">;; Create a sitemap that contains all posts in</span>
+         <span style="color:#75715e">;; anti-chronological order.</span>
+         <span style="color:#e6db74">:auto-sitemap</span> <span style="color:#66d9ef">t</span>
+         <span style="color:#e6db74">:sitemap-filename</span> <span style="color:#e6db74">&#34;archive.org&#34;</span>
+         <span style="color:#e6db74">:sitemap-title</span> <span style="color:#e6db74">&#34;Archive&#34;</span>
+         <span style="color:#e6db74">:sitemap-sort-files</span> anti-chronologically
+         <span style="color:#e6db74">:sitemap-style</span> <span style="color:#a6e22e">list</span>
+         <span style="color:#e6db74">:recursive</span> <span style="color:#66d9ef">t</span>
+         <span style="color:#e6db74">:section-numbers</span> <span style="color:#66d9ef">nil</span>
+         <span style="color:#e6db74">:with-toc</span> <span style="color:#66d9ef">t</span>
+         <span style="color:#75715e">;; Do not include predefined header scripts.</span>
+         <span style="color:#e6db74">:html-head-include-default-style</span> <span style="color:#66d9ef">nil</span>
+         <span style="color:#e6db74">:html-head-include-scripts</span> <span style="color:#66d9ef">nil</span>
+         <span style="color:#e6db74">:html-head</span> <span style="color:#e6db74">&#34;&lt;link rel=&#39;stylesheet&#39; href=&#39;/css/site.css&#39; type=&#39;text/css&#39;/&gt;
+</span><span style="color:#e6db74">&lt;meta name=\&#34;viewport\&#34; content=\&#34;width=device-width\&#34;/&gt;&#34;</span>
+         <span style="color:#e6db74">:html-preamble</span> website-html-preamble
+         <span style="color:#e6db74">:html-postamble</span> website-html-postamble
+         <span style="color:#e6db74">:html-link-home</span> <span style="color:#e6db74">&#34;http://dschrempf.github.io/&#34;</span>
+         <span style="color:#e6db74">:html-link-use-abs-url</span> <span style="color:#66d9ef">nil</span>)
 
-<p><a id="code-snippet--Org publish setup"></a></p>
+        (<span style="color:#e6db74">&#34;static&#34;</span>
+         <span style="color:#e6db74">:base-directory</span> <span style="color:#e6db74">&#34;~/Shared/blog/org/&#34;</span>
+         <span style="color:#e6db74">:base-extension</span> <span style="color:#e6db74">&#34;css\\|js\\|jpg\\|gif\\|png\\|pdf\\|mp3\\|ogg\\|swf&#34;</span>
+         <span style="color:#e6db74">:publishing-directory</span> <span style="color:#e6db74">&#34;~/Shared/blog/dschrempf.github.io/&#34;</span>
+         <span style="color:#e6db74">:publishing-function</span> org-publish-attachment
+         <span style="color:#e6db74">:recursive</span> <span style="color:#66d9ef">t</span>)
 
-<pre><code class="language-lisp">(setq org-publish-project-alist
-      '(
-        ;; Blog posts in Org mode that are exported to html and hosted
-        ;; by GitHub.
-        (&quot;blog&quot;
-         ;; Directory with Org files.
-         :base-directory &quot;~/Shared/blog/org/&quot;
-         :base-extension &quot;org&quot;
-         ;; Output directory for html files on GitHub.
-         :publishing-directory &quot;~/Shared/blog/dschrempf.github.io/&quot;
-         :publishing-function (org-html-publish-to-html)
-         :html-extension &quot;html&quot;
-         ;; Create a sitemap that contains all posts in
-         ;; anti-chronological order.
-         :auto-sitemap t
-         :sitemap-filename &quot;archive.org&quot;
-         :sitemap-title &quot;Archive&quot;
-         :sitemap-sort-files anti-chronologically
-         :sitemap-style list
-         :recursive t
-         :section-numbers nil
-         :with-toc t
-         ;; Do not include predefined header scripts.
-         :html-head-include-default-style nil
-         :html-head-include-scripts nil
-         :html-head &quot;&lt;link rel='stylesheet' href='/css/site.css' type='text/css'/&gt;
-&lt;meta name=\&quot;viewport\&quot; content=\&quot;width=device-width\&quot;/&gt;&quot;
-         :html-preamble website-html-preamble
-         :html-postamble website-html-postamble
-         :html-link-home &quot;http://dschrempf.github.io/&quot;
-         :html-link-use-abs-url nil)
-
-        (&quot;static&quot;
-         :base-directory &quot;~/Shared/blog/org/&quot;
-         :base-extension &quot;css\\|js\\|jpg\\|gif\\|png\\|pdf\\|mp3\\|ogg\\|swf&quot;
-         :publishing-directory &quot;~/Shared/blog/dschrempf.github.io/&quot;
-         :publishing-function org-publish-attachment
-         :recursive t)
-
-        ;; (&quot;website&quot; :components (&quot;blog&quot; &quot;images&quot; &quot;js&quot; &quot;css&quot;))))
-        (&quot;website&quot; :components (&quot;blog&quot; &quot;static&quot;))))
-</code></pre>
-
-<p>This defines a set of projects that can be published simultaneously
+        <span style="color:#75715e">;; (&#34;website&#34; :components (&#34;blog&#34; &#34;images&#34; &#34;js&#34; &#34;css&#34;))))</span>
+        (<span style="color:#e6db74">&#34;website&#34;</span> <span style="color:#e6db74">:components</span> (<span style="color:#e6db74">&#34;blog&#34;</span> <span style="color:#e6db74">&#34;static&#34;</span>))))
+</code></pre></div><p>This defines a set of projects that can be published simultaneously
 with the project <code>website</code> (e.g. with <code>M-x org-publish website</code>).  The
 preamble includes a small header; the postamble includes the Disqus
 comment section and Google Analytics (make sure to replace you
 user name and tracking ID).</p>
-
-<p><a id="code-snippet--Preamble and postamble"></a></p>
-
-<pre><code class="language-lisp">;; BugFix: Manually disable home/up links in preamble.
-(setq org-html-home/up-format &quot;&quot;)
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">;; BugFix: Manually disable home/up links in preamble.</span>
+(<span style="color:#66d9ef">setq</span> org-html-home/up-format <span style="color:#e6db74">&#34;&#34;</span>)
 
 (defun website-html-preamble (info)
-  &quot;Org-mode website HTML export preamble.&quot;
-  (format &quot;&lt;div class='nav'&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href='/'&gt;Home&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href='/archive.html'&gt;Archive&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;&quot;))
+  <span style="color:#e6db74">&#34;Org-mode website HTML export preamble.&#34;</span>
+  (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;&lt;div class=&#39;nav&#39;&gt;
+</span><span style="color:#e6db74">&lt;ul&gt;
+</span><span style="color:#e6db74">&lt;li&gt;&lt;a href=&#39;/&#39;&gt;Home&lt;/a&gt;&lt;/li&gt;
+</span><span style="color:#e6db74">&lt;li&gt;&lt;a href=&#39;/archive.html&#39;&gt;Archive&lt;/a&gt;&lt;/li&gt;
+</span><span style="color:#e6db74">&lt;/ul&gt;
+</span><span style="color:#e6db74">&lt;/div&gt;&#34;</span>))
 
 (defun website-html-postamble (info)
-  &quot;Put Disqus into Org mode website postamble.  Do not show
-   disqus for the Archive and the Index.&quot;
+  <span style="color:#e6db74">&#34;Put Disqus into Org mode website postamble.  Do not show
+</span><span style="color:#e6db74">   disqus for the Archive and the Index.&#34;</span>
   (concat
-   (cond ((string= (car (plist-get info :title)) &quot;Archive&quot;) &quot;&quot;)
-         ((string= (car (plist-get info :title)) &quot;Index&quot;) &quot;&quot;)
-         ((string= (car (plist-get info :title)) &quot;GitHub -&gt; IO ()&quot;) &quot;&quot;)
-         (t &quot;&lt;div id='disqus_thread'&gt;&lt;/div&gt;
-&lt;script type='text/javascript'&gt;
-  // required: replace example with your forum shortname
-  var disqus_shortname = 'YOUR DISQUS NAME HERE';
-  (function() {
-      var dsq = document.createElement('script');
-      dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] ||
-       document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-&lt;/script&gt;
-&lt;noscript&gt;&lt;p&gt;Please enable JavaScript to view the
-  &lt;a href='http://disqus.com/?ref_noscript'&gt;comments powered by Disqus.&lt;/a&gt;&lt;/p&gt;
-&lt;/noscript&gt;&quot;))
-   (format &quot;&lt;div class='footer'&gt;
-Copyright 2014 AUTHOR&lt;br/&gt;
-Last updated %s &lt;br/&gt;
-Built with %s &lt;br/&gt;
-%s HTML
-&lt;/div&gt;
-&lt;script type='text/javascript'&gt;
- (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
- (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
- m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
- })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
- ga('create', 'PUT YOUR TRACKING ID HERE', 'auto');
- ga('send', 'pageview');
-
-&lt;/script&gt;&quot;
-           (format-time-string &quot;%Y-%m-%d&quot;)
+   (cond ((<span style="color:#a6e22e">string=</span> (<span style="color:#a6e22e">car</span> (plist-get info <span style="color:#e6db74">:title</span>)) <span style="color:#e6db74">&#34;Archive&#34;</span>) <span style="color:#e6db74">&#34;&#34;</span>)
+         ((<span style="color:#a6e22e">string=</span> (<span style="color:#a6e22e">car</span> (plist-get info <span style="color:#e6db74">:title</span>)) <span style="color:#e6db74">&#34;Index&#34;</span>) <span style="color:#e6db74">&#34;&#34;</span>)
+         ((<span style="color:#a6e22e">string=</span> (<span style="color:#a6e22e">car</span> (plist-get info <span style="color:#e6db74">:title</span>)) <span style="color:#e6db74">&#34;GitHub -&gt; IO ()&#34;</span>) <span style="color:#e6db74">&#34;&#34;</span>)
+         (<span style="color:#66d9ef">t</span> <span style="color:#e6db74">&#34;&lt;div id=&#39;disqus_thread&#39;&gt;&lt;/div&gt;
+</span><span style="color:#e6db74">&lt;script type=&#39;text/javascript&#39;&gt;
+</span><span style="color:#e6db74">  // required: replace example with your forum shortname
+</span><span style="color:#e6db74">  var disqus_shortname = &#39;YOUR DISQUS NAME HERE&#39;;
+</span><span style="color:#e6db74">  (function() {
+</span><span style="color:#e6db74">      var dsq = document.createElement(&#39;script&#39;);
+</span><span style="color:#e6db74">      dsq.type = &#39;text/javascript&#39;; dsq.async = true;
+</span><span style="color:#e6db74">      dsq.src = &#39;//&#39; + disqus_shortname + &#39;.disqus.com/embed.js&#39;;
+</span><span style="color:#e6db74">      (document.getElementsByTagName(&#39;head&#39;)[0] ||
+</span><span style="color:#e6db74">       document.getElementsByTagName(&#39;body&#39;)[0]).appendChild(dsq);
+</span><span style="color:#e6db74">  })();
+</span><span style="color:#e6db74">&lt;/script&gt;
+</span><span style="color:#e6db74">&lt;noscript&gt;&lt;p&gt;Please enable JavaScript to view the
+</span><span style="color:#e6db74">  &lt;a href=&#39;http://disqus.com/?ref_noscript&#39;&gt;comments powered by Disqus.&lt;/a&gt;&lt;/p&gt;
+</span><span style="color:#e6db74">&lt;/noscript&gt;&#34;</span>))
+   (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;&lt;div class=&#39;footer&#39;&gt;
+</span><span style="color:#e6db74">Copyright 2014 AUTHOR&lt;br/&gt;
+</span><span style="color:#e6db74">Last updated %s &lt;br/&gt;
+</span><span style="color:#e6db74">Built with %s &lt;br/&gt;
+</span><span style="color:#e6db74">%s HTML
+</span><span style="color:#e6db74">&lt;/div&gt;
+</span><span style="color:#e6db74">&lt;script type=&#39;text/javascript&#39;&gt;
+</span><span style="color:#e6db74"> (function(i,s,o,g,r,a,m){i[&#39;GoogleAnalyticsObject&#39;]=r;i[r]=i[r]||function(){
+</span><span style="color:#e6db74"> (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+</span><span style="color:#e6db74"> m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+</span><span style="color:#e6db74"> })(window,document,&#39;script&#39;,&#39;//www.google-analytics.com/analytics.js&#39;,&#39;ga&#39;);
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"> ga(&#39;create&#39;, &#39;PUT YOUR TRACKING ID HERE&#39;, &#39;auto&#39;);
+</span><span style="color:#e6db74"> ga(&#39;send&#39;, &#39;pageview&#39;);
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">&lt;/script&gt;&#34;</span>
+           (format-time-string <span style="color:#e6db74">&#34;%Y-%m-%d&#34;</span>)
            org-html-creator-string
            org-html-validation-link)))
-</code></pre>
-
-<h2 id="workflow">Workflow</h2>
-
+</code></pre></div><h2 id="workflow">Workflow</h2>
 <p>Create your homepages with Emacs Org mode.  The <code>index.org</code> file can
 include links to all blog articles.  Links, source blocks, images and
 so on can be used everywhere.  This is explained in great detail on

@@ -28,7 +28,7 @@ The GNU poject debugger Here, we will use the GNU project debugger (GDB), becaus
       
       <guid>https://dschrempf.github.io/emacs/2015-04-04-helm-hydra-modes/</guid>
       <description>Recently, I stumbled upon two nice Emacs minor modes.
-Helm mode Helm mode offers an incremental completion and selection narrowing framework. It will help you to find what you&amp;rsquo;re looking for in Emacs (like buffers, files, commands etc). Resources and discussions can be found at the following homepages:
+Helm mode Helm mode offers an incremental completion and selection narrowing framework. It will help you to find what you&#39;re looking for in Emacs (like buffers, files, commands etc). Resources and discussions can be found at the following homepages:
  development and installation instructions at the Helm mode GitHub page; the Emacs initialization files and configuration of the Helm maintainer; a good overview of the features and a sample configuration.</description>
     </item>
     
@@ -39,9 +39,9 @@ Helm mode Helm mode offers an incremental completion and selection narrowing fra
       
       <guid>https://dschrempf.github.io/emacs/2014-12-26-how-to-create-this-homepage/</guid>
       <description>This homepage was created with Emacs and Org mode. It is hosted at github.io and comments can be done using Disqus. I assume a working Org mode setup and a GitHub as well as a Disqus account.
-&amp;lt;2015-03-26 Thu&amp;gt;  Update; general revision of code and text.
-&amp;lt;2016-04-09 Sat&amp;gt;  Another update.
-General idea  Org mode A great tool for taking notes and exporting them to all kind of formats.</description>
+&amp;lt;2015-03-26 Thu&amp;gt; Update; general revision of code and text.
+&amp;lt;2016-04-09 Sat&amp;gt; Another update.
+General idea  Org mode A great tool for taking notes and exporting them to all kind of formats. One of this formats is HTML.</description>
     </item>
     
   </channel>

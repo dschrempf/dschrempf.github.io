@@ -153,72 +153,50 @@
     </span>
     <p>Folds are complicated themselves, but monadic folds always have blown my mind.
 In what follows, I try to dissect <code>foldlM</code> for a specific example.</p>
-
 <p>Monadic folds can be used to <strong>perform a series of actions that depend on the
 previous output</strong>. The following function produces an <em>action b</em> from a <em>value a</em>
 also taking into account the output of the previous <em>action b</em>.</p>
-
-<pre><code class="language-haskell">f :: (b -&gt; a -&gt; m b)
-</code></pre>
-
-<p>And here the definition of <code>foldlM</code> (which is the same as <code>foldM</code>).</p>
-
-<pre><code class="language-haskell">foldlM :: (Foldable t, Monad m) =&gt; (b -&gt; a -&gt; m b) -&gt; b -&gt; t a -&gt; m b
-foldlM f z0 xs = foldr f' return xs z0
-  where f' x k z = f z x &gt;&gt;= k
-</code></pre>
-
-<p>Let&rsquo;s have a look at an example. The following function performs <code>n</code> jumps of a
-Markov chain starting from a given <code>State</code> <code>s</code> (an integer) according to a
-transition probability matrix <code>ProbMatrix</code> <code>p</code> (don&rsquo;t worry about the state
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">f</span> <span style="color:#f92672">::</span> (b <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> m b)
+</code></pre></div><p>And here the definition of <code>foldlM</code> (which is the same as <code>foldM</code>).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">foldlM</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">Foldable</span> t, <span style="color:#66d9ef">Monad</span> m) <span style="color:#f92672">=&gt;</span> (b <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> m b) <span style="color:#f92672">-&gt;</span> b <span style="color:#f92672">-&gt;</span> t a <span style="color:#f92672">-&gt;</span> m b
+<span style="color:#a6e22e">foldlM</span> f z0 xs <span style="color:#f92672">=</span> foldr f&#39; return xs z0
+  <span style="color:#66d9ef">where</span> f&#39; x k z <span style="color:#f92672">=</span> f z x <span style="color:#f92672">&gt;&gt;=</span> k
+</code></pre></div><p>Let's have a look at an example. The following function performs <code>n</code> jumps of a
+Markov chain starting from a given <code>State` `s</code> (an integer) according to a
+transition probability matrix <code>ProbMatrix` `p</code> (don't worry about the state
 space, or the state space size, it does not matter). At the moment, I am not
 sure how to access or store the actual chain. This could be done by an
 equivalent of <code>scanl</code> for general monads, which I was unable to find.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">jumpN</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">Monad</span> m) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">State</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">ProbMatrix</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> m <span style="color:#66d9ef">State</span>
+<span style="color:#a6e22e">jumpN</span> s p n <span style="color:#f92672">=</span> foldM jump s (replicate n p)
 
-<pre><code class="language-haskell">jumpN :: (Monad m) =&gt; State -&gt; ProbMatrix -&gt; Int -&gt; m State
-jumpN s p n = foldM jump s (replicate n p)
-
-jump :: (Monad m) =&gt; State -&gt; ProbMatrix -&gt; m State
-</code></pre>
-
-<p>And specifically, with <code>p</code> being any transition probability matrix</p>
-
-<pre><code class="language-haskell">jumpN 0 p 2 = foldM jump 0 [p, p]
-</code></pre>
-
-<p>Now we use the definition of <code>foldM</code></p>
-
-<pre><code class="language-haskell">jumpN 0 p 2 = foldr f' return [p, p] 0
-  where f' x k z = jump z x &gt;&gt;= k
-</code></pre>
-
-<p>which leads to</p>
-
-<pre><code class="language-haskell">jumpN 0 p 2 = f' p (foldr f' return [p]) 0
-            = f' p (f' p (foldr f' return []) 0
-            = f' p (f' p (return)) 0
-            = f' p (f' p return) 0
-            = jump 0 p &gt;&gt;= (f' p return)
-</code></pre>
-
-<p>And finally, we got what we wanted. This is the first time, that we see that
+<span style="color:#a6e22e">jump</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">Monad</span> m) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">State</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">ProbMatrix</span> <span style="color:#f92672">-&gt;</span> m <span style="color:#66d9ef">State</span>
+</code></pre></div><p>And specifically, with <code>p</code> being any transition probability matrix</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">jumpN</span> <span style="color:#ae81ff">0</span> p <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> foldM jump <span style="color:#ae81ff">0</span> [p, p]
+</code></pre></div><p>Now we use the definition of <code>foldM</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">jumpN</span> <span style="color:#ae81ff">0</span> p <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> foldr f&#39; return [p, p] <span style="color:#ae81ff">0</span>
+  <span style="color:#66d9ef">where</span> f&#39; x k z <span style="color:#f92672">=</span> jump z x <span style="color:#f92672">&gt;&gt;=</span> k
+</code></pre></div><p>which leads to</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">jumpN</span> <span style="color:#ae81ff">0</span> p <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> f&#39; p (foldr f&#39; return [p]) <span style="color:#ae81ff">0</span>
+            <span style="color:#f92672">=</span> f&#39; p (f&#39; p (foldr f&#39; return <span style="color:#66d9ef">[]</span>) <span style="color:#ae81ff">0</span>
+            <span style="color:#f92672">=</span> f&#39; p (f&#39; p (return)) <span style="color:#ae81ff">0</span>
+            <span style="color:#f92672">=</span> f&#39; p (f&#39; p return) <span style="color:#ae81ff">0</span>
+            <span style="color:#f92672">=</span> jump <span style="color:#ae81ff">0</span> p <span style="color:#f92672">&gt;&gt;=</span> (f&#39; p return)
+</code></pre></div><p>And finally, we got what we wanted. This is the first time, that we see that
 first, we perform a jump from zero and use the output to feed it to the next
 jump.</p>
-
-<pre><code class="language-haskell">jumpN 0 p 2 = jump 0 p &gt;&gt;= (f' p return)
-            = do
-            s' &lt;- jump 0 p
-            f' p return s'
-            = do
-            s' &lt;- jump 0 p
-            (jump s' p &gt;&gt;= return)
-            = do
-            s'  &lt;- jump 0  p
-            s'' &lt;- jump s' p
-            return s''
-</code></pre>
-
-<p>Holy crap, I am not sure if understanding this was worth the pain :-).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">jumpN</span> <span style="color:#ae81ff">0</span> p <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> jump <span style="color:#ae81ff">0</span> p <span style="color:#f92672">&gt;&gt;=</span> (f&#39; p return)
+            <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span>
+            s&#39; <span style="color:#f92672">&lt;-</span> jump <span style="color:#ae81ff">0</span> p
+            f&#39; p return s&#39;
+            <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span>
+            s&#39; <span style="color:#f92672">&lt;-</span> jump <span style="color:#ae81ff">0</span> p
+            (jump s&#39; p <span style="color:#f92672">&gt;&gt;=</span> return)
+            <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span>
+            s&#39;  <span style="color:#f92672">&lt;-</span> jump <span style="color:#ae81ff">0</span>  p
+            s&#39;&#39; <span style="color:#f92672">&lt;-</span> jump s&#39; p
+            return s&#39;&#39;
+</code></pre></div><p>Holy crap, I am not sure if understanding this was worth the pain :-).</p>
 
   </div>
   <div id="disqus_thread"></div>

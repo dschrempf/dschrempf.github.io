@@ -153,128 +153,104 @@
     </span>
     <p>I have been working on Markov chains for quite a while now and wanted to assess how
 Haskell can deal with simulating a simple, discrete chain.</p>
-
 <p>Many sources can be found online. The code presented here is partly taken from a
 <a href="https://stackoverflow.com/questions/25286816/generating-sequence-from-markov-chain-in-haskell">question on stackoverflow</a>. However, I was unsatisfied with the nomenclature and
 parts of the code. So I refactored most of it. Also, there is a Haskell library
-<a href="https://hackage.haskell.org/package/markov-chain">markov-chain</a>, which I am unsatisfied with because of code readability (it&rsquo;s
+<a href="https://hackage.haskell.org/package/markov-chain">markov-chain</a>, which I am unsatisfied with because of code readability (it's
 pretty abstruse). Furthermore, I looked through a lengthy post about using
 Markov chains to simulate <a href="https://idontgetoutmuch.wordpress.com/2013/12/07/haskell-ising-markov-metropolis/">interaction of magnetic spins</a> using the Ising model.
 The concept of a Markov chain is explained well in this article but I believe
 that the example is too complicated to understand in a reasonable amount of
 time. Also, the <a href="https://hackage.haskell.org/package/repa">Repa package</a> is used to represent the transition matrices. This
 seemed a little bit of an overkill to me, so I decided to go with <a href="http://hackage.haskell.org/package/containers-0.5.11.0/docs/Data-Map-Strict.html">maps</a>.</p>
-
 <p>You can also <a href="/ox-hugo/MarkovChainWithMap.hs">download the source code</a> of the following post.</p>
-
 <p>In this example, we will handle sentences with words. So our states are words
 which are strings. It is also convenient to introduce some type synonyms.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">module</span> Main <span style="color:#66d9ef">where</span>
 
-<pre><code class="language-haskell">module Main where
+<span style="color:#66d9ef">import</span> <span style="color:#66d9ef">qualified</span> Control.Monad.Random <span style="color:#66d9ef">as</span> R
+<span style="color:#66d9ef">import</span> <span style="color:#66d9ef">qualified</span> Data.Map <span style="color:#66d9ef">as</span> M
 
-import qualified Control.Monad.Random as R
-import qualified Data.Map as M
+<span style="color:#75715e">-- | For better readability of the code, it is convenient to distinguish between</span>
+<span style="color:#75715e">-- the source and the target.</span>
+<span style="color:#66d9ef">type</span> <span style="color:#66d9ef">Source</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">String</span>
+<span style="color:#66d9ef">type</span> <span style="color:#66d9ef">Target</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">String</span>
 
--- | For better readability of the code, it is convenient to distinguish between
--- the source and the target.
-type Source = String
-type Target = String
+<span style="color:#75715e">-- | Transition from &#39;Source&#39; to &#39;Target&#39; observed in a sample.</span>
+<span style="color:#66d9ef">type</span> <span style="color:#66d9ef">Transitions</span> <span style="color:#f92672">=</span> [(<span style="color:#66d9ef">Source</span>, <span style="color:#66d9ef">Target</span>)]
 
--- | Transition from 'Source' to 'Target' observed in a sample.
-type Transitions = [(Source, Target)]
-
--- | A 'Target' with associated frequency.
-type TargetF = (Target, Rational)
-</code></pre>
-
-<p>As mentioned before, the transition matrix is represented using a map. This
+<span style="color:#75715e">-- | A &#39;Target&#39; with associated frequency.</span>
+<span style="color:#66d9ef">type</span> <span style="color:#66d9ef">TargetF</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">Target</span>, <span style="color:#66d9ef">Rational</span>)
+</code></pre></div><p>As mentioned before, the transition matrix is represented using a map. This
 might not be very efficient but it is easy to understand. The keys are just all
 the words that we can start from. The values are, for each source, the targets
 that we can <em>jump</em> to and their respective frequencies in the data.</p>
-
-<pre><code class="language-haskell">type TransitionMatrix = M.Map Source [TargetF]
-</code></pre>
-
-<p>This function is the heart of the simulation. For a given transition probability
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#66d9ef">type</span> <span style="color:#66d9ef">TransitionMatrix</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">M</span><span style="color:#f92672">.</span><span style="color:#66d9ef">Map</span> <span style="color:#66d9ef">Source</span> [<span style="color:#66d9ef">TargetF</span>]
+</code></pre></div><p>This function is the heart of the simulation. For a given transition probability
 matrix and an initial string add a new word until a stop condition is reached.
-Here, the stop condition is the end of a sentence (a period &ldquo;.&rdquo;).</p>
-
-<pre><code class="language-haskell">generateSequence :: (R.MonadRandom m) =&gt; TransitionMatrix -&gt; String -&gt; m String
-generateSequence tm s
-  -- We have to test first, if the string is not null, otherwise 'last' throws
-  -- an exception.
-  | not (null s) &amp;&amp; last s == '.' = return s
-  | otherwise = do
-      s' &lt;- R.fromList $ tm M.! s
-      ss &lt;- generateSequence tm s'
-      -- Only add a space after another word.
-      return $ if null s then ss else s ++ &quot; &quot; ++ ss
-</code></pre>
-
-<p>The next functions are used to fill the transition matrix given a list of
+Here, the stop condition is the end of a sentence (a period &ldquo;.&quot;).</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">generateSequence</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">R</span><span style="color:#f92672">.</span><span style="color:#66d9ef">MonadRandom</span> m) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">TransitionMatrix</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">String</span> <span style="color:#f92672">-&gt;</span> m <span style="color:#66d9ef">String</span>
+<span style="color:#a6e22e">generateSequence</span> tm s
+  <span style="color:#75715e">-- We have to test first, if the string is not null, otherwise &#39;last&#39; throws</span>
+  <span style="color:#75715e">-- an exception.</span>
+  <span style="color:#f92672">|</span> not (null s) <span style="color:#f92672">&amp;&amp;</span> last s <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;.&#39;</span> <span style="color:#f92672">=</span> return s
+  <span style="color:#f92672">|</span> otherwise <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span>
+      s&#39; <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">R</span><span style="color:#f92672">.</span>fromList <span style="color:#f92672">$</span> tm <span style="color:#66d9ef">M</span><span style="color:#f92672">.!</span> s
+      ss <span style="color:#f92672">&lt;-</span> generateSequence tm s&#39;
+      <span style="color:#75715e">-- Only add a space after another word.</span>
+      return <span style="color:#f92672">$</span> <span style="color:#66d9ef">if</span> null s <span style="color:#66d9ef">then</span> ss <span style="color:#66d9ef">else</span> s <span style="color:#f92672">++</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74"> </span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">++</span> ss
+</code></pre></div><p>The next functions are used to fill the transition matrix given a list of
 observed transitions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#75715e">-- | Add a target with its frequency to a list of targets with their</span>
+<span style="color:#75715e">-- frequencies.</span>
+<span style="color:#a6e22e">addTargetF</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">TargetF</span> <span style="color:#f92672">-&gt;</span> [<span style="color:#66d9ef">TargetF</span>] <span style="color:#f92672">-&gt;</span> [<span style="color:#66d9ef">TargetF</span>]
+<span style="color:#a6e22e">addTargetF</span> (t, f) ts <span style="color:#f92672">=</span> <span style="color:#66d9ef">case</span> lookup t ts <span style="color:#66d9ef">of</span>
+                   <span style="color:#66d9ef">Nothing</span> <span style="color:#f92672">-&gt;</span> (t, f) <span style="color:#66d9ef">:</span> ts
+                   <span style="color:#66d9ef">Just</span> n  <span style="color:#f92672">-&gt;</span> (t, n<span style="color:#f92672">+</span>f) <span style="color:#66d9ef">:</span> filter notT ts <span style="color:#66d9ef">where</span>
+                     notT (r, <span style="color:#66d9ef">_</span>) <span style="color:#f92672">=</span> r <span style="color:#f92672">/=</span> t
 
-<pre><code class="language-haskell">-- | Add a target with its frequency to a list of targets with their
--- frequencies.
-addTargetF :: TargetF -&gt; [TargetF] -&gt; [TargetF]
-addTargetF (t, f) ts = case lookup t ts of
-                   Nothing -&gt; (t, f) : ts
-                   Just n  -&gt; (t, n+f) : filter notT ts where
-                     notT (r, _) = r /= t
+<span style="color:#75715e">-- | Add more targets and their frequencies to a list of targets with their</span>
+<span style="color:#75715e">-- frequencies. This function is needed because &#39;M.insertWith&#39; requires an</span>
+<span style="color:#75715e">-- inserting function of type (a -&gt; a -&gt; a).</span>
+<span style="color:#a6e22e">addTargetFs</span> <span style="color:#f92672">::</span> [<span style="color:#66d9ef">TargetF</span>] <span style="color:#f92672">-&gt;</span> [<span style="color:#66d9ef">TargetF</span>] <span style="color:#f92672">-&gt;</span> [<span style="color:#66d9ef">TargetF</span>]
+<span style="color:#a6e22e">addTargetFs</span> tsA tsB <span style="color:#f92672">=</span> foldr addTargetF tsB tsA
 
--- | Add more targets and their frequencies to a list of targets with their
--- frequencies. This function is needed because 'M.insertWith' requires an
--- inserting function of type (a -&gt; a -&gt; a).
-addTargetFs :: [TargetF] -&gt; [TargetF] -&gt; [TargetF]
-addTargetFs tsA tsB = foldr addTargetF tsB tsA
-
--- | Convert the observed transitions to the transition rate matrix.
-transitionsToMatrix :: Transitions -&gt; TransitionMatrix
-transitionsToMatrix = foldr insert M.empty
-  where
-    insert t = M.insertWith addTargetFs (fst t) [(snd t, 1.0)]
-</code></pre>
-
-<p>Now, we need a collection of samples and a way to retrieve all the observed
+<span style="color:#75715e">-- | Convert the observed transitions to the transition rate matrix.</span>
+<span style="color:#a6e22e">transitionsToMatrix</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">Transitions</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">TransitionMatrix</span>
+<span style="color:#a6e22e">transitionsToMatrix</span> <span style="color:#f92672">=</span> foldr insert <span style="color:#66d9ef">M</span><span style="color:#f92672">.</span>empty
+  <span style="color:#66d9ef">where</span>
+    insert t <span style="color:#f92672">=</span> <span style="color:#66d9ef">M</span><span style="color:#f92672">.</span>insertWith addTargetFs (fst t) [(snd t, <span style="color:#ae81ff">1.0</span>)]
+</code></pre></div><p>Now, we need a collection of samples and a way to retrieve all the observed
 transitions. The start of sentences is a little bit tricky. We kind of introduce
-a new state here, the empty string &ldquo;&rdquo;, which is followed by the first words of
+a new state here, the empty string &ldquo;&quot;, which is followed by the first words of
 the provided sentences.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#75715e">-- | Collect all transitions from one word to the next.</span>
+<span style="color:#a6e22e">getTransitions</span> <span style="color:#f92672">::</span> [<span style="color:#66d9ef">String</span>] <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Transitions</span>
+<span style="color:#a6e22e">getTransitions</span> (s<span style="color:#66d9ef">:</span>ss) <span style="color:#f92672">=</span> zip (<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">:</span>ws) ws <span style="color:#f92672">++</span> getTransitions ss
+  <span style="color:#66d9ef">where</span> ws <span style="color:#f92672">=</span> words s
+<span style="color:#a6e22e">getTransitions</span> <span style="color:#66d9ef">_</span>      <span style="color:#f92672">=</span> <span style="color:#66d9ef">[]</span>
 
-<pre><code class="language-haskell">-- | Collect all transitions from one word to the next.
-getTransitions :: [String] -&gt; Transitions
-getTransitions (s:ss) = zip (&quot;&quot;:ws) ws ++ getTransitions ss
-  where ws = words s
-getTransitions _      = []
-
--- | A collection of samples.
-samples :: [String]
-samples = [ &quot;I am a monster.&quot;
-         , &quot;I am a rock star.&quot;
-         , &quot;I want to go to Hawaii.&quot;
-         , &quot;I want to eat a hamburger.&quot;
-         , &quot;I have a really big headache.&quot;
-         , &quot;Haskell  is a fun language.&quot;
-         , &quot;Go eat a big hamburger.&quot;
-         , &quot;Markov chains are fun to use.&quot;
+<span style="color:#75715e">-- | A collection of samples.</span>
+<span style="color:#a6e22e">samples</span> <span style="color:#f92672">::</span> [<span style="color:#66d9ef">String</span>]
+<span style="color:#a6e22e">samples</span> <span style="color:#f92672">=</span> [ <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">I am a monster.</span><span style="color:#e6db74">&#34;</span>
+         , <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">I am a rock star.</span><span style="color:#e6db74">&#34;</span>
+         , <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">I want to go to Hawaii.</span><span style="color:#e6db74">&#34;</span>
+         , <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">I want to eat a hamburger.</span><span style="color:#e6db74">&#34;</span>
+         , <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">I have a really big headache.</span><span style="color:#e6db74">&#34;</span>
+         , <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Haskell  is a fun language.</span><span style="color:#e6db74">&#34;</span>
+         , <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Go eat a big hamburger.</span><span style="color:#e6db74">&#34;</span>
+         , <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Markov chains are fun to use.</span><span style="color:#e6db74">&#34;</span>
          ]
-</code></pre>
-
-<p>And that&rsquo;s already it. We can combine and execute our functions in the following
+</code></pre></div><p>And that's already it. We can combine and execute our functions in the following
 way.</p>
-
-<pre><code class="language-haskell">main :: IO ()
-main = do
-  s &lt;- generateSequence (transitionsToMatrix $ getTransitions samples) &quot;&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">main</span> <span style="color:#f92672">::</span> <span style="color:#66d9ef">IO</span> ()
+<span style="color:#a6e22e">main</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span>
+  s <span style="color:#f92672">&lt;-</span> generateSequence (transitionsToMatrix <span style="color:#f92672">$</span> getTransitions samples) <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>
   print s
-</code></pre>
-
-<p>E.g.,</p>
-
-<pre><code class="language-text">&gt; main
-&quot;I am a big hamburger.&quot;
-</code></pre>
-
-<p>Of course, the next step is to remove the <code>String</code> type dependency so that we
+</code></pre></div><p>E.g.,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">&gt; main
+&#34;I am a big hamburger.&#34;
+</code></pre></div><p>Of course, the next step is to remove the <code>String</code> type dependency so that we
 can use our chain for arbitrary types. Then, we might try to convert our code
 into simulating a <a href="/coding/2016-04-09-continuous-time-markov-chain/">continuous-time Markov process</a>, but this is another topic.</p>
 

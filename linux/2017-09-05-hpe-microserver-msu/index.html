@@ -151,22 +151,16 @@
         
         
     </span>
-    
-
-<p><span class="timestamp-wrapper"><span class="timestamp">[2019-03-01 Fri] </span></span> See <a href="http://disq.us/p/1zy3urq">comment below</a>; some Linux operating systems already provide
+    <p><!-- raw HTML omitted --><!-- raw HTML omitted -->[2019-03-01 Fri] <!-- raw HTML omitted --><!-- raw HTML omitted --> See <a href="http://disq.us/p/1zy3urq">comment below</a>; some Linux operating systems already provide
 native support for the Marvell RAID controller in legacy mode.</p>
-
 <h2 id="marvell-sata-controller">Marvell SATA controller</h2>
-
 <p>Recently I purchased an HPE ProLiant MicroServer Gen10 which comes with the
 Marvell SATA controller 88SE9230, also called Marvell Storage Utility (MSU). As
 far as I know, this controller has an ARM chip to provide RAID 0 (non-redundant
 combination of disks), RAID 1 (straight mirroring) or RAID 10 (a combination of
 RAID 0 and RAID 1).</p>
-
 <p>Neither Marvell nor HPE do provide drivers for generic Linux systems but they do
 provide a package for ClearOS which uses the Red Hat Package Manager (RPM).</p>
-
 <p>Initially, I tried to manage the RAID using the Marvell BIOS utility which can
 be accessed by the EFI shell. The BIOS utility and the user guide can be
 downloaded from the <a href="https://www.hpe.com/us/en/support.html">HPE support center</a>. However, this procedure is slow and
@@ -174,39 +168,26 @@ complicated, especially if the server is headless, as in my case. Furthermore,
 monitoring the disks with SMART data is also impossible. So I decided to invest
 some time in amending the ClearOS package for Arch Linux and provide an <a href="https://aur.archlinux.org/packages/marvell-msu/">AUR
 package</a>.</p>
-
 <h2 id="marvell-controller-package">Marvell controller package</h2>
-
 <p>I had serious trouble running the original scripts and daemons because they are
 (a) written for ClearOS and (b) expect the generic but outdated SCSI kernel
 module <a href="http://www.tldp.org/HOWTO/SCSI-2.4-HOWTO/sg.html">sg</a> to be loaded. I provide replacements with the same functionality:</p>
-
 <ol>
 <li><a href="https://aur.archlinux.org/cgit/aur.git/tree/MSUAgent?h=marvell-msu">MSUAgent</a> - The MSU Event Manager.</li>
 <li><a href="https://aur.archlinux.org/cgit/aur.git/tree/MSUWebService?h=marvell-msu">MSUWebServer</a> - The MSU Web Server (manual access at port 8045).</li>
 <li><a href="https://aur.archlinux.org/cgit/aur.git/tree/MSUStart?h=marvell-msu">MSUStart</a> - A small script to access the web interface.</li>
 </ol>
-
 <p>These scripts also pull the <code>sg</code> module in case it is not loaded.</p>
-
 <p>For my purposes however (I do not need a web interface), the MSU client <code>mvcli</code>,
-which is located in the folder <code>/opt/marvell/storage/cli</code> is all I need. Don&rsquo;t
+which is located in the folder <code>/opt/marvell/storage/cli</code> is all I need. Don't
 forget to manually load the <code>sg</code> module, which sets up the SCSI devices for this
 script, e.g., with</p>
-
-<pre><code class="language-bash">sudo modprobe -a sg
-</code></pre>
-
-<p>Then, the SMART data can be retrieved, e.g., with</p>
-
-<pre><code class="language-bash">sudo /opt/marvell/storage/cli/mvcli smart -p 0
-</code></pre>
-
-<p>Awesome :-)!</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo modprobe -a sg
+</code></pre></div><p>Then, the SMART data can be retrieved, e.g., with</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo /opt/marvell/storage/cli/mvcli smart -p <span style="color:#ae81ff">0</span>
+</code></pre></div><p>Awesome :-)!</p>
 <p>In the course of this project, I also stumbled upon other very useful SCSI
 related software: <code>lsscsi</code>, <code>sg3_utils</code>, <code>sdparm</code>, <code>hdidle</code>.</p>
-
 <p>I am still having trouble with monitoring temperature (e.g., CPU temperature),
 please leave a note if you know an easy way to achieve this.</p>
 

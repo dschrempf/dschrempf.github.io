@@ -29,7 +29,7 @@ The advantages are:
       
       <guid>https://dschrempf.github.io/coding/2018-02-10-markov-chains-in-haskell/</guid>
       <description>I have been working on Markov chains for quite a while now and wanted to assess how Haskell can deal with simulating a simple, discrete chain.
-Many sources can be found online. The code presented here is partly taken from a question on stackoverflow. However, I was unsatisfied with the nomenclature and parts of the code. So I refactored most of it. Also, there is a Haskell library markov-chain, which I am unsatisfied with because of code readability (it&amp;rsquo;s pretty abstruse).</description>
+Many sources can be found online. The code presented here is partly taken from a question on stackoverflow. However, I was unsatisfied with the nomenclature and parts of the code. So I refactored most of it. Also, there is a Haskell library markov-chain, which I am unsatisfied with because of code readability (it&#39;s pretty abstruse).</description>
     </item>
     
     <item>
@@ -40,7 +40,7 @@ Many sources can be found online. The code presented here is partly taken from a
       <guid>https://dschrempf.github.io/coding/2017-07-20-folding-around-monads-in-haskell/</guid>
       <description>Folds are complicated themselves, but monadic folds always have blown my mind. In what follows, I try to dissect foldlM for a specific example.
 Monadic folds can be used to perform a series of actions that depend on the previous output. The following function produces an action b from a value a also taking into account the output of the previous action b.
-f :: (b -&amp;gt; a -&amp;gt; m b)  And here the definition of foldlM (which is the same as foldM).</description>
+f :: (b -&amp;gt; a -&amp;gt; m b) And here the definition of foldlM (which is the same as foldM).</description>
     </item>
     
     <item>
@@ -49,7 +49,7 @@ f :: (b -&amp;gt; a -&amp;gt; m b)  And here the definition of foldlM (which is 
       <pubDate>Sat, 09 Apr 2016 00:00:00 +0200</pubDate>
       
       <guid>https://dschrempf.github.io/coding/2016-04-09-continuous-time-markov-chain/</guid>
-      <description>[2016-04-09 Sat]  I extended my set of C++ programs to include a simulator for generic continuous-time Markov chains. I.e., any transition rate matrix can be used.
+      <description>[2016-04-09 Sat] I extended my set of C++ programs to include a simulator for generic continuous-time Markov chains. I.e., any transition rate matrix can be used.
 If you are interested, just get the GitHub repository and compile the whole set of programs with make all. Documentation can be found in the doc/ folder (check the CTMC class).
 There is a sample program src/moran_model_boundary_mutation, that runs the Moran model with boundary mutation (De Maio, N.</description>
     </item>
@@ -84,8 +84,8 @@ However, we could also use a Bayesian approach to calculate the posterior distri
       <guid>https://dschrempf.github.io/coding/2014-12-23-haskell-pretty-print/</guid>
       <description>I repeatedly struggle with GHCi when I want to print lists and maps and actually look at them and analyze them. Today I came accross pretty-show, a haskell package that allows pretty printing of all objects that are instances of the type class Show.
 The usage is very straight forward:
-import qualified Text.Show.Pretty as Pr  This provides Pr.ppShow which can be used in GHCi (or other interpreters):
-putStrLn $ Pr.</description>
+import qualified Text.Show.Pretty as Pr This provides Pr.ppShow which can be used in GHCi (or other interpreters):
+putStrLn $ Pr.ppShow object </description>
     </item>
     
   </channel>
