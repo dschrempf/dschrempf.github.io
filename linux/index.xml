@@ -81,7 +81,7 @@ This problem can be solved easily. exiv2 is a program to read and write Exif ima
       <guid>https://dschrempf.github.io/linux/2015-04-22-syncthing/</guid>
       <description>Introduction Recently, I have explained how to configure BitTorrent Sync over an SSH SOCKS proxy. However, due to various problems with BTSync, I tried Syncthing and I am very satisfied with it.
 Advantages that I have experienced so far:
- open source; publicly available synchronization protocol; very reliable if the configuration is fine; it&#39;s a young project with motivated developers; it is fast (if enough CPU is available).  Disadvantages that I have experienced so far:</description>
+ open source; publicly available synchronization protocol; very reliable if the configuration is fine; it&amp;rsquo;s a young project with motivated developers; it is fast (if enough CPU is available).  Disadvantages that I have experienced so far:</description>
     </item>
     
     <item>

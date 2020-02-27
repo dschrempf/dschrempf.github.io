@@ -24,15 +24,9 @@ body {
 /* Links. */
 
 a {
-    /* color: #268bd2; */
     color: #369;
     text-decoration: none;
 }
-
-/* TODO: Remove if not needed. */
-/* a strong { */
-/*     color: inherit; */
-/* } */
 
 a:focus, a:hover {
     text-decoration: underline;
@@ -101,7 +95,7 @@ code, pre, .timestamp {
     font-family: 'Inconsolata', monospace;
 }
 
-code, .timestamp, .label {
+.label, .timestamp {
     color: #369;
     background-color: #eee;
     display: inline;
@@ -112,12 +106,15 @@ code, .timestamp, .label {
     white-space: nowrap;
 }
 
-.code, .label {
+pre {
+    padding: 0.5em;
+}
+
+.label {
     padding: 0.2em 0.4em 0.2em 0.4em;
     margin: 0 0.25em 0 0;
 }
 
-/* There is a white space after timestamps. That's why. */
 .timestamp {
     padding: 0.2em 0em 0.2em 0.4em;
     margin: 0 0.25em 0 0;
@@ -133,13 +130,6 @@ a.label:focus, a.label:hover {
     display: none
 }
 
-/* TODO: Is this needed? */
-/* pre .timestamp { */
-/*     padding: 0; */
-/*     color: inherit; */
-/*     background-color: transparent */
-/* } */
-
 /******************************************************************************/
 /* Images. */
 
@@ -153,14 +143,15 @@ img {
 /* Tables. */
 
 table {
-    margin-bottom: 1em;
+    /* margin-bottom: 1em; */
+    padding: 0.25em 0.25em;
     width: 100%;
     border: 1px solid #eee;
     border-collapse: collapse
 }
 td,
 th {
-    padding: 0.25em 0.5em;
+    padding: 0.25em 0.25em;
     border: 1px solid #ddd
 }
 tbody tr:nth-child(odd) td,
@@ -400,378 +391,7 @@ select {
 }
 
 /******************************************************************************/
-/* Pagination. */
-
-/* TODO: This is no used. */
-/* .pagination { */
-/*     overflow: hidden; */
-/*     color: #ccc; */
-/*     text-align: center */
-/* } */
-/* .pagination-item { */
-/*     display: block; */
-/*     padding: 1em; */
-/*     border: 1px solid #eee */
-/* } */
-/* .pagination-item:first-child { */
-/*     margin-bottom: -1px */
-/* } */
-/* a.pagination-item:hover { */
-/*     background-color: #f5f5f5 */
-/* } */
-/* @media (min-width:48em) { */
-/*     .pagination { */
-/*         margin: 3em 0 */
-/*     } */
-/*     .pagination-item { */
-/*         float: left; */
-/*         width: 50% */
-/*     } */
-/*     .pagination-item:first-child { */
-/*         margin-bottom: 0; */
-/*         border-top-left-radius: 4px; */
-/*         border-bottom-left-radius: 4px */
-/*     } */
-/*     .pagination-item:last-child { */
-/*         margin-left: -1px; */
-/*         border-top-right-radius: 4px; */
-/*         border-bottom-right-radius: 4px */
-/*     } */
-/* } */
-
-/* .pagination { */
-/*     display: inline-block; */
-/*     padding-left: 0; */
-/*     margin: 20px 0; */
-/*     border-radius: 4px */
-/* } */
-/* .pagination > li { */
-/*     display: inline */
-/* } */
-/* .pagination > li > a, */
-/* .pagination > li > span { */
-/*     position: relative; */
-/*     float: left; */
-/*     padding: 6px 12px; */
-/*     margin-left: -1px; */
-/*     line-height: 1.42857143; */
-/*     color: #337ab7; */
-/*     text-decoration: none; */
-/*     background-color: #fff; */
-/*     border: 1px solid #ddd */
-/* } */
-/* .pagination > li:first-child > a, */
-/* .pagination > li:first-child > span { */
-/*     margin-left: 0; */
-/*     border-top-left-radius: 4px; */
-/*     border-bottom-left-radius: 4px */
-/* } */
-/* .pagination > li:last-child > a, */
-/* .pagination > li:last-child > span { */
-/*     border-top-right-radius: 4px; */
-/*     border-bottom-right-radius: 4px */
-/* } */
-/* .pagination > li > a:focus, */
-/* .pagination > li > a:hover, */
-/* .pagination > li > span:focus, */
-/* .pagination > li > span:hover { */
-/*     color: #23527c; */
-/*     background-color: #eee; */
-/*     border-color: #ddd */
-/* } */
-/* .pagination > .active > a, */
-/* .pagination > .active > a:focus, */
-/* .pagination > .active > a:hover, */
-/* .pagination > .active > span, */
-/* .pagination > .active > span:focus, */
-/* .pagination > .active > span:hover { */
-/*     z-index: 2; */
-/*     color: #fff; */
-/*     cursor: default; */
-/*     background-color: #337ab7; */
-/*     border-color: #337ab7 */
-/* } */
-/* .pagination > .disabled > a, */
-/* .pagination > .disabled > a:focus, */
-/* .pagination > .disabled > a:hover, */
-/* .pagination > .disabled > span, */
-/* .pagination > .disabled > span:focus, */
-/* .pagination > .disabled > span:hover { */
-/*     color: #777; */
-/*     cursor: not-allowed; */
-/*     background-color: #fff; */
-/*     border-color: #ddd */
-/* } */
-
-/* TODO: Cleanup themes. */
-/******************************************************************************/
-/* Themes. */
-
-/* .theme-base-08 .sidebar { */
-/*     background-color: #ac4142 */
-/* } */
-/* .theme-base-08 .content a, */
-/* .theme-base-08 .related-posts li a:hover { */
-/*     color: #ac4142 */
-/* } */
-/* .theme-base-09 .sidebar { */
-/*     background-color: #d28445 */
-/* } */
-/* .theme-base-09 .content a, */
-/* .theme-base-09 .related-posts li a:hover { */
-/*     color: #d28445 */
-/* } */
-/* .theme-base-0a .sidebar { */
-/*     background-color: #f4bf75 */
-/* } */
-/* .theme-base-0a .content a, */
-/* .theme-base-0a .related-posts li a:hover { */
-/*     color: #f4bf75 */
-/* } */
-/* .theme-base-0b .sidebar { */
-/*     background-color: #90a959 */
-/* } */
-/* .theme-base-0b .content a, */
-/* .theme-base-0b .related-posts li a:hover { */
-/*     color: #90a959 */
-/* } */
-/* .theme-base-0c .sidebar { */
-/*     background-color: #75b5aa */
-/* } */
-/* .theme-base-0c .content a, */
-/* .theme-base-0c .related-posts li a:hover { */
-/*     color: #75b5aa */
-/* } */
-/* .theme-base-0d .sidebar { */
-/*     background-color: #6a9fb5 */
-/* } */
-/* .theme-base-0d .content a, */
-/* .theme-base-0d .related-posts li a:hover { */
-/*     color: #6a9fb5 */
-/* } */
-/* .theme-base-0e .sidebar { */
-/*     background-color: #aa759f */
-/* } */
-/* .theme-base-0e .content a, */
-/* .theme-base-0e .related-posts li a:hover { */
-/*     color: #aa759f */
-/* } */
-/* .theme-base-0f .sidebar { */
-/*     background-color: #8f5536 */
-/* } */
-/* .theme-base-0f .content a, */
-/* .theme-base-0f .related-posts li a:hover { */
-/*     color: #8f5536 */
-/* } */
-/* .theme-base-08 .label { */
-/*     background-color: #ac4142 */
-/* } */
-/* .theme-base-08 .pagination > li > a, */
-/* .theme-base-08 .pagination > li > span { */
-/*     color: #ac4142 */
-/* } */
-/* .theme-base-08 .pagination > .active > a, */
-/* .theme-base-08 .pagination > .active > a:focus, */
-/* .theme-base-08 .pagination > .active > a:hover, */
-/* .theme-base-08 .pagination > .active > span, */
-/* .theme-base-08 .pagination > .active > span:focus, */
-/* .theme-base-08 .pagination > .active > span:hover { */
-/*     background-color: #ac4142; */
-/*     border-color: #ac4142 */
-/* } */
-/* .theme-base-08 .pagination > .disabled > a, */
-/* .theme-base-08 .pagination > .disabled > a:focus, */
-/* .theme-base-08 .pagination > .disabled > a:hover, */
-/* .theme-base-08 .pagination > .disabled > span, */
-/* .theme-base-08 .pagination > .disabled > span:focus, */
-/* .theme-base-08 .pagination > .disabled > span:hover { */
-/*     color: #777; */
-/*     background-color: #fff; */
-/*     border-color: #ddd */
-/* } */
-/* .theme-base-09 .label { */
-/*     background-color: #d28445 */
-/* } */
-/* .theme-base-09 .pagination > li > a, */
-/* .theme-base-09 .pagination > li > span { */
-/*     color: #d28445 */
-/* } */
-/* .theme-base-09 .pagination > .active > a, */
-/* .theme-base-09 .pagination > .active > a:focus, */
-/* .theme-base-09 .pagination > .active > a:hover, */
-/* .theme-base-09 .pagination > .active > span, */
-/* .theme-base-09 .pagination > .active > span:focus, */
-/* .theme-base-09 .pagination > .active > span:hover { */
-/*     background-color: #d28445; */
-/*     border-color: #d28445 */
-/* } */
-/* .theme-base-09 .pagination > .disabled > a, */
-/* .theme-base-09 .pagination > .disabled > a:focus, */
-/* .theme-base-09 .pagination > .disabled > a:hover, */
-/* .theme-base-09 .pagination > .disabled > span, */
-/* .theme-base-09 .pagination > .disabled > span:focus, */
-/* .theme-base-09 .pagination > .disabled > span:hover { */
-/*     color: #777; */
-/*     background-color: #fff; */
-/*     border-color: #ddd */
-/* } */
-/* .theme-base-0a .label { */
-/*     background-color: #f4bf75 */
-/* } */
-/* .theme-base-0a .pagination > li > a, */
-/* .theme-base-0a .pagination > li > span { */
-/*     color: #f4bf75 */
-/* } */
-/* .theme-base-0a .pagination > .active > a, */
-/* .theme-base-0a .pagination > .active > a:focus, */
-/* .theme-base-0a .pagination > .active > a:hover, */
-/* .theme-base-0a .pagination > .active > span, */
-/* .theme-base-0a .pagination > .active > span:focus, */
-/* .theme-base-0a .pagination > .active > span:hover { */
-/*     background-color: #f4bf75; */
-/*     border-color: #f4bf75 */
-/* } */
-/* .theme-base-0a .pagination > .disabled > a, */
-/* .theme-base-0a .pagination > .disabled > a:focus, */
-/* .theme-base-0a .pagination > .disabled > a:hover, */
-/* .theme-base-0a .pagination > .disabled > span, */
-/* .theme-base-0a .pagination > .disabled > span:focus, */
-/* .theme-base-0a .pagination > .disabled > span:hover { */
-/*     color: #777; */
-/*     background-color: #fff; */
-/*     border-color: #ddd */
-/* } */
-/* .theme-base-0b .label { */
-/*     background-color: #90a959 */
-/* } */
-/* .theme-base-0b .pagination > li > a, */
-/* .theme-base-0b .pagination > li > span { */
-/*     color: #90a959 */
-/* } */
-/* .theme-base-0b .pagination > .active > a, */
-/* .theme-base-0b .pagination > .active > a:focus, */
-/* .theme-base-0b .pagination > .active > a:hover, */
-/* .theme-base-0b .pagination > .active > span, */
-/* .theme-base-0b .pagination > .active > span:focus, */
-/* .theme-base-0b .pagination > .active > span:hover { */
-/*     background-color: #90a959; */
-/*     border-color: #90a959 */
-/* } */
-/* .theme-base-0b .pagination > .disabled > a, */
-/* .theme-base-0b .pagination > .disabled > a:focus, */
-/* .theme-base-0b .pagination > .disabled > a:hover, */
-/* .theme-base-0b .pagination > .disabled > span, */
-/* .theme-base-0b .pagination > .disabled > span:focus, */
-/* .theme-base-0b .pagination > .disabled > span:hover { */
-/*     color: #777; */
-/*     background-color: #fff; */
-/*     border-color: #ddd */
-/* } */
-/* .theme-base-0c .label { */
-/*     background-color: #75b5aa */
-/* } */
-/* .theme-base-0c .pagination > li > a, */
-/* .theme-base-0c .pagination > li > span { */
-/*     color: #75b5aa */
-/* } */
-/* .theme-base-0c .pagination > .active > a, */
-/* .theme-base-0c .pagination > .active > a:focus, */
-/* .theme-base-0c .pagination > .active > a:hover, */
-/* .theme-base-0c .pagination > .active > span, */
-/* .theme-base-0c .pagination > .active > span:focus, */
-/* .theme-base-0c .pagination > .active > span:hover { */
-/*     background-color: #75b5aa; */
-/*     border-color: #75b5aa; */
-/*     color: #fff */
-/* } */
-/* .theme-base-0c .pagination > .disabled > a, */
-/* .theme-base-0c .pagination > .disabled > a:focus, */
-/* .theme-base-0c .pagination > .disabled > a:hover, */
-/* .theme-base-0c .pagination > .disabled > span, */
-/* .theme-base-0c .pagination > .disabled > span:focus, */
-/* .theme-base-0c .pagination > .disabled > span:hover { */
-/*     color: #777; */
-/*     background-color: #fff; */
-/*     border-color: #ddd */
-/* } */
-/* .theme-base-0d .label { */
-/*     background-color: #6a9fb5 */
-/* } */
-/* .theme-base-0d .pagination > li > a, */
-/* .theme-base-0d .pagination > li > span { */
-/*     color: #6a9fb5 */
-/* } */
-/* .theme-base-0d .pagination > .active > a, */
-/* .theme-base-0d .pagination > .active > a:focus, */
-/* .theme-base-0d .pagination > .active > a:hover, */
-/* .theme-base-0d .pagination > .active > span, */
-/* .theme-base-0d .pagination > .active > span:focus, */
-/* .theme-base-0d .pagination > .active > span:hover { */
-/*     background-color: #6a9fb5; */
-/*     border-color: #6a9fb5 */
-/* } */
-/* .theme-base-0d .pagination > .disabled > a, */
-/* .theme-base-0d .pagination > .disabled > a:focus, */
-/* .theme-base-0d .pagination > .disabled > a:hover, */
-/* .theme-base-0d .pagination > .disabled > span, */
-/* .theme-base-0d .pagination > .disabled > span:focus, */
-/* .theme-base-0d .pagination > .disabled > span:hover { */
-/*     color: #777; */
-/*     background-color: #fff; */
-/*     border-color: #ddd */
-/* } */
-/* .theme-base-0e .label { */
-/*     background-color: #aa759f */
-/* } */
-/* .theme-base-0e .pagination > li > a, */
-/* .theme-base-0e .pagination > li > span { */
-/*     color: #aa759f */
-/* } */
-/* .theme-base-0e .pagination > .active > a, */
-/* .theme-base-0e .pagination > .active > a:focus, */
-/* .theme-base-0e .pagination > .active > a:hover, */
-/* .theme-base-0e .pagination > .active > span, */
-/* .theme-base-0e .pagination > .active > span:focus, */
-/* .theme-base-0e .pagination > .active > span:hover { */
-/*     background-color: #aa759f; */
-/*     border-color: #aa759f */
-/* } */
-/* .theme-base-0e .pagination > .disabled > a, */
-/* .theme-base-0e .pagination > .disabled > a:focus, */
-/* .theme-base-0e .pagination > .disabled > a:hover, */
-/* .theme-base-0e .pagination > .disabled > span, */
-/* .theme-base-0e .pagination > .disabled > span:focus, */
-/* .theme-base-0e .pagination > .disabled > span:hover { */
-/*     color: #777; */
-/*     background-color: #fff; */
-/*     border-color: #ddd */
-/* } */
-/* .theme-base-0f .label { */
-/*     background-color: #8f5536 */
-/* } */
-/* .theme-base-0f .pagination > li > a, */
-/* .theme-base-0f .pagination > li > span { */
-/*     color: #8f5536 */
-/* } */
-/* .theme-base-0f .pagination > .active > a, */
-/* .theme-base-0f .pagination > .active > a:focus, */
-/* .theme-base-0f .pagination > .active > a:hover, */
-/* .theme-base-0f .pagination > .active > span, */
-/* .theme-base-0f .pagination > .active > span:focus, */
-/* .theme-base-0f .pagination > .active > span:hover { */
-/*     background-color: #8f5536; */
-/*     border-color: #8f5536 */
-/* } */
-/* .theme-base-0f .pagination > .disabled > a, */
-/* .theme-base-0f .pagination > .disabled > a:focus, */
-/* .theme-base-0f .pagination > .disabled > a:hover, */
-/* .theme-base-0f .pagination > .disabled > span, */
-/* .theme-base-0f .pagination > .disabled > span:focus, */
-/* .theme-base-0f .pagination > .disabled > span:hover { */
-/*     color: #777; */
-/*     background-color: #fff; */
-/*     border-color: #ddd */
-/* } */
+/* Theme. */
 
 /* Dark blue theme. */
 .theme-base-darkblue .sidebar {
@@ -791,23 +411,3 @@ select {
 .theme-base-darkblue .pagination > li > span {
     color: #369
 }
-/* .theme-base-darkblue .pagination > .active > a, */
-/* .theme-base-darkblue .pagination > .active > a:focus, */
-/* .theme-base-darkblue .pagination > .active > a:hover, */
-/* .theme-base-darkblue .pagination > .active > span, */
-/* .theme-base-darkblue .pagination > .active > span:focus, */
-/* .theme-base-darkblue .pagination > .active > span:hover { */
-/*     color: #fff; */
-/*     background-color: #369; */
-/*     border-color: #369 */
-/* } */
-/* .theme-base-darkblue .pagination > .disabled > a, */
-/* .theme-base-darkblue .pagination > .disabled > a:focus, */
-/* .theme-base-darkblue .pagination > .disabled > a:hover, */
-/* .theme-base-darkblue .pagination > .disabled > span, */
-/* .theme-base-darkblue .pagination > .disabled > span:focus, */
-/* .theme-base-darkblue .pagination > .disabled > span:hover { */
-/*     color: #777; */
-/*     background-color: #fff; */
-/*     border-color: #ddd */
-/* } */

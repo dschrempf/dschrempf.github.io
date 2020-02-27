@@ -1,7 +1,5 @@
 
 
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
 
@@ -18,9 +16,6 @@
 
         
         <link rel="stylesheet" href="https://dschrempf.github.io/css/skeria.css">
-
-        
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism.css" rel="stylesheet" />
 
         
         <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather&display=swap" rel="stylesheet">
@@ -119,7 +114,7 @@
 
         <div class= "footer">
     <p>
-        &copy; 2019 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+        &copy; 2020 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
         Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/skeria">Skeria</a><br/>
         
         <a href="https://www.iubenda.com/privacy-policy/76967501" class="" title="Privacy Policy">Privacy Policy</a>
@@ -157,24 +152,24 @@ host names, IP addresses or passwords.</p>
 <h2 id="login-with-ssh-key">Login with SSH key</h2>
 <p>First, you want to create your own <a href="https://wiki.archlinux.org/index.php/SSH%5Fkeys">SSH key</a> so that your server accepts
 your login without any password.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Create an SSH key (use the standard path).  Be careful, if you do</span>
-<span style="color:#75715e"># not set a passphrase, anybody that has access to your computer can</span>
-<span style="color:#75715e"># log into servers that have been set up to accept your key.</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Create an SSH key (use the standard path).  Be careful, if you do</span>
+<span style="color:#8f5902;font-style:italic"># not set a passphrase, anybody that has access to your computer can</span>
+<span style="color:#8f5902;font-style:italic"># log into servers that have been set up to accept your key.</span>
 ssh-keygen
 
-<span style="color:#75715e"># Copy the key on your server.</span>
+<span style="color:#8f5902;font-style:italic"># Copy the key on your server.</span>
 ssh-copy-id yourusername@yourserver.example.com
 
-<span style="color:#75715e"># Try it out and be happy!</span>
+<span style="color:#8f5902;font-style:italic"># Try it out and be happy!</span>
 ssh yourusername@yourserver.example.com
 </code></pre></div><h2 id="use-dot-ssh-config">Use <code>~/.ssh/config</code></h2>
 <p>Now, it is getting better; edit or create the file <code>~/.ssh.config</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#~/.ssh/config
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">#~/.ssh/config
 Host server
      HostName yourserver.example.com
      User yourusername
 </code></pre></div><p>Try to log into <code>yourserver</code> (now aliased <code>server</code>):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh server
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">ssh server
 </code></pre></div><p>Wow, that was fast.</p>
 <h2 id="proxycommand">ProxyCommand</h2>
 <p>And it can get better.  Very often, the computer <code>privatecomputer</code>
@@ -186,12 +181,12 @@ in turn has access to <code>private</code>.</p>
 </figure>
 
 <p>Hmm, normally, you would need to</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># Log into the server.</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash"><span style="color:#8f5902;font-style:italic"># Log into the server.</span>
 ssh yourusername@yourserver.example.com
-<span style="color:#75715e"># Wait.  Enter password.  Wait.</span>
+<span style="color:#8f5902;font-style:italic"># Wait.  Enter password.  Wait.</span>
 ssh privateusername@privatecomputer.local
-<span style="color:#75715e"># Wait.  Enter password.  Wait.</span>
-<span style="color:#75715e"># That sucks.</span>
+<span style="color:#8f5902;font-style:italic"># Wait.  Enter password.  Wait.</span>
+<span style="color:#8f5902;font-style:italic"># That sucks.</span>
 </code></pre></div><p>We can setup SSH keys so that we do not have to enter passwords</p>
 <ul>
 <li>from <code>home</code> to <code>server</code> (we already did that);</li>
@@ -200,7 +195,7 @@ if you want).</li>
 </ul>
 <p>However, we can also do something much more awesome.  Put this into
 your <code>~/.ssh/config</code>:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">#~/.ssh/config
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">#~/.ssh/config
   Host server
        HostName yourserver.example.com
        User yourusername
@@ -209,7 +204,7 @@ your <code>~/.ssh/config</code>:</p>
        ProxyCommand ssh -q server -W privatecomputer.local:22
        User privateusername
 </code></pre></div><p>And try it out:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">ssh private
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">ssh private
 </code></pre></div><p>Wow.</p>
 
   </div>
@@ -236,16 +231,6 @@ your <code>~/.ssh/config</code>:</p>
 
 
 
-
-        
-        
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-core.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/plugins/autoloader/prism-autoloader.min.js"></script>
-        <script>
-         Prism.plugins.autoloader.languages_path = '/components/';
-        </script>
-        
 
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -306,7 +291,7 @@ your <code>~/.ssh/config</code>:</p>
 
         <div class= "footer">
     <p>
-        &copy; 2019 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+        &copy; 2020 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
         Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/skeria">Skeria</a><br/>
         
         <a href="https://www.iubenda.com/privacy-policy/76967501" class="" title="Privacy Policy">Privacy Policy</a>

@@ -29,7 +29,7 @@ The advantages are:
       
       <guid>https://dschrempf.github.io/coding/2018-02-10-markov-chains-in-haskell/</guid>
       <description>I have been working on Markov chains for quite a while now and wanted to assess how Haskell can deal with simulating a simple, discrete chain.
-Many sources can be found online. The code presented here is partly taken from a question on stackoverflow. However, I was unsatisfied with the nomenclature and parts of the code. So I refactored most of it. Also, there is a Haskell library markov-chain, which I am unsatisfied with because of code readability (it&#39;s pretty abstruse).</description>
+Many sources can be found online. The code presented here is partly taken from a question on stackoverflow. However, I was unsatisfied with the nomenclature and parts of the code. So I refactored most of it. Also, there is a Haskell library markov-chain, which I am unsatisfied with because of code readability (it&amp;rsquo;s pretty abstruse).</description>
     </item>
     
     <item>

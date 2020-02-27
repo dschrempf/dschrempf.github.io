@@ -1,7 +1,5 @@
 
 
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
 
@@ -18,9 +16,6 @@
 
         
         <link rel="stylesheet" href="https://dschrempf.github.io/css/skeria.css">
-
-        
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism.css" rel="stylesheet" />
 
         
         <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather&display=swap" rel="stylesheet">
@@ -119,7 +114,7 @@
 
         <div class= "footer">
     <p>
-        &copy; 2019 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+        &copy; 2020 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
         Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/skeria">Skeria</a><br/>
         
         <a href="https://www.iubenda.com/privacy-policy/76967501" class="" title="Privacy Policy">Privacy Policy</a>
@@ -156,46 +151,46 @@ In what follows, I try to dissect <code>foldlM</code> for a specific example.</p
 <p>Monadic folds can be used to <strong>perform a series of actions that depend on the
 previous output</strong>. The following function produces an <em>action b</em> from a <em>value a</em>
 also taking into account the output of the previous <em>action b</em>.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">f</span> <span style="color:#f92672">::</span> (b <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> m b)
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#000">f</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">b</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">a</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">m</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span>
 </code></pre></div><p>And here the definition of <code>foldlM</code> (which is the same as <code>foldM</code>).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">foldlM</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">Foldable</span> t, <span style="color:#66d9ef">Monad</span> m) <span style="color:#f92672">=&gt;</span> (b <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">-&gt;</span> m b) <span style="color:#f92672">-&gt;</span> b <span style="color:#f92672">-&gt;</span> t a <span style="color:#f92672">-&gt;</span> m b
-<span style="color:#a6e22e">foldlM</span> f z0 xs <span style="color:#f92672">=</span> foldr f&#39; return xs z0
-  <span style="color:#66d9ef">where</span> f&#39; x k z <span style="color:#f92672">=</span> f z x <span style="color:#f92672">&gt;&gt;=</span> k
-</code></pre></div><p>Let's have a look at an example. The following function performs <code>n</code> jumps of a
-Markov chain starting from a given <code>State` `s</code> (an integer) according to a
-transition probability matrix <code>ProbMatrix` `p</code> (don't worry about the state
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#000">foldlM</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">Foldable</span> <span style="color:#000">t</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">Monad</span> <span style="color:#000">m</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">=&gt;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">b</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">a</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">m</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">b</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">t</span> <span style="color:#000">a</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">m</span> <span style="color:#000">b</span>
+<span style="color:#000">foldlM</span> <span style="color:#000">f</span> <span style="color:#000">z0</span> <span style="color:#000">xs</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">foldr</span> <span style="color:#000">f&#39;</span> <span style="color:#000">return</span> <span style="color:#000">xs</span> <span style="color:#000">z0</span>
+  <span style="color:#204a87;font-weight:bold">where</span> <span style="color:#000">f&#39;</span> <span style="color:#000">x</span> <span style="color:#000">k</span> <span style="color:#000">z</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">f</span> <span style="color:#000">z</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;=</span> <span style="color:#000">k</span>
+</code></pre></div><p>Let&rsquo;s have a look at an example. The following function performs <code>n</code> jumps of a
+Markov chain starting from a given <code>State</code> <code>s</code> (an integer) according to a
+transition probability matrix <code>ProbMatrix</code> <code>p</code> (don&rsquo;t worry about the state
 space, or the state space size, it does not matter). At the moment, I am not
 sure how to access or store the actual chain. This could be done by an
 equivalent of <code>scanl</code> for general monads, which I was unable to find.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">jumpN</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">Monad</span> m) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">State</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">ProbMatrix</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Int</span> <span style="color:#f92672">-&gt;</span> m <span style="color:#66d9ef">State</span>
-<span style="color:#a6e22e">jumpN</span> s p n <span style="color:#f92672">=</span> foldM jump s (replicate n p)
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#000">jumpN</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">Monad</span> <span style="color:#000">m</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">=&gt;</span> <span style="color:#204a87;font-weight:bold">State</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">ProbMatrix</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Int</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">m</span> <span style="color:#204a87;font-weight:bold">State</span>
+<span style="color:#000">jumpN</span> <span style="color:#000">s</span> <span style="color:#000">p</span> <span style="color:#000">n</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">foldM</span> <span style="color:#000">jump</span> <span style="color:#000">s</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">replicate</span> <span style="color:#000">n</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">)</span>
 
-<span style="color:#a6e22e">jump</span> <span style="color:#f92672">::</span> (<span style="color:#66d9ef">Monad</span> m) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">State</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">ProbMatrix</span> <span style="color:#f92672">-&gt;</span> m <span style="color:#66d9ef">State</span>
+<span style="color:#000">jump</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">Monad</span> <span style="color:#000">m</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">=&gt;</span> <span style="color:#204a87;font-weight:bold">State</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">ProbMatrix</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">m</span> <span style="color:#204a87;font-weight:bold">State</span>
 </code></pre></div><p>And specifically, with <code>p</code> being any transition probability matrix</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">jumpN</span> <span style="color:#ae81ff">0</span> p <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> foldM jump <span style="color:#ae81ff">0</span> [p, p]
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#000">jumpN</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">p</span> <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">foldM</span> <span style="color:#000">jump</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">]</span>
 </code></pre></div><p>Now we use the definition of <code>foldM</code></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">jumpN</span> <span style="color:#ae81ff">0</span> p <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> foldr f&#39; return [p, p] <span style="color:#ae81ff">0</span>
-  <span style="color:#66d9ef">where</span> f&#39; x k z <span style="color:#f92672">=</span> jump z x <span style="color:#f92672">&gt;&gt;=</span> k
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#000">jumpN</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">p</span> <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">foldr</span> <span style="color:#000">f&#39;</span> <span style="color:#000">return</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#0000cf;font-weight:bold">0</span>
+  <span style="color:#204a87;font-weight:bold">where</span> <span style="color:#000">f&#39;</span> <span style="color:#000">x</span> <span style="color:#000">k</span> <span style="color:#000">z</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">jump</span> <span style="color:#000">z</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;=</span> <span style="color:#000">k</span>
 </code></pre></div><p>which leads to</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">jumpN</span> <span style="color:#ae81ff">0</span> p <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> f&#39; p (foldr f&#39; return [p]) <span style="color:#ae81ff">0</span>
-            <span style="color:#f92672">=</span> f&#39; p (f&#39; p (foldr f&#39; return <span style="color:#66d9ef">[]</span>) <span style="color:#ae81ff">0</span>
-            <span style="color:#f92672">=</span> f&#39; p (f&#39; p (return)) <span style="color:#ae81ff">0</span>
-            <span style="color:#f92672">=</span> f&#39; p (f&#39; p return) <span style="color:#ae81ff">0</span>
-            <span style="color:#f92672">=</span> jump <span style="color:#ae81ff">0</span> p <span style="color:#f92672">&gt;&gt;=</span> (f&#39; p return)
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#000">jumpN</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">p</span> <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">f&#39;</span> <span style="color:#000">p</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">foldr</span> <span style="color:#000">f&#39;</span> <span style="color:#000">return</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#0000cf;font-weight:bold">0</span>
+            <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">f&#39;</span> <span style="color:#000">p</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">f&#39;</span> <span style="color:#000">p</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">foldr</span> <span style="color:#000">f&#39;</span> <span style="color:#000">return</span> <span style="color:#204a87;font-weight:bold">[]</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#0000cf;font-weight:bold">0</span>
+            <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">f&#39;</span> <span style="color:#000">p</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">f&#39;</span> <span style="color:#000">p</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">return</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#0000cf;font-weight:bold">0</span>
+            <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">f&#39;</span> <span style="color:#000">p</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">f&#39;</span> <span style="color:#000">p</span> <span style="color:#000">return</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#0000cf;font-weight:bold">0</span>
+            <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">jump</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">f&#39;</span> <span style="color:#000">p</span> <span style="color:#000">return</span><span style="color:#000;font-weight:bold">)</span>
 </code></pre></div><p>And finally, we got what we wanted. This is the first time, that we see that
 first, we perform a jump from zero and use the output to feed it to the next
 jump.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-haskell" data-lang="haskell"><span style="color:#a6e22e">jumpN</span> <span style="color:#ae81ff">0</span> p <span style="color:#ae81ff">2</span> <span style="color:#f92672">=</span> jump <span style="color:#ae81ff">0</span> p <span style="color:#f92672">&gt;&gt;=</span> (f&#39; p return)
-            <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span>
-            s&#39; <span style="color:#f92672">&lt;-</span> jump <span style="color:#ae81ff">0</span> p
-            f&#39; p return s&#39;
-            <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span>
-            s&#39; <span style="color:#f92672">&lt;-</span> jump <span style="color:#ae81ff">0</span> p
-            (jump s&#39; p <span style="color:#f92672">&gt;&gt;=</span> return)
-            <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span>
-            s&#39;  <span style="color:#f92672">&lt;-</span> jump <span style="color:#ae81ff">0</span>  p
-            s&#39;&#39; <span style="color:#f92672">&lt;-</span> jump s&#39; p
-            return s&#39;&#39;
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-haskell" data-lang="haskell"><span style="color:#000">jumpN</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">p</span> <span style="color:#0000cf;font-weight:bold">2</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">jump</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">f&#39;</span> <span style="color:#000">p</span> <span style="color:#000">return</span><span style="color:#000;font-weight:bold">)</span>
+            <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">do</span>
+            <span style="color:#000">s&#39;</span> <span style="color:#204a87;font-weight:bold">&lt;-</span> <span style="color:#000">jump</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">p</span>
+            <span style="color:#000">f&#39;</span> <span style="color:#000">p</span> <span style="color:#000">return</span> <span style="color:#000">s&#39;</span>
+            <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">do</span>
+            <span style="color:#000">s&#39;</span> <span style="color:#204a87;font-weight:bold">&lt;-</span> <span style="color:#000">jump</span> <span style="color:#0000cf;font-weight:bold">0</span> <span style="color:#000">p</span>
+            <span style="color:#000;font-weight:bold">(</span><span style="color:#000">jump</span> <span style="color:#000">s&#39;</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;=</span> <span style="color:#000">return</span><span style="color:#000;font-weight:bold">)</span>
+            <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">do</span>
+            <span style="color:#000">s&#39;</span>  <span style="color:#204a87;font-weight:bold">&lt;-</span> <span style="color:#000">jump</span> <span style="color:#0000cf;font-weight:bold">0</span>  <span style="color:#000">p</span>
+            <span style="color:#000">s&#39;&#39;</span> <span style="color:#204a87;font-weight:bold">&lt;-</span> <span style="color:#000">jump</span> <span style="color:#000">s&#39;</span> <span style="color:#000">p</span>
+            <span style="color:#000">return</span> <span style="color:#000">s&#39;&#39;</span>
 </code></pre></div><p>Holy crap, I am not sure if understanding this was worth the pain :-).</p>
 
   </div>
@@ -222,16 +217,6 @@ jump.</p>
 
 
 
-
-        
-        
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-core.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/plugins/autoloader/prism-autoloader.min.js"></script>
-        <script>
-         Prism.plugins.autoloader.languages_path = '/components/';
-        </script>
-        
 
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -292,7 +277,7 @@ jump.</p>
 
         <div class= "footer">
     <p>
-        &copy; 2019 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+        &copy; 2020 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
         Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/skeria">Skeria</a><br/>
         
         <a href="https://www.iubenda.com/privacy-policy/76967501" class="" title="Privacy Policy">Privacy Policy</a>

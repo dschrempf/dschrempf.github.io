@@ -28,7 +28,7 @@ The GNU poject debugger Here, we will use the GNU project debugger (GDB), becaus
       
       <guid>https://dschrempf.github.io/emacs/2015-04-04-helm-hydra-modes/</guid>
       <description>Recently, I stumbled upon two nice Emacs minor modes.
-Helm mode Helm mode offers an incremental completion and selection narrowing framework. It will help you to find what you&#39;re looking for in Emacs (like buffers, files, commands etc). Resources and discussions can be found at the following homepages:
+Helm mode Helm mode offers an incremental completion and selection narrowing framework. It will help you to find what you&amp;rsquo;re looking for in Emacs (like buffers, files, commands etc). Resources and discussions can be found at the following homepages:
  development and installation instructions at the Helm mode GitHub page; the Emacs initialization files and configuration of the Helm maintainer; a good overview of the features and a sample configuration.</description>
     </item>
     

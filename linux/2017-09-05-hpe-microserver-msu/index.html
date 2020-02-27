@@ -1,7 +1,5 @@
 
 
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
 
@@ -18,9 +16,6 @@
 
         
         <link rel="stylesheet" href="https://dschrempf.github.io/css/skeria.css">
-
-        
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/themes/prism.css" rel="stylesheet" />
 
         
         <link href="https://fonts.googleapis.com/css?family=Inconsolata|Merriweather&display=swap" rel="stylesheet">
@@ -119,7 +114,7 @@
 
         <div class= "footer">
     <p>
-        &copy; 2019 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+        &copy; 2020 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
         Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/skeria">Skeria</a><br/>
         
         <a href="https://www.iubenda.com/privacy-policy/76967501" class="" title="Privacy Policy">Privacy Policy</a>
@@ -179,12 +174,12 @@ module <a href="http://www.tldp.org/HOWTO/SCSI-2.4-HOWTO/sg.html">sg</a> to be l
 </ol>
 <p>These scripts also pull the <code>sg</code> module in case it is not loaded.</p>
 <p>For my purposes however (I do not need a web interface), the MSU client <code>mvcli</code>,
-which is located in the folder <code>/opt/marvell/storage/cli</code> is all I need. Don't
+which is located in the folder <code>/opt/marvell/storage/cli</code> is all I need. Don&rsquo;t
 forget to manually load the <code>sg</code> module, which sets up the SCSI devices for this
 script, e.g., with</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo modprobe -a sg
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sudo modprobe -a sg
 </code></pre></div><p>Then, the SMART data can be retrieved, e.g., with</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">sudo /opt/marvell/storage/cli/mvcli smart -p <span style="color:#ae81ff">0</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sudo /opt/marvell/storage/cli/mvcli smart -p <span style="color:#0000cf;font-weight:bold">0</span>
 </code></pre></div><p>Awesome :-)!</p>
 <p>In the course of this project, I also stumbled upon other very useful SCSI
 related software: <code>lsscsi</code>, <code>sg3_utils</code>, <code>sdparm</code>, <code>hdidle</code>.</p>
@@ -215,16 +210,6 @@ please leave a note if you know an easy way to achieve this.</p>
 
 
 
-
-        
-        
-        
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/components/prism-core.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.16.0/plugins/autoloader/prism-autoloader.min.js"></script>
-        <script>
-         Prism.plugins.autoloader.languages_path = '/components/';
-        </script>
-        
 
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -285,7 +270,7 @@ please leave a note if you know an easy way to achieve this.</p>
 
         <div class= "footer">
     <p>
-        &copy; 2019 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+        &copy; 2020 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
         Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/skeria">Skeria</a><br/>
         
         <a href="https://www.iubenda.com/privacy-policy/76967501" class="" title="Privacy Policy">Privacy Policy</a>
