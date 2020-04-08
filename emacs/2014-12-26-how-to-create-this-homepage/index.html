@@ -149,8 +149,8 @@
     <p>This homepage was created with Emacs and <a href="http://orgmode.org/">Org mode</a>. It is hosted at <a href="https://pages.github.com/">github.io</a> and
 comments can be done using <a href="https://disqus.com/">Disqus</a>. I assume a working Org mode setup and a
 GitHub as well as a Disqus account.</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->[2015-03-26 Thu] <!-- raw HTML omitted --><!-- raw HTML omitted --> Update; general revision of code and text.</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted -->[2016-04-09 Sat] <!-- raw HTML omitted --><!-- raw HTML omitted --> Another update.</p>
+<p><span class="timestamp-wrapper"><span class="timestamp">[2015-03-26 Thu] </span></span> Update; general revision of code and text.</p>
+<p><span class="timestamp-wrapper"><span class="timestamp">[2016-04-09 Sat] </span></span> Another update.</p>
 <h2 id="general-idea">General idea</h2>
 <dl>
 <dt>Org mode</dt>
@@ -194,7 +194,7 @@ framework</a>.</p>
 <h2 id="org-mode-publishing-setup">Org Mode publishing setup</h2>
 <p>This is the main step.  Org mode has to know how to export your Org
 files so that they can be hosted by GitHub:</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><a id="code-snippet--Org publish setup"></a></p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-lisp" data-lang="lisp"><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">setq</span> <span style="color:#000">org-publish-project-alist</span>
       <span style="color:#ce5c00;font-weight:bold">&#39;</span><span style="color:#000;font-weight:bold">(</span>
         <span style="color:#8f5902;font-style:italic">;; Blog posts in Org mode that are exported to html and hosted</span>
@@ -241,7 +241,7 @@ with the project <code>website</code> (e.g. with <code>M-x org-publish website</
 preamble includes a small header; the postamble includes the Disqus
 comment section and Google Analytics (make sure to replace you
 user name and tracking ID).</p>
-<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p><a id="code-snippet--Preamble and postamble"></a></p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-lisp" data-lang="lisp"><span style="color:#8f5902;font-style:italic">;; BugFix: Manually disable home/up links in preamble.</span>
 <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">setq</span> <span style="color:#000">org-html-home/up-format</span> <span style="color:#4e9a06">&#34;&#34;</span><span style="color:#000;font-weight:bold">)</span>
 

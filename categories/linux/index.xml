@@ -27,7 +27,7 @@ Enjoy!</description>
       <pubDate>Tue, 05 Sep 2017 00:00:00 +0200</pubDate>
       
       <guid>https://dschrempf.github.io/linux/2017-09-05-hpe-microserver-msu/</guid>
-      <description>[2019-03-01 Fri] See comment below; some Linux operating systems already provide native support for the Marvell RAID controller in legacy mode.
+      <description>[2019-03-01 Fri]  See comment below; some Linux operating systems already provide native support for the Marvell RAID controller in legacy mode.
 Marvell SATA controller Recently I purchased an HPE ProLiant MicroServer Gen10 which comes with the Marvell SATA controller 88SE9230, also called Marvell Storage Utility (MSU). As far as I know, this controller has an ARM chip to provide RAID 0 (non-redundant combination of disks), RAID 1 (straight mirroring) or RAID 10 (a combination of RAID 0 and RAID 1).</description>
     </item>
     
@@ -90,7 +90,7 @@ Advantages that I have experienced so far:
       <pubDate>Fri, 30 Jan 2015 00:00:00 +0100</pubDate>
       
       <guid>https://dschrempf.github.io/linux/2015-01-30-btsync/</guid>
-      <description>&amp;lt;2015-04-22 Wed&amp;gt; I have switched from BitTorrent Sync to Syncthing. Reasons are:
+      <description>&amp;lt;2015-04-22 Wed&amp;gt;  I have switched from BitTorrent Sync to Syncthing. Reasons are:
  the synchronization was not reliable (synchronization stalled sometimes; every update leads to a re-synchronization of all files); the corporate policy is not to my liking (a Pro version is available; the free version only supports a limited amount of folders and clients; it is not sure if it will stay free in the future).  Please also refer to the blog entry that describes how to configure Syncthing with SSH port forwarding.</description>
     </item>
     
@@ -111,7 +111,7 @@ ddiff -i &amp;#39;%H:%M:%S&amp;#39; &amp;#39;19:09:43,683&amp;#39; &amp;#39;19:3
       
       <guid>https://dschrempf.github.io/linux/2015-01-07-gnu-parallel/</guid>
       <description>Working with large files takes a long time. Sometimes, it is worth to zip folders individually, so that a single archive does not get too large. GNU Parallel is a shell tool to execute jobs in parallel. Here, I show one of possibly many methods to use it to zip many folders (or files) in parallel.
- Create a file with all folders that you want to zip, e.g with:  ls -1 &amp;gt; folders  Use GNU Parallel to zip them:  parallel -a folders &amp;#34;tar -czf {}.</description>
+ Create a file with all folders that you want to zip, e.g with:   ls -1 &amp;gt; folders  Use GNU Parallel to zip them:   parallel -a folders &amp;#34;tar -czf {}.</description>
     </item>
     
   </channel>

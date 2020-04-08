@@ -153,12 +153,12 @@ possibly many methods to use it to zip many folders (or files) in parallel.</p>
 <ol>
 <li>Create a file with all folders that you want to zip, e.g with:</li>
 </ol>
-<!-- raw HTML omitted -->
+<!--listend-->
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sh" data-lang="sh">ls -1 &gt; folders
 </code></pre></div><ol>
 <li>Use GNU Parallel to zip them:</li>
 </ol>
-<!-- raw HTML omitted -->
+<!--listend-->
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sh" data-lang="sh">parallel -a folders <span style="color:#4e9a06">&#34;tar -czf {}.tar.gz {}&#34;</span>
 </code></pre></div><p>In order to unzip many files at ones (this method can also be used to
 zip the files if their names follow certain patterns):</p>
