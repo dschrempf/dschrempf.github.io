@@ -3,38 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://dschrempf.github.io/categories/</loc>
+    <lastmod>2020-11-12T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dschrempf.github.io/categories/coding/</loc>
+    <lastmod>2020-11-12T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dschrempf.github.io/coding/</loc>
+    <lastmod>2020-11-12T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dschrempf.github.io/</loc>
+    <lastmod>2020-11-12T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://dschrempf.github.io/coding/2020-11-12-encyclopedia-of-markov-chain-monte-carlo-methods/</loc>
+    <lastmod>2020-11-12T00:00:00+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://dschrempf.github.io/coding/2019-11-21-algebraic-graphs/</loc>
     <lastmod>2019-11-21T00:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dschrempf.github.io/categories/</loc>
-    <lastmod>2019-11-21T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://dschrempf.github.io/categories/coding/</loc>
-    <lastmod>2019-11-21T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://dschrempf.github.io/coding/</loc>
-    <lastmod>2019-11-21T00:00:00+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://dschrempf.github.io/</loc>
-    <lastmod>2020-04-29T13:41:24+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://dschrempf.github.io/search/</loc>
-    <lastmod>2020-04-29T13:41:24+02:00</lastmod>
+    <lastmod>2020-11-12T11:09:36+01:00</lastmod>
   </url>
   
   <url>
     <loc>https://dschrempf.github.io/links/</loc>
-    <lastmod>2020-04-29T13:41:24+02:00</lastmod>
+    <lastmod>2020-11-12T11:09:36+01:00</lastmod>
   </url>
   
   <url>
@@ -164,7 +169,7 @@
   
   <url>
     <loc>https://dschrempf.github.io/about/</loc>
-    <lastmod>2020-04-29T13:41:23+02:00</lastmod>
+    <lastmod>2020-11-12T11:09:35+01:00</lastmod>
   </url>
   
   <url>

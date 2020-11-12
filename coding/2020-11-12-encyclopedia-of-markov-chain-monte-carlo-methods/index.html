@@ -10,9 +10,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
         
-        <title>Coding &middot; Dominik Schrempf</title>
-        <meta name="description" content="Linux, Emacs, coding and more.">
-        <meta name="keywords" content="Arch Linux, Emacs, Haskell, C&#43;&#43;, Python">
+        <title>Encyclopedia of Markov chain Monte Carlo methods &middot; Dominik Schrempf</title>
+        <meta name="description" content="In the MCMC community, many people call the same concepts by different names">
+        <meta name="keywords" content="Markov chain Monte Carlo,Metropolis-Hastings,Metropolis-Hastings-Green,Population based methods">
 
         
         <link rel="stylesheet" href="https://dschrempf.github.io/css/skeria.css">
@@ -48,6 +48,8 @@
         <div class="topbar-about">
             
 
+
+
             <a href="https://dschrempf.github.io/"
    style="text-decoration: none">
     <h1>Concept → IO ()</h1>
@@ -62,6 +64,8 @@
     <div class="sidebar-sticky">
         <div class="sidebar-about">
             
+
+
 
             <a href="https://dschrempf.github.io/"
    style="text-decoration: none">
@@ -128,66 +132,146 @@
         
         
 <div class="content container">
-    <h1 class="post-title">Categories</h1>
-    <br>
-    <style>
-     table {
-         border: none;
-     }
-     td, th {
-         border: none;
-         padding: 5px 0px 5px 0px;
-         vertical-align: top;
-     }
-     tbody tr:nth-child(odd) td,
-     tbody tr:nth-child(odd) th {
-         background-color: white;
-     }
-    </style>
-    <table>
+  <div class="post">
+    <h1 class="post-title">Encyclopedia of Markov chain Monte Carlo methods</h1>
+    <span class="post-date">
+        Nov 12, 2020
         
-        <tr>
-            <td><time>Nov 12, 2020</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2020-11-12-encyclopedia-of-markov-chain-monte-carlo-methods/">Encyclopedia of Markov chain Monte Carlo methods</a></td>
-        </tr>
+        &middot; 3 minute read
         
-        <tr>
-            <td><time>Nov 21, 2019</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2019-11-21-algebraic-graphs/">Algebraic graphs</a></td>
-        </tr>
         
-        <tr>
-            <td><time>Feb 10, 2018</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2018-02-10-markov-chains-in-haskell/">Markov chains in Haskell</a></td>
-        </tr>
+        &middot;
         
-        <tr>
-            <td><time>Jul 20, 2017</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2017-07-20-folding-around-monads-in-haskell/">Happy folding around monads in Haskell</a></td>
-        </tr>
+        <a class="label" href="https://dschrempf.github.io/coding">Coding</a>
         
-        <tr>
-            <td><time>Apr 9, 2016</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2016-04-09-continuous-time-markov-chain/">A simulator for continuous-time Markov chains</a></td>
-        </tr>
         
-        <tr>
-            <td><time>Mar 26, 2015</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2015-03-26-popgen-cpp-programs/">Population genetics C&#43;&#43; programs</a></td>
-        </tr>
-        
-        <tr>
-            <td><time>Jan 15, 2015</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2015-01-15-mcmc-coin-toss/">A simple MCMC simulation</a></td>
-        </tr>
-        
-        <tr>
-            <td><time>Dec 23, 2014</time> </td>
-            <td><a href="https://dschrempf.github.io/coding/2014-12-23-haskell-pretty-print/">Easy pretty print in Haskell</a></td>
-        </tr>
-        
-    </table>
+    </span>
+    <p>The nomenclature here is taken from the excellent introduction to Markov chain
+Monte Carlo (MCMC) methods by <sup id="676b94678a2d6c9d04a9b66e91b82cd3"><a href="#Geyer2011" title="@InBook{          Geyer2011,
+Author        = {Geyer, Charles J},
+Title         = {{Introduction to Markov Chain Monte Carlo}},
+Pages         = 45,
+Publisher     = {CRC press},
+Year          = 2011,
+BookTitle     = {{Handbook of Markov Chain Monte Carlo}}
+}">Geyer2011</a></sup>, Chapter 1 in
+<sup id="e1e37a8427e438f2177e7c707a2f8694"><a href="#Brooks2011" title="Brooks, Gelman, Jones, \&amp; Meng, Handbook of Markov chain Monte Carlo, CRC press (2011).">Brooks2011</a></sup>. More advanced topics such as population based MCMC methods
+are covered in <sup id="b5a706697adb263d73098e60072ae11d"><a href="#Liang2011" title="Liang, Liu \&amp; Carroll, Advanced Markov chain Monte Carlo methods: learning from  past samples, John Wiley \&amp; Sons (2011).">Liang2011</a></sup>.</p>
+<p>I started this encyclopedic overview because in the MCMC community many people
+call the same or similar concepts by very different names. Please let me know,
+if you have suggestions or comments, or if you would like to add some
+definitions or synonyms to this overview.</p>
+<h2 id="necessary-definitions">Necessary definitions</h2>
+<p><strong>Elementary updates</strong> are instructions about how to advance a Markov chain so
+that it possibly reaches a new state. That is, elementary updates specify how
+the chain traverses the state space. Elementary updates cannot be decomposed
+into smaller updates.</p>
+<p>Elementary updates can be combined to form composite updates, a technique often
+referred to as <strong>composition</strong>. We use the word <strong>update</strong> to refer to either an
+elementary or a composite update.</p>
+<p>Updates can also be executed in random order, a technique often referred to as
+<strong>mixture</strong>. Here, the word mixture is used in the sense of mixture models, and
+not in the sense of a chain reaching convergence.</p>
+<p>The <strong>composition</strong> and <strong>mixture</strong> of elementary updates allows the specification
+of all (Is this true?, Please correct me if it is not.) MCMC algorithms
+involving a single chain. In particular, Gibbs samplers of all sorts can be
+specified using this procedure.</p>
+<p>Roughly, a <strong>Markov kernel</strong> is a map describing the probability density (for
+continuous spaces) or the probability mass (for discrete spaces) of updating one
+state to another.</p>
+<p>The <strong>Metropolis-Hasings-Green</strong> algorithm specifies the acceptance probability of
+updates so that the stationary distribution of the resulting Markov chain is the
+desired posterior distribution.</p>
+<p>Many methods to improve convergence of MCMC samplers have been designed. Most
+notably, we have methods involving <strong>auxiliary variables</strong> and <strong>population based</strong>
+methods running various MCMC samplers in parallel.</p>
+<h2 id="unnecessary-synonyms">Unnecessary synonyms</h2>
+<dl>
+<dt>Proposal</dt>
+<dd>Update.</dd>
+<dt>Move</dt>
+<dd>Update.</dd>
+<dt>Metropolis update</dt>
+<dd>Update with uniform Markov kernel.</dd>
+<dt>Metropolis-Hastings update</dt>
+<dd>Update with arbitrary Markov kernel.</dd>
+</dl>
+<h2 id="unnecessary-synonyms-and-special-cases-of-metropolis-hastings-green-mcmc-methods">Unnecessary synonyms and special cases of Metropolis-Hastings-Green MCMC methods</h2>
+<dl>
+<dt>Fixed scan algorithm</dt>
+<dd>MCMC sampler involving composition.</dd>
+<dt>Random scan algorithm</dt>
+<dd>MCMC sampler involving mixture.</dd>
+<dt>Random sequence scan algorithm</dt>
+<dd>MCMC sampler involving composition and mixture.</dd>
+<dt>Gibbs update</dt>
+<dd>Update with Metropolis-Hastings ratio of 1.0. That is, Gibbs
+updates are always accepted. Gibbs updates can be designed using conditional
+Markov kernels.</dd>
+<dt>Gibbs sampler</dt>
+<dd>MCMC sampler in which all of the elementary updates are
+Gibbs, combined either by composition (fixed scan), by mixture (random scan),
+or both (random sequence scan).</dd>
+<dt>Metropolis algorithm</dt>
+<dd>MCMC sampler in which all of the elementary updates
+are Metropolis, combined either by composition, mixture, or both (and the same
+&ldquo;scan&rdquo; terminology is used).</dd>
+<dt>Metropolis-Hastings algorithm</dt>
+<dd>MCMC sampler in which all of the elementary
+updates are Metropolis-Hastings, combined either by composition, mixture, or
+both (and the same &ldquo;scan&rdquo; terminology is used).</dd>
+<dt>Metropolis-within-Gibbs sampler</dt>
+<dd>The same as the preceding item. This name
+makes no sense at all since Gibbs is a special case of Metropolis-Hastings.</dd>
+<dt>Independence Metropolis-Hastings algorithm</dt>
+<dd>Special case of the
+Metropolis-Hastings algorithm in which the Markov kernel does not depend on
+the current state: \(q(x, \cdot)\) does not depend on \(x\).</dd>
+<dt>Random-walk Metropolis-Hastings algorithm</dt>
+<dd>Special case of the
+Metropolis-Hastings algorithm in which the proposal has the form \(x+e\),
+where \(e\) is stochastically independent of the current state \(x\), so
+\(q(x, y\) has the form \(f(y-x)\).</dd>
+<dt>Reversible jump MCMC algorithm</dt>
+<dd>MCMC sampler including updates between
+different models possibly having a different set of parameters. However, these
+updates are in no way special.</dd>
+</dl>
+<h2 id="unnecessary-synonyms-or-special-cases-of-auxiliary-variable-mcmc-methods">Unnecessary synonyms or special cases of auxiliary variable MCMC methods</h2>
+<ul>
+<li>Simulated annealing.</li>
+<li>Simulated tempering.</li>
+</ul>
+<h2 id="unnecessary-synonyms-for-population-based-mcmc-methods">Unnecessary synonyms for population based MCMC methods</h2>
+<ul>
+<li>Sequential Monte Carlo.</li>
+<li>Parallel tempering.</li>
+<li>Parallel tempering.</li>
+</ul>
+
+  </div>
+  <div id="disqus_thread"></div>
 </div>
+
+
+<script id="dsq-count-scr" src="//dschrempf.disqus.com/count.js" async></script>
+<script>
+ var disqus_shortname = "dschrempf";
+ var disqus_config = function () {
+     this.page.url = "https://dschrempf.github.io/coding/2020-11-12-encyclopedia-of-markov-chain-monte-carlo-methods/";
+     this.page.identifier = "Encyclopedia of Markov chain Monte Carlo methods";
+ };
+ (function() {
+     var d = document, s = d.createElement('script');
+     s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     s.setAttribute('data-timestamp', +new Date());
+     (d.head || d.body).appendChild(s);
+ })();
+</script>
+<noscript>Please enable JavaScript to view <a href="https://disqus.com/?ref_noscript">comments.</a></noscript>
+
+
+
 
 
         

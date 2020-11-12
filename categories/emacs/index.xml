@@ -6,11 +6,7 @@
     <description>Recent content in Emacs on Concept → IO ()</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Jun 2015 00:00:00 +0200</lastBuildDate>
-    
-	<atom:link href="https://dschrempf.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 24 Jun 2015 00:00:00 +0200</lastBuildDate><atom:link href="https://dschrempf.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Debugging with Emacs and GDB</title>
       <link>https://dschrempf.github.io/emacs/2015-06-24-debugging-with-emacs-and-gdb/</link>
