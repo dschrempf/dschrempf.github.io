@@ -11,7 +11,6 @@ html {
     /* Relative position to set sidebar height to page height on small displays. */
     position: relative;
     font-size: 1em;
-    font-weight: 400;
     font-family: 'Noto Serif', serif;
     line-height: 1.5;
 }
