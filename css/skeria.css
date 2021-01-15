@@ -10,8 +10,9 @@ html {
 html {
     /* Relative position to set sidebar height to page height on small displays. */
     position: relative;
-    font-size: 16px;
-    font-family: 'Merriweather', serif;
+    font-size: 1em;
+    font-weight: 400;
+    font-family: 'Noto Serif', serif;
     line-height: 1.5;
 }
 
@@ -24,11 +25,12 @@ body {
 /* Links. */
 
 a {
-    color: #369;
+    color: #444c57;
     text-decoration: none;
 }
 
 a:focus, a:hover {
+    /* color: #69C; */
     text-decoration: underline;
 }
 
@@ -36,10 +38,8 @@ a:focus, a:hover {
 /* Headlines. */
 
 h1, h2, h3, h4, h5, h6 {
-    margin-top: 2em;
     margin-bottom: 0.5em;
     font-weight: 400;
-    line-height: 1.25;
     color: #000;
 }
 
@@ -96,13 +96,13 @@ code, pre, .timestamp {
 }
 
 .label, .timestamp {
-    color: #369;
+    color: #444c57;
     background-color: #eee;
     display: inline;
     border-radius: 0.25em;
     line-height: 1;
     /* Do not wrap to next line. */
-    /* XXX: This may be problematic with long inline code blocks. */
+    /* XXX: May be problematic with long inline code blocks. */
     white-space: nowrap;
 }
 
@@ -121,7 +121,6 @@ pre {
 }
 
 a.label:focus, a.label:hover {
-    color: #fff;
     text-decoration: none;
     cursor: pointer
 }
@@ -149,11 +148,13 @@ table {
     border: 1px solid #eee;
     border-collapse: collapse
 }
+
 td,
 th {
     padding: 0.25em 0.25em;
     border: 1px solid #ddd
 }
+
 tbody tr:nth-child(odd) td,
 tbody tr:nth-child(odd) th {
     background-color: #eee
@@ -162,36 +163,48 @@ tbody tr:nth-child(odd) th {
 /******************************************************************************/
 /* Quotes */
 
-/* TODO: Check quotes. */
 blockquote {
-    padding: 0.5em 1em;
-    margin: 0.8em 0;
-    color: #777;
-    border-left: 0.25em solid #eee;
+    color: #666;
+    border-left: 0.2em solid #eee;
+    margin: 0.8em 1em;
 }
-blockquote p:last-child {
-    margin-bottom: 0;
+
+@media (max-width: 48em) {
+    blockquote {
+        padding-left: 0.8em;
+        padding-right: 0.8em;
+    }
 }
+
 @media (min-width: 48em) {
     blockquote {
-        padding-right: 5em;
-        padding-left: 1.25em;
+        padding-left: 0.8em;
+        padding-right: 3em;
     }
+}
+
+blockquote p:last-child {
+    margin-bottom: 0;
 }
 
 /******************************************************************************/
 /* Forms. */
 
-/* TODO: Check forms. */
-input[type=text],
-select {
+input[type=text] {
+    font-size: 1em;
     width: 100%;
     padding: 12px 20px;
-    margin: 20px 0 40px;
+    margin: 20px 0 20px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box
+    box-sizing: border-box;
+    outline: none;
+}
+
+input[type=text]:focus {
+    border-radius: 4px;
+    border: 1px solid #666;
 }
 
 /******************************************************************************/
@@ -204,8 +217,9 @@ select {
 /* Topbar. */
 
 .topbar {
-    text-align: center;
     color: rgba(255,255,255,.5);
+    background-color: #444c57;
+    text-align: center;
 }
 
 @media (min-width:48em) {
@@ -238,8 +252,9 @@ select {
 /* Bottombar. */
 
 .bottombar {
-    text-align: center;
     color: rgba(255,255,255,.5);
+    background-color: #444c57;
+    text-align: center;
 }
 
 @media (min-width:48em) {
@@ -271,6 +286,7 @@ select {
 
 .sidebar {
     color: rgba(255,255,255,.5);
+    background-color: #444c57;
     width: 20em;
     top: 0;
     right: 0;
@@ -379,7 +395,7 @@ select {
 
 .post-title,
 .post-title a {
-    color: #303030;
+    color: #444c57;
     margin-top: 2em;
     margin-bottom: 0em;
 }
@@ -387,27 +403,5 @@ select {
 .post-date {
     display: block;
     margin-bottom: 1em;
-    color: #9a9a9a
-}
-
-/******************************************************************************/
-/* Theme. */
-
-/* Dark blue theme. */
-.theme-base-darkblue .sidebar {
-    background-color: #369
-}
-.theme-base-darkblue .topbar {
-    background-color: #369
-}
-.theme-base-darkblue .bottombar {
-    background-color: #369
-}
-.theme-base-darkblue .content a,
-.theme-base-darkblue .related-posts li a:hover {
-    color: #369
-}
-.theme-base-darkblue .pagination > li > a,
-.theme-base-darkblue .pagination > li > span {
-    color: #369
+    color: #7a7a7a
 }
