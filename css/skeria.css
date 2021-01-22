@@ -20,6 +20,18 @@ body {
   /* See https://css-tricks.com/couple-takes-sticky-footer/ */
   display: flex;
   flex-direction: column;
+  /* See https://stackoverflow.com/questions/17447807/cross-browser-support-for-css-flexbox */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
 }
 
 /******************************************************************************/
@@ -245,7 +257,6 @@ input[type=text]:focus {
   color: rgba(255,255,255,.5);
   background-color: #444c57;
   text-align: center;
-  flex-shrink: 0;
 }
 
 .bottombar a {
