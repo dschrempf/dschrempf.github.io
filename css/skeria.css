@@ -319,3 +319,11 @@ input[type=text]:focus {
   margin-bottom: 1em;
   color: #7a7a7a
 }
+
+/******************************************************************************/
+/* Disqus. */
+
+.disqus {
+  margin-left: 2em;
+  margin-right: 2em;
+}
