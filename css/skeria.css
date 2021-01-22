@@ -131,14 +131,12 @@ a.label:focus, a.label:hover {
 img {
   display: block;
   max-width: 100%;
-  margin: 1em 0 1em 0;
 }
 
 /******************************************************************************/
 /* Tables. */
 
 table {
-  /* margin-bottom: 1em; */
   padding: 0.25em 0.25em;
   width: 100%;
   border: 1px solid #eee;
@@ -163,24 +161,19 @@ blockquote {
   color: #666;
   border-left: 0.2em solid #eee;
   margin: 0.8em 1em;
+  padding-left: 0.8em;
 }
 
 @media (max-width: 48em) {
   blockquote {
-    padding-left: 0.8em;
     padding-right: 0.8em;
   }
 }
 
 @media (min-width: 48em) {
   blockquote {
-    padding-left: 0.8em;
     padding-right: 3em;
   }
-}
-
-blockquote p:last-child {
-  margin-bottom: 0;
 }
 
 /******************************************************************************/
@@ -219,7 +212,7 @@ input[type=text]:focus {
 }
 
 .topbar a {
-  color: #fff
+  color: #fff;
 }
 
 .topbar p {
@@ -251,7 +244,7 @@ input[type=text]:focus {
 }
 
 .bottombar a {
-  color: #fff
+  color: #fff;
 }
 
 .bottombar p {
@@ -266,7 +259,7 @@ input[type=text]:focus {
 /* Footer. */
 
 .footer {
-  font-size: 0.8em
+  font-size: 0.8em;
 }
 
 /******************************************************************************/
@@ -287,7 +280,7 @@ input[type=text]:focus {
   margin-bottom: 2em;
   margin-left: auto;
   margin-right: auto;
-  max-width: 50em
+  max-width: 50em;
 }
 
 /******************************************************************************/
@@ -317,7 +310,7 @@ input[type=text]:focus {
 .post-date {
   display: block;
   margin-bottom: 1em;
-  color: #7a7a7a
+  color: #7a7a7a;
 }
 
 /******************************************************************************/
