@@ -3,61 +3,58 @@
 
 body,
 html {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    /* Relative position to set sidebar height to page height on small displays. */
-    position: relative;
-    font-size: 1em;
-    font-family: 'Noto Serif', serif;
-    line-height: 1.5;
+  font-size: 1em;
+  font-family: 'Noto Serif', serif;
+  line-height: 1.5;
 }
 
 body {
-    color: #000;
-    background-color: #fff;
+  color: #000;
+  background-color: #fff;
 }
 
 /******************************************************************************/
 /* Links. */
 
 a {
-    color: #444c57;
-    text-decoration: none;
+  color: #444c57;
+  text-decoration: none;
 }
 
 a:focus, a:hover {
-    /* color: #69C; */
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /******************************************************************************/
 /* Headlines. */
 
 h1, h2, h3, h4, h5, h6 {
-    margin-bottom: 0.5em;
-    font-weight: 400;
-    color: #000;
+  margin-bottom: 0.5em;
+  font-weight: 400;
+  color: #000;
 }
 
 h1 {
-    font-size: 2em
+  font-size: 2em
 }
 
 h2 {
-    font-size: 1.5em
+  font-size: 1.5em
 }
 
 h3 {
-    font-size: 1.25em
+  font-size: 1.25em
 }
 
 h4,
 h5,
 h6 {
-    font-size: 1em
+  font-size: 1em
 }
 
 /******************************************************************************/
@@ -70,140 +67,140 @@ h6 {
 /* Paragraphs and lists. */
 
 p {
-    margin-top: 0;
-    margin-bottom: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 dl, ol, ul {
-    margin-top: 0;
-    margin-bottom: 1em
+  margin-top: 0;
+  margin-bottom: 1em
 }
 
 dt {
-    font-weight: 700
+  font-weight: 700
 }
 
 dd {
-    margin-bottom: 0.5em
+  margin-bottom: 0.5em
 }
 
 /******************************************************************************/
 /* Inline code, timestamps, and labels. */
 
 code, pre, .timestamp {
-    font-family: 'Inconsolata', monospace;
+  font-family: 'Inconsolata', monospace;
 }
 
 .label, .timestamp {
-    color: #444c57;
-    background-color: #eee;
-    display: inline;
-    border-radius: 0.25em;
-    line-height: 1;
-    /* Do not wrap to next line. */
-    /* XXX: May be problematic with long inline code blocks. */
-    white-space: nowrap;
+  color: #444c57;
+  background-color: #eee;
+  display: inline;
+  border-radius: 0.25em;
+  line-height: 1;
+  /* Do not wrap to next line. */
+  /* XXX: May be problematic with long inline code blocks. */
+  white-space: nowrap;
 }
 
 pre {
-    padding: 0.5em;
+  padding: 0.5em;
 }
 
 .label {
-    padding: 0.2em 0.4em 0.2em 0.4em;
-    margin: 0 0.25em 0 0;
+  padding: 0.2em 0.4em 0.2em 0.4em;
+  margin: 0 0.25em 0 0;
 }
 
 .timestamp {
-    padding: 0.2em 0em 0.2em 0.4em;
-    margin: 0 0.25em 0 0;
+  padding: 0.2em 0em 0.2em 0.4em;
+  margin: 0 0.25em 0 0;
 }
 
 a.label:focus, a.label:hover {
-    text-decoration: none;
-    cursor: pointer
+  text-decoration: none;
+  cursor: pointer
 }
 
 .label:empty {
-    display: none
+  display: none
 }
 
 /******************************************************************************/
 /* Images. */
 
 img {
-    display: block;
-    max-width: 100%;
-    margin: 1em 0 1em 0;
+  display: block;
+  max-width: 100%;
+  margin: 1em 0 1em 0;
 }
 
 /******************************************************************************/
 /* Tables. */
 
 table {
-    /* margin-bottom: 1em; */
-    padding: 0.25em 0.25em;
-    width: 100%;
-    border: 1px solid #eee;
-    border-collapse: collapse
+  /* margin-bottom: 1em; */
+  padding: 0.25em 0.25em;
+  width: 100%;
+  border: 1px solid #eee;
+  border-collapse: collapse
 }
 
 td,
 th {
-    padding: 0.25em 0.25em;
-    border: 1px solid #ddd
+  padding: 0.25em 0.25em;
+  border: 1px solid #ddd
 }
 
 tbody tr:nth-child(odd) td,
 tbody tr:nth-child(odd) th {
-    background-color: #eee
+  background-color: #eee
 }
 
 /******************************************************************************/
 /* Quotes */
 
 blockquote {
-    color: #666;
-    border-left: 0.2em solid #eee;
-    margin: 0.8em 1em;
+  color: #666;
+  border-left: 0.2em solid #eee;
+  margin: 0.8em 1em;
 }
 
 @media (max-width: 48em) {
-    blockquote {
-        padding-left: 0.8em;
-        padding-right: 0.8em;
-    }
+  blockquote {
+    padding-left: 0.8em;
+    padding-right: 0.8em;
+  }
 }
 
 @media (min-width: 48em) {
-    blockquote {
-        padding-left: 0.8em;
-        padding-right: 3em;
-    }
+  blockquote {
+    padding-left: 0.8em;
+    padding-right: 3em;
+  }
 }
 
 blockquote p:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 /******************************************************************************/
 /* Forms. */
 
 input[type=text] {
-    font-size: 1em;
-    width: 100%;
-    padding: 12px 20px;
-    margin: 20px 0 20px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    outline: none;
+  font-size: 1em;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 20px 0 20px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
 }
 
 input[type=text]:focus {
-    border-radius: 4px;
-    border: 1px solid #666;
+  border-radius: 4px;
+  border: 1px solid #666;
 }
 
 /******************************************************************************/
@@ -216,34 +213,31 @@ input[type=text]:focus {
 /* Topbar. */
 
 .topbar {
-    color: rgba(255,255,255,.5);
-    background-color: #444c57;
-    text-align: center;
-}
-
-@media (min-width:48em) {
-    .topbar {
-        display: none;
-    }
+  color: rgba(255,255,255,.5);
+  background-color: #444c57;
+  text-align: center;
 }
 
 .topbar a {
-    color: #fff
+  color: #fff
+}
+
+.topbar p {
+  margin: 0;
 }
 
 .topbar-sticky {
-    padding: 0.5em 2em 0.5em 2em;
+  padding: 0.5em 2em 0.5em 2em;
 }
 
-.topbar-about img {
-    margin: 0.5em auto 0.5em auto;
-    width: 100px;
-    height: 100px
+.topbar-sticky h1 {
+  color: #fff;
+  margin: 0.5em 0 0.5em 0;
+  padding: 0 0 0 0;
 }
 
-.topbar-about h1 {
-    color: #fff;
-    margin: 0.2em 0 0 0;
+.topbar-nav-item {
+  margin: 0.5em;
 }
 
 
@@ -251,120 +245,35 @@ input[type=text]:focus {
 /* Bottombar. */
 
 .bottombar {
-    color: rgba(255,255,255,.5);
-    background-color: #444c57;
-    text-align: center;
-}
-
-@media (min-width:48em) {
-    .bottombar {
-        display: none;
-    }
+  color: rgba(255,255,255,.5);
+  background-color: #444c57;
+  text-align: center;
 }
 
 .bottombar a {
-    color: #fff
+  color: #fff
+}
+
+.bottombar p {
+  margin: 0;
 }
 
 .bottombar-sticky {
-    padding: 0.5em 2em 0.5em 2em;
-}
-
-.bottombar-nav {
-}
-
-.bottombar-nav-item {
-    margin: 0.5em;
-}
-
-/******************************************************************************/
-/* Sidebar. */
-
-/* We have to use two different ways of positioning the sidebar, since for
-   displays with low height, fixed positioning is not possible. */
-
-.sidebar {
-    color: rgba(255,255,255,.5);
-    background-color: #444c57;
-    width: 20em;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-@media (max-height:42em) {
-    .sidebar {
-        position: absolute;
-        min-height: 42em;
-    }
-    .sidebar-sticky {
-        margin: 4em 0em 0em 0em;
-        padding: 0em 2em 0em 2em;
-    }
-}
-
-@media (min-height:42em) {
-    .sidebar {
-        display: flex;
-        position: fixed;
-    }
-    .sidebar-sticky {
-        padding: 1em 2em 1em 2em;
-        align-self: flex-end;
-    }
-}
-
-@media (max-width:48em) {
-    .sidebar {
-        display: none;
-    }
-}
-
-.sidebar a {
-    color: #fff
-}
-
-
-.sidebar-about img {
-    margin: 1.5em auto 1em;
-    width: 150px;
-    height: 150px
-}
-
-.sidebar-about h1 {
-    color: #fff;
-    margin-top: 0.5em;
-    margin-top: 0.5em;
-}
-
-.sidebar-nav {
-    padding: 0;
-    list-style: none;
-    display: inline-block
-}
-
-.sidebar-nav-item {
-    display: block;
-    line-height: 1.75;
-    text-align: left
+  padding: 0.5em 2em 0.5em 2em;
 }
 
 /******************************************************************************/
 /* Footer. */
 
 .footer {
-    font-size: 0.8em
+  font-size: 0.8em
 }
 
 /******************************************************************************/
 /* Icons. */
 
 .icons {
-    font-size: 1.5em;
-    line-height: 1;
-    margin-top: 0.8em;
-    margin-bottom: 0.8em;
+  font-size: 1.5em;
 }
 
 .icons-item {
@@ -374,33 +283,39 @@ input[type=text]:focus {
 /* Content. */
 
 .content {
-    margin: 4em 3em 2em 3em;
-}
-
-@media (min-width:48em) {
-    .content {
-        margin-left: 23em;
-        max-width: 48em;
-    }
+  margin-top: 2em;
+  margin-bottom: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50em
 }
 
 /******************************************************************************/
 /* Posts. */
 
 .post {
-    margin-top: 4em;
-    margin-bottom: 2em;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+.post-list {
+  margin-top: 1em;
+  margin-bottom: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
 .post-title,
 .post-title a {
-    color: #444c57;
-    margin-top: 2em;
-    margin-bottom: 0em;
+  color: #444c57;
+  margin-top: 1em;
+  margin-bottom: 0em;
 }
 
 .post-date {
-    display: block;
-    margin-bottom: 1em;
-    color: #7a7a7a
+  display: block;
+  margin-bottom: 1em;
+  color: #7a7a7a
 }
