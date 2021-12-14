@@ -37,29 +37,23 @@ function executeSearch(searchQuery) {
     }
   });
 }
-
 function populateResults(result) {
   $.each(result, function(key, value) {
     var contents = value.item.contents;
     var snippet = "";
     var snippetHighlights = [];
     var tags = [];
-
     if (fuseOptions.tokenize) {
       snippetHighlights.push(searchQuery);
+    } else {
       $.each(value.matches, function(matchKey, mvalue) {
         if (mvalue.key == "tags" || mvalue.key == "categories") {
           snippetHighlights.push(mvalue.value);
         } else if (mvalue.key == "contents") {
-          let ind = contents.indexOf(searchQuery)
-          let start = ind - summaryInclude > 0 ? ind - summaryInclude : 0
-          let end = ind + searchQuery.length + summaryInclude < contents.length ? ind + searchQuery.length + summaryInclude : contents.length
+          start = mvalue.indices[0][0] - summaryInclude > 0 ? mvalue.indices[0][0] - summaryInclude : 0;
+          end = mvalue.indices[0][1] + summaryInclude < contents.length ? mvalue.indices[0][1] + summaryInclude : contents.length;
           snippet += contents.substring(start, end);
-          if (ind > -1) {
-            snippetHighlights.push(contents.substring(ind, ind + searchQuery.length))
-          } else {
-            snippetHighlights.push(mvalue.value.substring(mvalue.indices[0][0], mvalue.indices[0][1] - mvalue.indices[0][0] + 1));
-          }
+          snippetHighlights.push(mvalue.value.substring(mvalue.indices[0][0], mvalue.indices[0][1] - mvalue.indices[0][0] + 1));
         }
       });
     }
@@ -67,9 +61,9 @@ function populateResults(result) {
     if (snippet.length < 1) {
       snippet += contents.substring(0, summaryInclude * 2);
     }
-    // Pull template from Hugo template definition.
+    //pull template from hugo templarte definition
     var templateDefinition = $('#search-result-template').html();
-    // Replace values.
+    //replace values
     var output = render(templateDefinition, { key: key, title: value.item.title, link: value.item.permalink, tags: value.item.tags, categories: value.item.categories, snippet: snippet });
     $('#search-results').append(output);
 
