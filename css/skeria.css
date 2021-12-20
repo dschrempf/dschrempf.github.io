@@ -274,7 +274,8 @@ input[type=text]:focus {
 }
 
 .icons-item {
-  margin-left: 0.4em;
+  padding-let: 0.4em;
+  padding-right: 0.4em;
 }
 
 /******************************************************************************/
