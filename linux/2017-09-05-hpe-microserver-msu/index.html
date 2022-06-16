@@ -121,10 +121,10 @@ module <a href="http://www.tldp.org/HOWTO/SCSI-2.4-HOWTO/sg.html">sg</a> to be l
 which is located in the folder <code>/opt/marvell/storage/cli</code> is all I need. Don&rsquo;t
 forget to manually load the <code>sg</code> module, which sets up the SCSI devices for this
 script, e.g., with</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sudo modprobe -a sg
-</code></pre></div><p>Then, the SMART data can be retrieved, e.g., with</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-bash" data-lang="bash">sudo /opt/marvell/storage/cli/mvcli smart -p <span style="color:#0000cf;font-weight:bold">0</span>
-</code></pre></div><p>Awesome :-)!</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo modprobe -a sg
+</span></span></code></pre></div><p>Then, the SMART data can be retrieved, e.g., with</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo /opt/marvell/storage/cli/mvcli smart -p <span style="color:#0000cf;font-weight:bold">0</span>
+</span></span></code></pre></div><p>Awesome :-)!</p>
 <p>In the course of this project, I also stumbled upon other very useful SCSI
 related software: <code>lsscsi</code>, <code>sg3_utils</code>, <code>sdparm</code>, <code>hdidle</code>.</p>
 <p>I am still having trouble with monitoring temperature (e.g., CPU temperature),
@@ -159,7 +159,7 @@ please leave a note if you know an easy way to achieve this.</p>
 
         <div class= "footer">
     <p>
-        &copy; 2021 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+        &copy; 2022 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
         Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/skeria">Skeria</a><br/>
         
         <a href="/privacy/" class="" title="Privacy notice">Privacy notice</a>

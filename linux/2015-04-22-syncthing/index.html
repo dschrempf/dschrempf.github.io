@@ -143,8 +143,8 @@ to <code>my.router.hostname:22222</code>.</p>
 needs to run an SSH server and have full access to the internet.</p>
 <p>The forwarding from <code>clientA</code> to the router at <code>my.router.hostname</code>
 is done by the following SSH command:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">ssh -N -vvv -L 22111:my.router.hostname:22222 user@clientB
-</code></pre></div><dl>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ssh -N -vvv -L 22111:my.router.hostname:22222 user@clientB
+</span></span></code></pre></div><dl>
 <dt><code>-N</code></dt>
 <dd>Do not open an interactive session (no commands can be
 entered at prompt).</dd>
@@ -181,8 +181,8 @@ printed at <code>clientC</code>.</li>
 </ol>
 <p>If everything works, you can remove the <code>-vvv</code> flag, add a <code>-q</code> flag
 which tells SSH to be quiet and run the SSH port forwarding at boot.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">ssh -N -q -L 22111:my.router.hostname:22222 user@clientB
-</code></pre></div><p>A good <a href="http://blog.trackets.com/2014/05/17/ssh-tunnel-local-and-remote-port-forwarding-explained-with-examples.html">blog article about port forwarding</a>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ssh -N -q -L 22111:my.router.hostname:22222 user@clientB
+</span></span></code></pre></div><p>A good <a href="http://blog.trackets.com/2014/05/17/ssh-tunnel-local-and-remote-port-forwarding-explained-with-examples.html">blog article about port forwarding</a>.</p>
 <p>Furthermore, the port forwarding has to be started before Syncthing
 starts, otherwise there be dragons.  I have written a small script
 that waits some time to start the port forwarding as well as a script
@@ -192,8 +192,8 @@ that does the same for <code>syncthing.service</code> and
 <p>Furthermore, if you want to reach <code>clientA</code> from home, remote port
 forwarding can also be done.  However, I did not need this and did not
 follow it up, e.g.:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">ssh -N -q -R 22000:localhost:22200 clientB
-</code></pre></div><p>This would tell <code>clientB</code> to forward incoming requests at port 22200
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ssh -N -q -R 22000:localhost:22200 clientB
+</span></span></code></pre></div><p>This would tell <code>clientB</code> to forward incoming requests at port 22200
 to the client that executes the SSH command; in this case,
 <code>clientA</code>.  Take care, <code>GatewayPorts</code> has to be set to <code>yes</code>.</p>
 <h2 id="amazing-stuff">Amazing stuff</h2>
@@ -202,8 +202,8 @@ that is accessible by <code>clientA</code> (maybe only via <code>clientB</code>)
 that the IP address of the router is <code>192.168.1.1</code> (seen from
 <code>clientC</code>; local area network).  What does the following command
 (executed on <code>clientA</code>) achieve?</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-text" data-lang="text">ssh -L 12345:192.168.1.1:80 clientC
-</code></pre></div><p>Try to access <code>localhost:12345</code> in your browser at <code>clientA</code> and watch
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>ssh -L 12345:192.168.1.1:80 clientC
+</span></span></code></pre></div><p>Try to access <code>localhost:12345</code> in your browser at <code>clientA</code> and watch
 the pure awesomeness!</p>
 
   </div>
@@ -235,7 +235,7 @@ the pure awesomeness!</p>
 
         <div class= "footer">
     <p>
-        &copy; 2021 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+        &copy; 2022 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
         Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/skeria">Skeria</a><br/>
         
         <a href="/privacy/" class="" title="Privacy notice">Privacy notice</a>

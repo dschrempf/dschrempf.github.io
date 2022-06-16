@@ -98,16 +98,16 @@ possibly many methods to use it to zip many folders (or files) in parallel.</p>
 <li>Create a file with all folders that you want to zip, e.g with:</li>
 </ol>
 <!--listend-->
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sh" data-lang="sh">ls -1 &gt; folders
-</code></pre></div><ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ls -1 &gt; folders
+</span></span></code></pre></div><ol>
 <li>Use GNU Parallel to zip them:</li>
 </ol>
 <!--listend-->
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sh" data-lang="sh">parallel -a folders <span style="color:#4e9a06">&#34;tar -czf {}.tar.gz {}&#34;</span>
-</code></pre></div><p>In order to unzip many files at ones (this method can also be used to
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>parallel -a folders <span style="color:#4e9a06">&#34;tar -czf {}.tar.gz {}&#34;</span>
+</span></span></code></pre></div><p>In order to unzip many files at ones (this method can also be used to
 zip the files if their names follow certain patterns):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-sh" data-lang="sh">parallel <span style="color:#4e9a06">&#34;tar -xzf {}&#34;</span> ::: *.tar.gz
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>parallel <span style="color:#4e9a06">&#34;tar -xzf {}&#34;</span> ::: *.tar.gz
+</span></span></code></pre></div>
   </div>
 </div>
 
@@ -137,7 +137,7 @@ zip the files if their names follow certain patterns):</p>
 
         <div class= "footer">
     <p>
-        &copy; 2021 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+        &copy; 2022 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
         Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/skeria">Skeria</a><br/>
         
         <a href="/privacy/" class="" title="Privacy notice">Privacy notice</a>
