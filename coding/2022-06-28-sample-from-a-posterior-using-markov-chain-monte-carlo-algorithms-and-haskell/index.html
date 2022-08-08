@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        
+        <title>Parameter inference using Markov chain Monte Carlo algorithms and Haskell &middot; Dominik Schrempf</title>
+        <meta name="description" content="How to use a Markov chain Monte Carlo sampler">
+        <meta name="keywords" content="Markov chain Monte Carlo,Haskell,Metropolis-Hastings-Green,Hamiltonian dynamics">
+
+        
+        <link rel="stylesheet" href="https://dschrempf.github.io/css/skeria.css">
+
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
+
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.1/css/academicons.min.css" />
+    </head>
+
+    <body>
+        <div class="topbar">
+    <div class="topbar-sticky">
+        <a href="https://dschrempf.github.io/"
+   style="text-decoration: none">
+    <h1>Concept → IO ()</h1>
+</a>
+
+        
+        <span class="topbar-nav">
+    <p>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/linux/">Linux</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/emacs/">Emacs</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/coding/">Coding</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/music/">Music</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/links/">Links</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/about/">About</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/search/">Search</a>
+        </span>
+        
+    </p>
+</span>
+
+    </div>
+</div>
+
+
+        
+        
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">Parameter inference using Markov chain Monte Carlo algorithms and Haskell</h1>
+    <span class="post-date">
+        Jun 28, 2022
+        &nbsp;&middot;&nbsp; 8 minute read
+        
+        &nbsp;&middot;&nbsp;
+        
+        <a class="label" href="https://dschrempf.github.io/coding">Coding</a>
+        
+        
+    </span>
+    <p>We analyze the number of worldwide airline fatal accidents:</p>
+<div class="ox-hugo-table right-aligned">
+<table>
+<thead>
+<tr>
+<th>Year</th>
+<th>1976</th>
+<th>1977</th>
+<th>1978</th>
+<th>1979</th>
+<th>1980</th>
+<th>1981</th>
+<th>1982</th>
+<th>1983</th>
+<th>1984</th>
+<th>1985</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fatalities</td>
+<td>24</td>
+<td>25</td>
+<td>31</td>
+<td>31</td>
+<td>22</td>
+<td>21</td>
+<td>26</td>
+<td>20</td>
+<td>16</td>
+<td>22</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This table is an excerpt of Table 2.2 in Gelman, Carlin, Stern, and Rubin (<a href="#citeproc_bib_item_1">2014</a>).</p>
+<p>We assume that the number of fatal accidents \(X\) is <a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distributed</a> with
+fatal accident rate \(\lambda\)</p>
+<p>\begin{align}
+Pr(X=k|\lambda) = \frac{\lambda^k e^{-\lambda}}{k!}.
+\end{align}</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Poisson_distribution#Parameter_estimation">maximum likelihood estimate</a> of \(\lambda\) is the mean of the fatalities,
+which is \(23.8\). However, we infer the <a href="https://en.wikipedia.org/wiki/Posterior_probability">probability distribution</a> of \(\lambda\)
+given the observed fatalities. Actually, we infer a function that is
+proportional to the <em>probability distribution</em> of \(\lambda\) but is not a
+distribution because it does not integrate to \(1.0\). We call this function
+<em>posterior function</em>.</p>
+<p>We know that the true mode of the posterior function should be at \(\lambda =
+23.8\), and so the mode of our estimate of the posterior function should be
+close. We use a <a href="https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo">Markov chain Monte Carlo</a> (MCMC) sampler and Haskell.</p>
+<h2 id="algorithm">Algorithm</h2>
+<p><a href="https://en.wikipedia.org/wiki/Markov_chain">Markov chains</a> are sequences of events with a peculiar property: the probability
+of each possible next event only depends on the state of the previous event. In
+particular, the probability does not depend on any events before the previous
+event. Markov chains are widely used in statistics, for example, to predict the
+weather. An interesting application of Markov chains is MCMC, a class of
+algorithms used to effectively sample from probability distributions.</p>
+<div class="blockemph">
+<p>This sounds theoretical and over-complicated. Why do we need a dedicated
+algorithm to sample from a probability distribution? Isn&rsquo;t it easy to just pick
+more probable values more often than less probably values, and do so with the
+correct ratio?</p>
+</div>
+<p>The answer is: Yes, and this is exactly what MCMC samplers do. For example, the
+most famous Metropolis-Hastings-Green algorithm (<a href="#citeproc_bib_item_2">Geyer 2011</a> , an excellent
+introduction to MCMC by the way) samples new values from given, well-behaved
+proposal distributions, only to accept or reject these new values according to
+the actual probability distribution of interest.</p>
+<p>Note that standard probability distributions are heavily studied and there exist
+much faster, dedicated sampling methods. For example, see the computational
+methods to sample from the <a href="https://en.wikipedia.org/wiki/Poisson_distribution#Generating_Poisson-distributed_random_variables">Poisson distribution</a> or the <a href="https://en.wikipedia.org/wiki/Normal_distribution#Generating_values_from_normal_distribution">normal distribution</a>.
+Actually, the Metropolis-Hastings-Green algorithm makes use of these dedicated
+methods.</p>
+<h2 id="implementation">Implementation</h2>
+<p>In the following, we will implement the sampler using the <a href="https://hackage.haskell.org/package/mcmc">mcmc</a> library which I
+am developing. Here, I only briefly present the essential steps to run an MCMC
+sampler; please have a look at the documentation on Hackage, if you want to get
+a deeper understanding of the internals. Further, we use the <a href="https://hackage.haskell.org/package/random">random</a> library, as
+well as the following imports:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">-- We need &#39;void&#39;.</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Control.Monad</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">-- I am developing the &#39;mcmc&#39; library.</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Mcmc</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">-- We need to sample random numbers; requires the &#39;random&#39; library.</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">System.Random</span>
+</span></span></code></pre></div><p>The state space \(I\) of an MCMC sampler defines the possible values the Markov
+chain can attain. In our case \(I\) is the fatal accident rate \(\lambda\), a
+floating point number:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">type</span> <span style="color:#204a87;font-weight:bold">I</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">Double</span>
+</span></span></code></pre></div><p>For a given fatal accident rate \(\lambda\), the <a href="https://en.wikipedia.org/wiki/Likelihood_function">likelihood function</a> is a
+product of Poisson probabilities with the observed fatalities:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#000">lh</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">LikelihoodFunction</span> <span style="color:#204a87;font-weight:bold">I</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">lh</span> <span style="color:#000">x</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">product</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">poisson</span> <span style="color:#000">x</span> <span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">|</span> <span style="color:#000">y</span> <span style="color:#204a87;font-weight:bold">&lt;-</span> <span style="color:#000">fatalities</span><span style="color:#000;font-weight:bold">]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#204a87;font-weight:bold">where</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">fatalities</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">24</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">25</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">31</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">31</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">22</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">21</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">26</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">20</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">16</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">22</span><span style="color:#000;font-weight:bold">]</span>
+</span></span></code></pre></div><p>The <a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Likelihood.html#t:LikelihoodFunction"><code>LikehoodFunction I</code></a> is a type synonym for <code>I -&gt; Log Double</code>. Internally, we
+use probabilities in the log domain to avoid numerical underflow; see
+<a href="https://hackage.haskell.org/package/log-domain">log-domain</a>.</p>
+<p>We need to tell the sampler how to propose new values. We do this using
+<a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Proposal.html#t:Proposal">proposals</a>. Here, we use two types:</p>
+<ul>
+<li>a <a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Proposal-Slide.html">sliding proposal</a> which adds random numbers to the current value of
+\(\lambda\), and</li>
+<li>a <a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Proposal-Scale.html">scaling proposal</a> which multiplies random values with the current value of
+\(\lambda\).</li>
+</ul>
+<!--listend-->
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#000">ppSl</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Proposal</span> <span style="color:#204a87;font-weight:bold">I</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">ppSl</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">slideSymmetric</span> <span style="color:#0000cf;font-weight:bold">0.1</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">PName</span> <span style="color:#4e9a06">&#34;lambda&#34;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">pWeight</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">Tune</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">ppSc</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Proposal</span> <span style="color:#204a87;font-weight:bold">I</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">ppSc</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">scaleUnbiased</span> <span style="color:#0000cf;font-weight:bold">0.1</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">PName</span> <span style="color:#4e9a06">&#34;lambda&#34;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">pWeight</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">Tune</span>
+</span></span></code></pre></div><p>There is some necessary boiler plate code about how large the proposal sizes
+are, how we name the proposals, or what weight we assign to the proposals.
+<a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Proposal.html#t:Tune"><code>Tune</code></a> tells the MCMC sampler to tune the proposal size according to established
+optimization criteria. In particular, the acceptance rates of proposals have
+optimal values that depend on the proposal dimension. The proposal dimension
+roughly corresponds to the number of independent parameters manipulated by the
+proposal. Tuning only happens during the first phase of the sampler which is
+called burn in (more about that below).</p>
+<p>We collect the proposals in a <a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Cycle.html#t:Cycle">cycle</a>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#000">cc</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Cycle</span> <span style="color:#204a87;font-weight:bold">I</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">cc</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">cycleFromList</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">ppSl</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">ppSc</span><span style="color:#000;font-weight:bold">]</span>
+</span></span></code></pre></div><p>This modular definition of proposals, that is, of <em>how to traverse the state
+space</em> is one of the big strengths of the <code>mcmc</code> library. For complicated state
+spaces, we can use <a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Proposal.html#v:liftProposal"><code>liftProposal</code></a> and <a href="https://hackage.haskell.org/package/microlens/docs/Lens-Micro.html#g:4">lenses</a> to inform proposals about what part
+of the state they should change.</p>
+<p>Now, we define some <a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Monitor.html#t:Monitor">monitors</a>, so that we can observe the values of \(\lambda\)
+attained by the Markov chain:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">-- &#39;monitorDouble&#39; is a simple monitor printing the value of a &#39;Double&#39;.</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">monLambda</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">MonitorParameter</span> <span style="color:#204a87;font-weight:bold">I</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">monLambda</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">monitorDouble</span> <span style="color:#4e9a06">&#34;lambda&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">-- We print the value of lambda to the standard output every 100 iterations.</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">monStdOut</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">MonitorStdOut</span> <span style="color:#204a87;font-weight:bold">I</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">monStdOut</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">monitorStdOut</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">monLambda</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#0000cf;font-weight:bold">100</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">-- We log the value of lambda to a file more often.</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">monFile</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">MonitorFile</span> <span style="color:#204a87;font-weight:bold">I</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">monFile</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">monitorFile</span> <span style="color:#4e9a06">&#34;lambda&#34;</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">monLambda</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#0000cf;font-weight:bold">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">mon</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Monitor</span> <span style="color:#204a87;font-weight:bold">I</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">mon</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">Monitor</span> <span style="color:#000">monStdOut</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">monFile</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#204a87;font-weight:bold">[]</span>
+</span></span></code></pre></div><p>We do not use <a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Monitor.html#t:MonitorBatch">batch monitors</a>, so the last list of <code>mon</code> is empty.</p>
+<p>Before running the chain, we need to provide some required <a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Settings.html#t:Settings">settings</a>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#000">ss</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Settings</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">ss</span> <span style="color:#204a87;font-weight:bold">=</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#204a87;font-weight:bold">Settings</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- Provide an analysis name.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">AnalysisName</span> <span style="color:#4e9a06">&#34;poisson&#34;</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- Burn in for 2000 generations. During burn in, the proposals are tuned</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- automatically. This is called &#34;auto tuning&#34;. Here, auto tuning is</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- performed every 200 iterations.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">BurnInWithAutoTuning</span> <span style="color:#0000cf;font-weight:bold">2000</span> <span style="color:#0000cf;font-weight:bold">200</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- Number of actual iterations after burn in.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">Iterations</span> <span style="color:#0000cf;font-weight:bold">30000</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- The trace of the Markov chain contains the attained values. In our case,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- it is a vector of fatal accident rates. Here, we tell the sampler to use</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- the shortest trace possible. In our case, this will be a single value.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- However, when using batch monitors, or when auto tuning the masses of</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- proposals based on Hamiltonian dynamics, the required length of the trace</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- is larger than 1. masses. The trace length can also be set manually.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">TraceAuto</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- Overwrite files created by a possible previous analysis.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">Overwrite</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- Do not run chains in parallel. For the standard Metropolis-Hastings-Green</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- algorithm, this has no effect. However, there are algorithms such as the</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- MC3 algorithm with multiple chains that can run in parallel.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">Sequential</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- Save the chain so that it can be continued (see &#39;mcmcContinue&#39;).</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">Save</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- Log to standard output and save the log to a file.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">LogStdOutAndFile</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8f5902;font-style:italic">-- Verbosity.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">Info</span>
+</span></span></code></pre></div><p>Finally, we instantiate a chain using the <a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Algorithm-MHG.html">Metropolis-Hastings-Green algorithm</a>
+(MHG, <a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Algorithm-MHG.html#v:mhg"><code>mhg</code></a> function) and run the MCMC sampler with the <a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Mcmc.html#v:mcmc"><code>mcmc</code></a> function:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#000">main</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">IO</span> <span style="color:#204a87">()</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">main</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#204a87;font-weight:bold">let</span> <span style="color:#000">g</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">mkStdGen</span> <span style="color:#0000cf;font-weight:bold">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8f5902;font-style:italic">-- Set up the Markov chain. For computational efficiency (mutable vectors),</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8f5902;font-style:italic">-- this requires IO.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">al</span> <span style="color:#204a87;font-weight:bold">&lt;-</span> <span style="color:#000">mhg</span> <span style="color:#000">ss</span> <span style="color:#000">noPrior</span> <span style="color:#000">lh</span> <span style="color:#000">cc</span> <span style="color:#000">mon</span> <span style="color:#0000cf;font-weight:bold">1.0</span> <span style="color:#000">g</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8f5902;font-style:italic">-- We ignore the actual return value which is the complete Markov chain object</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8f5902;font-style:italic">-- using &#39;void&#39;.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">void</span> <span style="color:#ce5c00;font-weight:bold">$</span> <span style="color:#000">mcmc</span> <span style="color:#000">ss</span> <span style="color:#000">al</span>
+</span></span></code></pre></div><p>The complete code is available in the <a href="https://github.com/dschrempf/mcmc/blob/master/mcmc-examples/Poisson/Poisson.hs">mcmc Git repository</a>, see also the
+accompanying <a href="https://github.com/dschrempf/mcmc/blob/master/mcmc-examples/mcmc-examples.cabal">Cabal file</a>.</p>
+<h2 id="results">Results</h2>
+<p>Using the above mentioned Git repository, you can run the code with</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cabal run poisson
+</span></span></code></pre></div><p>There is a lot of informative output. Further, log files <code>poisson.mcmc.*</code> and
+the monitor file <code>poisson.lambda.monitor</code> are created. Here, I will have a look
+at the posterior function of \(\lambda\). To this end, I use <a href="http://tree.bio.ed.ac.uk/software/tracer/">Tracer</a> to inspect
+the monitor file <code>poisson.lambda.monitor</code>:</p>
+<figure><img src="/ox-hugo/Poisson-MCMC-Results.png"/>
+</figure>
+
+<p>We see in the summary statistics, that the estimated median is \(23.88\) which
+is close to the theoretical optimum of \(23.8\). We also observe that the
+posterior function is somewhat normal distributed.</p>
+<h2 id="summary-and-outlook">Summary and outlook</h2>
+<p>We inferred the posterior function of the fatal accident rate of airlines in the
+70s and 80s using a simple Poisson distribution, and an MCMC sampler in Haskell.
+There is a lot more we could do here. For example, we could improve our model
+using <a href="https://en.wikipedia.org/wiki/Poisson_regression">Poisson regression</a>, we could look at advanced proposals such as
+<a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Proposal-Hamiltonian-Hamiltonian.html">proposals using Hamiltonian dynamics</a>, or we could look at algorithms using
+parallel chains such as the <a href="https://hackage.haskell.org/package/mcmc/docs/Mcmc-Algorithm-MC3.html">Metropolic coupled MCMC</a> (MC3) algorithm.</p>
+<p>If this post spurred your interest, and you want to have a look at a real-life
+project: We use the <code>mcmc</code> library to perform <em>phylogenetic dating</em>. With
+<a href="https://github.com/dschrempf/mcmc-date">McmcDate</a> we infer the ages of speciations using molecular sequence data (DNA),
+<a href="https://en.wikipedia.org/wiki/Molecular_clock">molecular clocks</a>, the age of fossils, gene transfers and much more! For example,
+we apply <code>McmcDate</code> to data from land plants (<a href="#citeproc_bib_item_3">Harris et al. 2021</a>).</p>
+<p>The <code>mcmc</code> library is under development, and I am happy about your suggestions
+or comments; drop them on the <a href="https://github.com/dschrempf/mcmc">repository on GitHub</a>!</p>
+<h2 id="references">References</h2>
+<style>.csl-entry{text-indent: -1.5em; margin-left: 1.5em;}</style><div class="csl-bib-body">
+  <div class="csl-entry"><a id="citeproc_bib_item_1"></a>Gelman, Andrew, John B Carlin, Hal S Stern, and Donald B Rubin. 2014. <i>Bayesian Data Analysis</i>. CRC Press.</div>
+  <div class="csl-entry"><a id="citeproc_bib_item_2"></a>Geyer, Charles J. 2011. “Introduction to Markov Chain Monte Carlo.” In <i>Handbook of Markov Chain Monte Carlo</i>, edited by Steve Brooks, Andrew Gelman, Galin Jones, and Xiao-Li Meng, 45. CRC press.</div>
+  <div class="csl-entry"><a id="citeproc_bib_item_3"></a>Harris, Brogan J., James W. Clark, Dominik Schrempf, Gergely J. Szöllősi, Philip C.J. Donoghue, Alistair M. Hetherington, and Tom A. Williams. 2021. “Divergent Evolutionary Trajectories of Bryophytes and Tracheophytes from a Complex Common Ancestor of Land Plants.” <i>Biorxiv</i>. <a href="https://doi.org/10.1101/2021.10.28.466308">https://doi.org/10.1101/2021.10.28.466308</a>.</div>
+</div>
+
+  </div>
+</div>
+
+
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.1.2/es5/tex-svg.min.js" integrity="sha512-9irB0qyXMAf4xUF5UEVOhb4NMCWo7xeKakVbl0lfJ09HyhrplRCqTFMtaW6lP7G0IbHfIcmSo3dFZrWcrsGnOA==" crossorigin="anonymous"></script>
+
+        
+        <div class="bottombar">
+    <div class="bottombar-sticky">
+        <div class="icons">
+            <span class="icons-item"> <a href="https://github.com/dschrempf" target="_blank"><i class="fab fa-github"></i></a>                                   </span> 
+    
+     <span class="icons-item"> <a href="https://www.stackoverflow.com/users/3536806" target="_blank"><i class="fab fa-stack-overflow fa-1x"></i></a>                     </span> 
+    
+    
+    
+           <span class="icons-item"> <a href="https://twitter.com/fazky" target="_blank"><i class="fab fa-twitter fa-1x"></i></a>                            </span> 
+    
+             <span class="icons-item"> <a href="https://orcid.org/0000-0001-8865-9237" target="_blank"><i class="ai ai-orcid ai-1x"></i></a>                               </span> 
+             <span class="icons-item"> <a href="mailto:dominik.schrempf@gmail.com"><i class="fas fa-envelope fa-1x"></i></a>                                           </span> 
+            <span class="icons-item"> <a href="/gpg_public_key.txt"><i class="fas fa-key fa-1x"></i></a>                                                </span> 
+    
+</div>
+
+
+
+        <div class= "footer">
+    <p>
+        &copy; 2022 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+        Powered by <a href="https://gohugo.io">Hugo</a>, <a href="https://ox-hugo.scripter.co/">ox-hugo</a> and <a href="https://github.com/dschrempf/skeria">Skeria</a><br/>
+        
+        <a href="/privacy/" class="" title="Privacy notice">Privacy notice</a>
+        
+    </p>
+</div>
+
+    </div>
+</div>
+
+
+        
+        
+        
+    </body>
+
+</html>

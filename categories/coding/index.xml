@@ -6,7 +6,20 @@
     <description>Recent content in Coding on Concept → IO ()</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 18 Dec 2020 00:00:00 +0100</lastBuildDate><atom:link href="https://dschrempf.github.io/categories/coding/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Jun 2022 00:00:00 +0200</lastBuildDate><atom:link href="https://dschrempf.github.io/categories/coding/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Parameter inference using Markov chain Monte Carlo algorithms and Haskell</title>
+      <link>https://dschrempf.github.io/coding/2022-06-28-sample-from-a-posterior-using-markov-chain-monte-carlo-algorithms-and-haskell/</link>
+      <pubDate>Tue, 28 Jun 2022 00:00:00 +0200</pubDate>
+      
+      <guid>https://dschrempf.github.io/coding/2022-06-28-sample-from-a-posterior-using-markov-chain-monte-carlo-algorithms-and-haskell/</guid>
+      <description>We analyze the number of worldwide airline fatal accidents:
+Year 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 Fatalities 24 25 31 31 22 21 26 20 16 22 This table is an excerpt of Table 2.2 in Gelman, Carlin, Stern, and Rubin (2014).
+We assume that the number of fatal accidents \(X\) is Poisson distributed with fatal accident rate \(\lambda\)
+\begin{align} Pr(X=k|\lambda) = \frac{\lambda^k e^{-\lambda}}{k!}. \end{align}
+The maximum likelihood estimate of \(\lambda\) is the mean of the fatalities, which is \(23.</description>
+    </item>
+    
     <item>
       <title>Encyclopedia of Markov chain Monte Carlo methods</title>
       <link>https://dschrempf.github.io/coding/2020-11-12-encyclopedia-of-markov-chain-monte-carlo-methods/</link>
@@ -14,7 +27,7 @@
       
       <guid>https://dschrempf.github.io/coding/2020-11-12-encyclopedia-of-markov-chain-monte-carlo-methods/</guid>
       <description>I started this encyclopedic overview because in the Markov chain Monte Carlo (MCMC) community many people call the same or similar concepts by very different names. Please let me know, if you have suggestions or comments, or if you would like to add some definitions or synonyms to this overview.
-Bibliography Books  The nomenclature here is taken from the excellent introduction to Markov chain Monte Carlo (MCMC) methods by Geyer (2011), Chapter 1 in Brooks et al.</description>
+Bibliography Books The nomenclature here is taken from the excellent introduction to Markov chain Monte Carlo (MCMC) methods by Geyer (2011), Chapter 1 in Brooks et al.</description>
     </item>
     
     <item>
@@ -25,7 +38,7 @@ Bibliography Books  The nomenclature here is taken from the excellent introducti
       <guid>https://dschrempf.github.io/coding/2019-11-21-algebraic-graphs/</guid>
       <description>The Algebraic Graphs Haskell library (Alga) is a fast, minimalist, and elegant approach to working with graphs that allows for equational reasoning about the correctness of algorithms. For reference, please also see the accompanying paper.
 The advantages are:
- algebraic graphs have a small core with just four graph construction primitives; the core has a mathematical structure characterized by a set of laws or properties.  A directed graph in the mathematical sense is a set \(V\) of vertices \(v_i\) together with a set \(E\) of directed edges \((v_i, v_j)\), and is denoted \((V,E)\).</description>
+algebraic graphs have a small core with just four graph construction primitives; the core has a mathematical structure characterized by a set of laws or properties. A directed graph in the mathematical sense is a set \(V\) of vertices \(v_i\) together with a set \(E\) of directed edges \((v_i, v_j)\), and is denoted \((V,E)\).</description>
     </item>
     
     <item>
@@ -55,7 +68,7 @@ f :: (b -&amp;gt; a -&amp;gt; m b) And here the definition of foldlM (which is t
       <pubDate>Sat, 09 Apr 2016 00:00:00 +0200</pubDate>
       
       <guid>https://dschrempf.github.io/coding/2016-04-09-continuous-time-markov-chain/</guid>
-      <description>[2016-04-09 Sat]  I extended my set of C++ programs to include a simulator for generic continuous-time Markov chains. I.e., any transition rate matrix can be used.
+      <description>[2016-04-09 Sat] I extended my set of C++ programs to include a simulator for generic continuous-time Markov chains. I.e., any transition rate matrix can be used.
 If you are interested, just get the GitHub repository and compile the whole set of programs with make all. Documentation can be found in the doc/ folder (check the CTMC class).
 There is a sample program src/moran_model_boundary_mutation, that runs the Moran model with boundary mutation (De Maio, N.</description>
     </item>
@@ -67,7 +80,7 @@ There is a sample program src/moran_model_boundary_mutation, that runs the Moran
       
       <guid>https://dschrempf.github.io/coding/2015-03-26-popgen-cpp-programs/</guid>
       <description>I maintain a Github repository that contains a bunch of very basic C++ programs that use Markov chains and other types of simulations to infer basic statistical parameters. The applications mainly focus on Population Genetics problems, although this is not always the case. At the moment, the list of programs is:
- bookshelf.cpp Bookshelf Markov chain brownian_motion_mcmc.cpp Simulate standard Brownian motion (Wiener process) coin_toss_mcmc.cpp Run a coin toss MCMC simulation cube_mcmc.</description>
+bookshelf.cpp Bookshelf Markov chain brownian_motion_mcmc.cpp Simulate standard Brownian motion (Wiener process) coin_toss_mcmc.cpp Run a coin toss MCMC simulation cube_mcmc.cpp Simulation of a Markov chain that moves around the eight vertices of a cube ehrenfest_mcmc.</description>
     </item>
     
     <item>
