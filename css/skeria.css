@@ -26,7 +26,10 @@ body {
 /* Links. */
 
 a {
-  color: #00308F;
+  /* color: #444c57; */
+  /* color: #3873b3; */
+  /* color: #2c5a8c; */
+  color: #21446a;
   text-decoration: none;
 }
 
@@ -38,6 +41,7 @@ a:focus, a:hover {
 /* Headlines. */
 
 h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.0em;
   margin-bottom: 0.5em;
   font-weight: 400;
   color: #000;
@@ -71,8 +75,8 @@ h6 {
 /* Paragraphs and lists. */
 
 p {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 dl, ol, ul {
@@ -330,14 +334,17 @@ input[type=text]:focus {
 .post-title,
 .post-title a {
   color: #444c57;
-  margin-top: 1em;
-  margin-bottom: 0em;
+  margin-bottom: 0.0em;
+}
+
+.date {
+  color: #7a7a7a;
 }
 
 .post-date {
+  color: #7a7a7a;
   display: block;
   margin-bottom: 1em;
-  color: #7a7a7a;
 }
 
 /******************************************************************************/
