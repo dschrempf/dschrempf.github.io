@@ -1,0 +1,157 @@
+
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        
+        <title>Weather prediction application &middot; Dominik Schrempf</title>
+        <meta name="description" content="Proof of concept weather prediction web application">
+        <meta name="keywords" content="Weather prediction,Web application,Frontend,Backend,Haskell,Scotty,Lucid,Markov chain Monte Carlo,MCMC,Nix,Nix Flakes">
+
+        
+        <link rel="stylesheet" href="https://dschrempf.github.io/css/skeria.css">
+
+        
+        
+
+        
+        
+        
+        <link rel="stylesheet" href="https://dschrempf.github.io/css/font.awesome.6.1.2.all.min.css" />
+    </head>
+
+    <body>
+        <div class="topbar">
+    <div class="topbar-sticky">
+        <a href="https://dschrempf.github.io/"
+   style="text-decoration: none">
+    <h1>Concept → IO ()</h1>
+</a>
+
+        
+        <span class="topbar-nav">
+    <p>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/linux/">Linux</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/emacs/">Emacs</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/coding/">Coding</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/music/">Music</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/links/">Links</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/about/">About</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/search/">Search</a>
+        </span>
+        
+    </p>
+</span>
+
+    </div>
+</div>
+
+
+        
+        
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">Weather prediction application</h1>
+    <span class="post-date">
+        Dec 2, 2022
+        &nbsp;&middot;&nbsp; 1 minute read
+        
+        &nbsp;&middot;&nbsp;
+        
+        <a class="label" href="https://dschrempf.github.io/coding">Coding</a>
+        
+        
+    </span>
+    <p>I created a minimalist <a href="https://dschrempf.duckdns.org/">weather predicition application</a> &mdash; a short proof of
+concept and stake.</p>
+<p>The main elements of the Haskell tech stack are:</p>
+<ul>
+<li><a href="https://hackage.haskell.org/package/scotty">Scotty</a>: A web framework.</li>
+<li><a href="https://hackage.haskell.org/package/lucid">Lucid</a>: A domain specific language for HTML.</li>
+<li><a href="https://hackage.haskell.org/package/mcmc">Mcmc</a>: A Markov chain Monte Carlo sampler.</li>
+</ul>
+<p>Other noteworthy components of this project:</p>
+<ul>
+<li>The development environment is managed by the <a href="https://github.com/NixOS/nix">Nix package manager</a>.</li>
+<li>The application is deployed using a <a href="https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-flake.html">Nix Flake</a>.</li>
+</ul>
+<p>For details, have a look at the <a href="https://github.com/dschrempf/webapp">project source code</a>.</p>
+<p>I deploy the application to my home server which is turned on roughly from 8am
+to 10pm CET. I mean, who wants to predict the weather during the night?</p>
+
+  </div>
+</div>
+
+
+        
+        
+        <script src="https://dschrempf.github.io/js/mathjax.3.2.2.tex-svg.min.js"></script>
+
+        
+        <div class="bottombar">
+    <div class="bottombar-sticky">
+        <div class="icons">
+            <span class="icons-item"> <a href="https://github.com/dschrempf" target="_blank"><i class="fab fa-github"></i></a>                                   </span> 
+    
+     <span class="icons-item"> <a href="https://www.stackoverflow.com/users/3536806" target="_blank"><i class="fab fa-stack-overflow fa-1x"></i></a>                     </span> 
+    
+    
+    
+           <span class="icons-item"> <a href="https://twitter.com/fazky" target="_blank"><i class="fab fa-twitter fa-1x"></i></a>                            </span> 
+    
+             <span class="icons-item"> <a href="https://orcid.org/0000-0001-8865-9237" target="_blank"><i class="fab fa-orcid fa-1x"></i></a>                              </span> 
+     <span class="icons-item"> <a href="https://scholar.google.com/citations?user=3pvnGAcAAAAJ" target="_blank"><i class="fab fa-google fa-1x"></i></a>                             </span> 
+             <span class="icons-item"> <a href="mailto:dominik.schrempf@gmail.com"><i class="fas fa-envelope fa-1x"></i></a>                                           </span> 
+            <span class="icons-item"> <a href="/gpg_public_key.txt"><i class="fas fa-key fa-1x"></i></a>                                                </span> 
+    
+</div>
+
+
+
+        <div class= "footer">
+    <p>
+        &copy; 2022 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+         <a href="/privacy/" class="" title="Privacy notice">Privacy notice</a> 
+    </p>
+</div>
+
+    </div>
+</div>
+
+
+        
+        
+        
+    </body>
+
+</html>
