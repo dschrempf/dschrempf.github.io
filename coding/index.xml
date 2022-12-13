@@ -13,8 +13,10 @@
       <pubDate>Fri, 02 Dec 2022 00:00:00 +0100</pubDate>
       
       <guid>https://dschrempf.github.io/coding/2022-12-02-advent-of-code-2022/</guid>
-      <description>Everybody posts their solutions in Haskell to the Advent of Code (described well on Wikipedia). So I thought I am going to join the crowd: Here are mine.
-(Want some more? And &amp;mdash; well &amp;mdash; more?)</description>
+      <description>Everybody posts their solutions in Haskell to the Advent of Code (described well on Wikipedia). So I thought I am going to join the crowd.
+Here are mine! I did clean the code after submission, but I did not change anything substantial such as algorithms or data structures.
+(Want some more? And &amp;mdash; well &amp;mdash; more?)
+If you ask me, the solutions of Sheinxy and Scriptim are great! Also, do not miss the ones posted by Monday Morning Haskell, although they do have some boilerplate.</description>
     </item>
     
     <item>
