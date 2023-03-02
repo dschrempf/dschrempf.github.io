@@ -93,15 +93,17 @@
         
     </span>
     <p>Do you want to use Emacs for Java development? I suggest using the language
-server protocol with <a href="https://github.com/emacs-lsp/lsp-mode"><code>lsp-mode</code></a> and <a href="https://github.com/emacs-lsp/lsp-java"><code>lsp-java</code></a>, the <a href="https://github.com/eclipse/eclipse.jdt.ls">Eclipse JDT language server</a>
-(<code>jdtls</code>). And do you also want a declarative development environment without
-surprises? Use <a href="https://github.com/nix-community/nix-direnv">Nix Direnv</a>, <a href="https://github.com/purcell/envrc">envrc.el</a>, and a <a href="https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-flake.html">Nix Flake</a>! I assume familiarity with
-these concepts. In the following, I will explain Java-related setup.</p>
-<p>The reasons is that I stumbled upon problems when using a declarative
-configuration. In particular, <code>lsp-java</code> uses a global variable
-<code>lsp-java-server-install-dir</code> which specifies the installation directory of
-<code>jdtls</code>. Further, it uses global workspace and configuration directories which
-are <a href="https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line"><code>jdtls</code> specific settings</a>; we want those to be project-specific.</p>
+server protocol with <a href="https://github.com/emacs-lsp/lsp-mode"><code>lsp-mode</code></a> and <a href="https://github.com/emacs-lsp/lsp-java"><code>lsp-java</code></a> together with the <a href="https://github.com/eclipse/eclipse.jdt.ls">Eclipse JDT
+language server</a> (<code>jdtls</code>). And do you also want a declarative development
+environment without surprises? Use <a href="https://github.com/nix-community/nix-direnv">Nix Direnv</a>, <a href="https://github.com/purcell/envrc">envrc.el</a>, and a <a href="https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-flake.html">Nix Flake</a>! I
+assume familiarity with these concepts. In the following, I will focus on the
+Java-related Emacs setup.</p>
+<p>The reason of this post is that I have stumbled upon problems when using a
+declarative, project-specific configuration. In particular, <code>lsp-java</code> uses a
+global variable <code>lsp-java-server-install-dir</code> which specifies the installation
+directory of <code>jdtls</code>. Further, it uses global workspace and configuration
+directories which are <a href="https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line"><code>jdtls</code> specific settings</a>; we want those to be
+project-specific.</p>
 <p>But first things first. The following snippet defines a minimalist Nix Flake
 that provides a development environment for Java:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># File &#39;flake.nix&#39;.</span>
@@ -130,23 +132,11 @@ that provides a development environment for Java:</p>
 </span></span><span style="display:flex;"><span>      <span style="color:#000;font-weight:bold">}</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">);</span>
 </span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
-</span></span></code></pre></div><p>We also set up a directory environment file:</p>
+</span></span></code></pre></div><p>We also set up a directory environment file, and use it:</p>
 <p><a id="code-snippet--envrc"></a></p>
 <div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;use flake&#34;</span> &gt; .envrc
-</span></span></code></pre></div><p>If you want, you can now set up a demo project using
-<code>lsp-java-spring-initializer</code>. The directory structure is:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>/home/dominik/Scratch/java
-</span></span><span style="display:flex;"><span>├── config-linux   -- Created by =jdtls=, see below.
-</span></span><span style="display:flex;"><span>├── demo           -- Demo project.
-</span></span><span style="display:flex;"><span>├── .direnv
-</span></span><span style="display:flex;"><span>├── .envrc
-</span></span><span style="display:flex;"><span>├── flake.lock
-</span></span><span style="display:flex;"><span>├── flake.nix
-</span></span><span style="display:flex;"><span>├── .git
-</span></span><span style="display:flex;"><span>├── .gitignore
-</span></span><span style="display:flex;"><span>└── java-workspace -- Created by =jdtls=, see below.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>5 directories, 4 files
+</span></span><span style="display:flex;"><span>direnv allow
+</span></span><span style="display:flex;"><span>direnv reload
 </span></span></code></pre></div><p>However, the language server will not work yet. We need to tell <code>lsp-java</code> about
 the location of <code>jdtls</code> and how to run it. This has proven to be difficult, if
 not arduous. The solution, however, is pretty easy.</p>
@@ -178,12 +168,29 @@ Stack Overflow answer</a>.</li>
 </span></span><span style="display:flex;"><span>     <span style="color:#000;font-weight:bold">(</span><span style="color:#000">add-hook</span> <span style="color:#4e9a06">&#39;java-mode-hook</span> <span style="color:#000">#&#39;</span><span style="color:#000">my-set-lsp-path</span><span style="color:#000;font-weight:bold">))</span>
 </span></span></code></pre></div></li>
 </ol>
-<p>Like so, everything works like a charm. We can have different versions of
-<code>jdtls</code> for different projects, and they do not even interfere with each other.
-Wow. There is still some local state and cache created by <code>Gradle</code> or <code>Maven</code>,
-depending on which build tool you use. For example, I do have a <code>~/.gradle</code>
-directory with lots of artifacts&hellip; If you know how to tell Gradle or Maven to
-be project-specific, let me know!</p>
+<p>Like so, everything works like a charm, and my experience with <code>lsp-java</code> has
+been great so far! We can have different versions of <code>jdtls</code> for different
+projects, and they do not even interfere with each other. Wow.</p>
+<p>If you want, you can now set up a demo project from within Emacs using
+<code>lsp-java-spring-initializer</code>. After setting up the <code>demo</code> project, the
+directory structure is:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>/home/dominik/Scratch/java
+</span></span><span style="display:flex;"><span>├── config-linux   -- Created by =jdtls=, see above.
+</span></span><span style="display:flex;"><span>├── demo           -- Demo project.
+</span></span><span style="display:flex;"><span>├── .direnv
+</span></span><span style="display:flex;"><span>├── .envrc
+</span></span><span style="display:flex;"><span>├── flake.lock
+</span></span><span style="display:flex;"><span>├── flake.nix
+</span></span><span style="display:flex;"><span>├── .git
+</span></span><span style="display:flex;"><span>├── .gitignore
+</span></span><span style="display:flex;"><span>└── java-workspace -- Created by =jdtls=, see above.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>5 directories, 4 files
+</span></span></code></pre></div><p>In conclusion, we have a project-specific, declarative Java development setup.
+However, there is still some local state and cache created by <code>Gradle</code> or
+<code>Maven</code>, depending on which build tool you use. For example, I do have a
+<code>~/.gradle</code> directory with lots of artifacts&hellip; If you know how to tell Gradle
+or Maven to be project-specific, let me know!</p>
 
   </div>
 </div>
