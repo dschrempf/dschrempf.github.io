@@ -1,0 +1,233 @@
+
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        
+        <title>Emacs, Java, and Nix — An interesting journey &middot; Dominik Schrempf</title>
+        <meta name="description" content="A declarative Java development setup in Emacs using a Nix Flake.">
+        <meta name="keywords" content="Emacs,Java,Nix,Nix Flakes,LSP,jdtls,jdt-language-server">
+
+        
+        <link rel="stylesheet" href="https://dschrempf.github.io/css/skeria.css">
+
+        
+        
+
+        
+        
+        
+        <link rel="stylesheet" href="https://dschrempf.github.io/css/font.awesome.6.1.2.all.min.css" />
+    </head>
+
+    <body>
+        <div class="topbar">
+    <div class="topbar-sticky">
+        <a href="https://dschrempf.github.io/"
+   style="text-decoration: none">
+    <h1>Concept → IO ()</h1>
+</a>
+
+        
+        <span class="topbar-nav">
+    <p>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/linux/">Linux</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/emacs/">Emacs</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/coding/">Coding</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/music/">Music</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/links/">Links</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/about/">About</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/search/">Search</a>
+        </span>
+        
+    </p>
+</span>
+
+    </div>
+</div>
+
+
+        
+        
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">Emacs, Java, and Nix — An interesting journey</h1>
+    <span class="post-date">
+        Mar 2, 2023
+        &nbsp;&middot;&nbsp; 3 minute read
+        
+        &nbsp;&middot;&nbsp;
+        
+        <a class="label" href="https://dschrempf.github.io/emacs">Emacs</a>
+        
+        
+    </span>
+    <p>Do you want to use Emacs for Java development? I suggest using the language
+server protocol with <a href="https://github.com/emacs-lsp/lsp-mode"><code>lsp-mode</code></a> and <a href="https://github.com/emacs-lsp/lsp-java"><code>lsp-java</code></a>, the <a href="https://github.com/eclipse/eclipse.jdt.ls">Eclipse JDT language server</a>
+(<code>jdtls</code>). And do you also want a declarative development environment without
+surprises? Use <a href="https://github.com/nix-community/nix-direnv">Nix Direnv</a>, <a href="https://github.com/purcell/envrc">envrc.el</a>, and a <a href="https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-flake.html">Nix Flake</a>! I assume familiarity with
+these concepts. In the following, I will explain Java-related setup.</p>
+<p>The reasons is that I stumbled upon problems when using a declarative
+configuration. In particular, <code>lsp-java</code> uses a global variable
+<code>lsp-java-server-install-dir</code> which specifies the installation directory of
+<code>jdtls</code>. Further, it uses global workspace and configuration directories which
+are <a href="https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line"><code>jdtls</code> specific settings</a>; we want those to be project-specific.</p>
+<p>But first things first. The following snippet defines a minimalist Nix Flake
+that provides a development environment for Java:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># File &#39;flake.nix&#39;.</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">description</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;Java development environment&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">inputs</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">flake-utils</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">url</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;github:numtide/flake-utils&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">inputs</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">nixpkgs</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">url</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;github:NixOS/nixpkgs/nixos-unstable&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">outputs</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#000">self</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">flake-utils</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">nixpkgs</span> <span style="color:#000;font-weight:bold">}:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">flake-utils</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">lib</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">eachDefaultSystem</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">system</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#204a87;font-weight:bold">let</span> <span style="color:#000">pkgs</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">nixpkgs</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">legacyPackages</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#4e9a06">${</span><span style="color:#000">system</span><span style="color:#4e9a06">}</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">devShells</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">default</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">with</span> <span style="color:#000">pkgs</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">mkShell</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#000">packages</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic"># See https://github.com/NixOS/nixpkgs/issues/59209.</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">bashInteractive</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#8f5902;font-style:italic"># Gradle, Java development kit, and Java language server.</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">gradle</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">jdk</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">jdt-language-server</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#000;font-weight:bold">];</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#8f5902;font-style:italic"># Environment variable specifying the plugin directory of</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#8f5902;font-style:italic"># the language server &#39;jdtls&#39;.</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#000">JDTLS_PATH</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">jdt-language-server</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">/share/java&#34;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">};</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>We also set up a directory environment file:</p>
+<p><a id="code-snippet--envrc"></a></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#204a87">echo</span> <span style="color:#4e9a06">&#34;use flake&#34;</span> &gt; .envrc
+</span></span></code></pre></div><p>If you want, you can now set up a demo project using
+<code>lsp-java-spring-initializer</code>. The directory structure is:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>/home/dominik/Scratch/java
+</span></span><span style="display:flex;"><span>├── config-linux   -- Created by =jdtls=, see below.
+</span></span><span style="display:flex;"><span>├── demo           -- Demo project.
+</span></span><span style="display:flex;"><span>├── .direnv
+</span></span><span style="display:flex;"><span>├── .envrc
+</span></span><span style="display:flex;"><span>├── flake.lock
+</span></span><span style="display:flex;"><span>├── flake.nix
+</span></span><span style="display:flex;"><span>├── .git
+</span></span><span style="display:flex;"><span>├── .gitignore
+</span></span><span style="display:flex;"><span>└── java-workspace -- Created by =jdtls=, see below.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>5 directories, 4 files
+</span></span></code></pre></div><p>However, the language server will not work yet. We need to tell <code>lsp-java</code> about
+the location of <code>jdtls</code> and how to run it. This has proven to be difficult, if
+not arduous. The solution, however, is pretty easy.</p>
+<ol>
+<li>
+<p>Use the wrapper script shipped with <code>jdtls</code> instead of a manual <code>java --lots-of-options</code> invocation like so:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>   <span style="color:#000;font-weight:bold">(</span><span style="color:#000">after!</span> <span style="color:#000">lsp-java</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">defun</span> <span style="color:#000">lsp-java--ls-command</span> <span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">(</span><span style="color:#000">list</span> <span style="color:#4e9a06">&#34;jdt-language-server&#34;</span>
+</span></span><span style="display:flex;"><span>             <span style="color:#4e9a06">&#34;-configuration&#34;</span> <span style="color:#4e9a06">&#34;../config-linux&#34;</span>
+</span></span><span style="display:flex;"><span>             <span style="color:#4e9a06">&#34;-data&#34;</span> <span style="color:#4e9a06">&#34;../java-workspace&#34;</span><span style="color:#000;font-weight:bold">)))</span>
+</span></span></code></pre></div><ul>
+<li><code>after!</code> is a <a href="https://github.com/doomemacs/doomemacs">Doom Emacs</a> macro that executes code after loading a feature.
+You can use other constructs, if you like.</li>
+<li>The function <code>lsp-java--ls-command</code> provides a list of strings which are
+concatenated and executed when running the language server. Here, we use
+the wrapper script <code>jdt-language-server</code>, and only specify the
+project-specific configuration and workspace directories. We put them in
+the parent directory of the Java project, because, well, <a href="https://stackoverflow.com/a/53404328/3536806">see this weird
+Stack Overflow answer</a>.</li>
+</ul>
+</li>
+<li>
+<p>Set <code>lsp-java-server-install-dir</code> in a hook using the environment variable
+<code>JDTLS_PATH</code> set by the Nix Flake shell:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>   <span style="color:#000;font-weight:bold">(</span><span style="color:#000">after!</span> <span style="color:#000">cc-mode</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">defun</span> <span style="color:#000">my-set-lsp-path</span> <span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">setq</span> <span style="color:#000">lsp-java-server-install-dir</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">getenv</span> <span style="color:#4e9a06">&#34;JDTLS_PATH&#34;</span><span style="color:#000;font-weight:bold">)))</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#000;font-weight:bold">(</span><span style="color:#000">add-hook</span> <span style="color:#4e9a06">&#39;java-mode-hook</span> <span style="color:#000">#&#39;</span><span style="color:#000">my-set-lsp-path</span><span style="color:#000;font-weight:bold">))</span>
+</span></span></code></pre></div></li>
+</ol>
+<p>Like so, everything works like a charm. We can have different versions of
+<code>jdtls</code> for different projects, and they do not even interfere with each other.
+Wow. There is still some local state and cache created by <code>Gradle</code> or <code>Maven</code>,
+depending on which build tool you use. For example, I do have a <code>~/.gradle</code>
+directory with lots of artifacts&hellip; If you know how to tell Gradle or Maven to
+be project-specific, let me know!</p>
+
+  </div>
+</div>
+
+
+        
+        
+        <script src="https://dschrempf.github.io/js/mathjax.3.2.2.tex-svg.min.js"></script>
+
+        
+        <div class="bottombar">
+    <div class="bottombar-sticky">
+        <div class="icons">
+            <span class="icons-item"> <a href="https://github.com/dschrempf" target="_blank"><i class="fab fa-github"></i></a>                                   </span> 
+    
+     <span class="icons-item"> <a href="https://www.stackoverflow.com/users/3536806" target="_blank"><i class="fab fa-stack-overflow fa-1x"></i></a>                     </span> 
+    
+    
+    
+          <span class="icons-item"> <a href="https://fosstodon.org/@dschrempf" target="_blank"><i class="fab fa-mastodon fa-1x"></i></a>                           </span> 
+    
+             <span class="icons-item"> <a href="https://orcid.org/0000-0001-8865-9237" target="_blank"><i class="fab fa-orcid fa-1x"></i></a>                              </span> 
+     <span class="icons-item"> <a href="https://scholar.google.com/citations?user=3pvnGAcAAAAJ" target="_blank"><i class="fab fa-google fa-1x"></i></a>                             </span> 
+             <span class="icons-item"> <a href="mailto:dominik.schrempf@gmail.com"><i class="fas fa-envelope fa-1x"></i></a>                                           </span> 
+            <span class="icons-item"> <a href="/gpg_public_key.txt"><i class="fas fa-key fa-1x"></i></a>                                                </span> 
+    
+</div>
+
+
+
+        <div class= "footer">
+    <p>
+        &copy; 2023 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+         <a href="/privacy/" class="" title="Privacy notice">Privacy notice</a> 
+    </p>
+</div>
+
+    </div>
+</div>
+
+
+        
+        
+        
+    </body>
+
+</html>
