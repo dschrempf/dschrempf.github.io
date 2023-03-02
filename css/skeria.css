@@ -99,6 +99,10 @@ code, pre, .timestamp {
   font-family: 'Inconsolata', monospace;
 }
 
+code {
+  background-color: #eee;
+}
+
 .label, .timestamp {
   color: #444c57;
   background-color: #eee;
