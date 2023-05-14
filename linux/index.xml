@@ -6,7 +6,17 @@
     <description>Recent content in Linuxes on Concept → IO ()</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 13 Sep 2017 00:00:00 +0200</lastBuildDate><atom:link href="https://dschrempf.github.io/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 May 2023 00:00:00 +0200</lastBuildDate><atom:link href="https://dschrempf.github.io/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fixing a Tolino Shine 3 ebook reader</title>
+      <link>https://dschrempf.github.io/linux/2023-05-14-fixing-a-tolino-shine-3-ebook-reader/</link>
+      <pubDate>Sun, 14 May 2023 00:00:00 +0200</pubDate>
+      
+      <guid>https://dschrempf.github.io/linux/2023-05-14-fixing-a-tolino-shine-3-ebook-reader/</guid>
+      <description>An update of my Tolino Shine 3 reader failed. The system recovery did not work aborting with the following error:
+Batterie fast leer! Ein-/Ausschalter druecken, Geraet mind. 2 h aufladen und neu starten. Low battery! Press the power button, charge the device for a minimum of 2 hours and restart. Weird. Charging did not help either. In fact, I am not not the only one experiencing this problem. Be sure to read the linked blog post, it contains important information.</description>
+    </item>
+    
     <item>
       <title>Networking HOWTOs</title>
       <link>https://dschrempf.github.io/linux/2017-09-13-networking-tutorials/</link>

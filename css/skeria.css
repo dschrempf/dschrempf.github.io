@@ -114,6 +114,10 @@ code {
   white-space: nowrap;
 }
 
+.highlight {
+  overflow: scroll;
+}
+
 pre {
   padding: 0.5em;
 }
