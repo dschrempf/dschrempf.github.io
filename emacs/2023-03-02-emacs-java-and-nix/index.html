@@ -140,11 +140,11 @@ not arduous. The solution, however, is pretty easy.</p>
 <ol>
 <li>
 <p>Use the wrapper script shipped with <code>jdtls</code> instead of a manual <code>java --lots-of-options</code> invocation like so:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>   <span style="color:#000;font-weight:bold">(</span><span style="color:#000">after!</span> <span style="color:#000">lsp-java</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">defun</span> <span style="color:#000">lsp-java--ls-command</span> <span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">(</span><span style="color:#000">list</span> <span style="color:#4e9a06">&#34;jdt-language-server&#34;</span>
-</span></span><span style="display:flex;"><span>             <span style="color:#4e9a06">&#34;-configuration&#34;</span> <span style="color:#4e9a06">&#34;../config-linux&#34;</span>
-</span></span><span style="display:flex;"><span>             <span style="color:#4e9a06">&#34;-data&#34;</span> <span style="color:#4e9a06">&#34;../java-workspace&#34;</span><span style="color:#000;font-weight:bold">)))</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">after!</span> <span style="color:#000">lsp-java</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">defun</span> <span style="color:#000">lsp-java--ls-command</span> <span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">(</span><span style="color:#000">list</span> <span style="color:#4e9a06">&#34;jdt-language-server&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#4e9a06">&#34;-configuration&#34;</span> <span style="color:#4e9a06">&#34;../config-linux&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#4e9a06">&#34;-data&#34;</span> <span style="color:#4e9a06">&#34;../java-workspace&#34;</span><span style="color:#000;font-weight:bold">)))</span>
 </span></span></code></pre></div><ul>
 <li><code>after!</code> is a <a href="https://github.com/doomemacs/doomemacs">Doom Emacs</a> macro that executes code after loading a feature.
 You can use other constructs, if you like.</li>
@@ -159,10 +159,10 @@ Stack Overflow answer</a>.</li>
 <li>
 <p>Set <code>lsp-java-server-install-dir</code> in a hook using the environment variable
 <code>JDTLS_PATH</code> set by the Nix Flake shell:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span>   <span style="color:#000;font-weight:bold">(</span><span style="color:#000">after!</span> <span style="color:#000">cc-mode</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">defun</span> <span style="color:#000">my-set-lsp-path</span> <span style="color:#000;font-weight:bold">()</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">setq</span> <span style="color:#000">lsp-java-server-install-dir</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">getenv</span> <span style="color:#4e9a06">&#34;JDTLS_PATH&#34;</span><span style="color:#000;font-weight:bold">)))</span>
-</span></span><span style="display:flex;"><span>     <span style="color:#000;font-weight:bold">(</span><span style="color:#000">add-hook</span> <span style="color:#4e9a06">&#39;java-mode-hook</span> <span style="color:#000">#&#39;</span><span style="color:#000">my-set-lsp-path</span><span style="color:#000;font-weight:bold">))</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">after!</span> <span style="color:#000">cc-mode</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">defun</span> <span style="color:#000">my-set-lsp-path</span> <span style="color:#000;font-weight:bold">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87">setq</span> <span style="color:#000">lsp-java-server-install-dir</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">getenv</span> <span style="color:#4e9a06">&#34;JDTLS_PATH&#34;</span><span style="color:#000;font-weight:bold">)))</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">(</span><span style="color:#000">add-hook</span> <span style="color:#4e9a06">&#39;java-mode-hook</span> <span style="color:#000">#&#39;</span><span style="color:#000">my-set-lsp-path</span><span style="color:#000;font-weight:bold">))</span>
 </span></span></code></pre></div></li>
 </ol>
 <p>Like so, everything works like a charm, and my experience with <code>lsp-java</code> has
