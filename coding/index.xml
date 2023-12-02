@@ -6,24 +6,31 @@
     <description>Recent content in Codings on Concept → IO ()</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Dec 2022 00:00:00 +0100</lastBuildDate><atom:link href="https://dschrempf.github.io/coding/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Dec 2023 00:00:00 +0100</lastBuildDate>
+    <atom:link href="https://dschrempf.github.io/coding/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Advent of code, 2023</title>
+      <link>https://dschrempf.github.io/coding/2023-12-02-advent-of-code-2023/</link>
+      <pubDate>Sat, 02 Dec 2023 00:00:00 +0100</pubDate>
+      <guid>https://dschrempf.github.io/coding/2023-12-02-advent-of-code-2023/</guid>
+      <description>Alle Jahre wieder &amp;hellip;
+I am not sure how far I get this year, but writing Haskell is just too much fun: Solutions to the advent of code, 2023.
+Cheers!</description>
+    </item>
     <item>
       <title>Advent of Code (2022)</title>
       <link>https://dschrempf.github.io/coding/2022-12-02-advent-of-code-2022/</link>
       <pubDate>Fri, 02 Dec 2022 00:00:00 +0100</pubDate>
-      
       <guid>https://dschrempf.github.io/coding/2022-12-02-advent-of-code-2022/</guid>
       <description>Everybody posts their solutions in Haskell to the Advent of Code (described well on Wikipedia). So I thought I am going to join the crowd.
 Here are mine! I did clean the code after submission, but I did not change anything substantial such as algorithms or data structures.
 (Want some more? And &amp;mdash; well &amp;mdash; more?)
 If you ask me, the solutions of Sheinxy and Scriptim are great! Also, do not miss the ones posted by Monday Morning Haskell, although they do have some boilerplate.</description>
     </item>
-    
     <item>
       <title>Weather prediction application</title>
       <link>https://dschrempf.github.io/coding/2022-12-02-weather-prediction-application/</link>
       <pubDate>Fri, 02 Dec 2022 00:00:00 +0100</pubDate>
-      
       <guid>https://dschrempf.github.io/coding/2022-12-02-weather-prediction-application/</guid>
       <description>&amp;lt;2023-02-27 Mon&amp;gt; Note: I have taken the application offline.
 I created a minimalist weather predicition application &amp;mdash; a short proof of concept and stake.
@@ -31,104 +38,85 @@ The main elements of the Haskell tech stack are:
 Scotty: A web framework. Lucid: A domain specific language for HTML. Mcmc: A Markov chain Monte Carlo sampler. Other noteworthy components of this project:
 The development environment is managed by the Nix package manager. The application is deployed using a Nix Flake.</description>
     </item>
-    
     <item>
       <title>Parameter inference using Markov chain Monte Carlo algorithms and Haskell</title>
       <link>https://dschrempf.github.io/coding/2022-06-28-sample-from-a-posterior-using-markov-chain-monte-carlo-algorithms-and-haskell/</link>
       <pubDate>Tue, 28 Jun 2022 00:00:00 +0200</pubDate>
-      
       <guid>https://dschrempf.github.io/coding/2022-06-28-sample-from-a-posterior-using-markov-chain-monte-carlo-algorithms-and-haskell/</guid>
       <description>We analyze the number of worldwide airline fatal accidents:
 Year 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 Fatalities 24 25 31 31 22 21 26 20 16 22 This table is an excerpt of Table 2.2 in Gelman, Andrew and Carlin, John B and Stern, Hal S and Rubin, Donald B (2014).
 We assume that the number of fatal accidents \(X\) is Poisson distributed with fatal accident rate \(\lambda\)</description>
     </item>
-    
     <item>
       <title>Encyclopedia of Markov chain Monte Carlo methods</title>
       <link>https://dschrempf.github.io/coding/2020-11-12-encyclopedia-of-markov-chain-monte-carlo-methods/</link>
       <pubDate>Fri, 18 Dec 2020 00:00:00 +0100</pubDate>
-      
       <guid>https://dschrempf.github.io/coding/2020-11-12-encyclopedia-of-markov-chain-monte-carlo-methods/</guid>
       <description>I started this encyclopedic overview because in the Markov chain Monte Carlo (MCMC) community many people call the same or similar concepts by very different names. Please let me know, if you have suggestions or comments, or if you would like to add some definitions or synonyms to this overview.
 Bibliography Books The nomenclature here is taken from the excellent introduction to Markov chain Monte Carlo (MCMC) methods by Geyer, Charles J (2011), Chapter 1 in Brooks, Steve and Gelman, Andrew and Jones, Galin and Meng, Xiao-Li (2011).</description>
     </item>
-    
     <item>
       <title>Algebraic graphs</title>
       <link>https://dschrempf.github.io/coding/2019-11-21-algebraic-graphs/</link>
       <pubDate>Thu, 21 Nov 2019 00:00:00 +0100</pubDate>
-      
       <guid>https://dschrempf.github.io/coding/2019-11-21-algebraic-graphs/</guid>
       <description>The Algebraic Graphs Haskell library (Alga) is a fast, minimalist, and elegant approach to working with graphs that allows for equational reasoning about the correctness of algorithms. For reference, please also see the accompanying paper.
 The advantages are:
 algebraic graphs have a small core with just four graph construction primitives; the core has a mathematical structure characterized by a set of laws or properties. A directed graph in the mathematical sense is a set \(V\) of vertices \(v_i\) together with a set \(E\) of directed edges \((v_i, v_j)\), and is denoted \((V,E)\).</description>
     </item>
-    
     <item>
       <title>Markov chains in Haskell</title>
       <link>https://dschrempf.github.io/coding/2018-02-10-markov-chains-in-haskell/</link>
       <pubDate>Sat, 10 Feb 2018 00:00:00 +0100</pubDate>
-      
       <guid>https://dschrempf.github.io/coding/2018-02-10-markov-chains-in-haskell/</guid>
       <description>I have been working on Markov chains for quite a while now and wanted to assess how Haskell can deal with simulating a simple, discrete chain.
 Many sources can be found online. The code presented here is partly taken from a question on stackoverflow. However, I was unsatisfied with the nomenclature and parts of the code. So I refactored most of it. Also, there is a Haskell library markov-chain, which I am unsatisfied with because of code readability (it&amp;rsquo;s pretty abstruse).</description>
     </item>
-    
     <item>
       <title>Happy folding around monads in Haskell</title>
       <link>https://dschrempf.github.io/coding/2017-07-20-folding-around-monads-in-haskell/</link>
       <pubDate>Thu, 20 Jul 2017 00:00:00 +0200</pubDate>
-      
       <guid>https://dschrempf.github.io/coding/2017-07-20-folding-around-monads-in-haskell/</guid>
       <description>Folds are complicated themselves, but monadic folds always have blown my mind. In what follows, I try to dissect foldlM for a specific example.
 Monadic folds can be used to perform a series of actions that depend on the previous output. The following function produces an action b from a value a also taking into account the output of the previous action b.
 f :: (b -&amp;gt; a -&amp;gt; m b) And here the definition of foldlM (which is the same as foldM).</description>
     </item>
-    
     <item>
       <title>A simulator for continuous-time Markov chains</title>
       <link>https://dschrempf.github.io/coding/2016-04-09-continuous-time-markov-chain/</link>
       <pubDate>Sat, 09 Apr 2016 00:00:00 +0200</pubDate>
-      
       <guid>https://dschrempf.github.io/coding/2016-04-09-continuous-time-markov-chain/</guid>
       <description>[2016-04-09 Sat] I extended my set of C++ programs to include a simulator for generic continuous-time Markov chains. I.e., any transition rate matrix can be used.
 If you are interested, just get the GitHub repository and compile the whole set of programs with make all. Documentation can be found in the doc/ folder (check the CTMC class).
 There is a sample program src/moran_model_boundary_mutation, that runs the Moran model with boundary mutation (De Maio, N.</description>
     </item>
-    
     <item>
       <title>Population genetics C&#43;&#43; programs</title>
       <link>https://dschrempf.github.io/coding/2015-03-26-popgen-cpp-programs/</link>
       <pubDate>Thu, 26 Mar 2015 00:00:00 +0100</pubDate>
-      
       <guid>https://dschrempf.github.io/coding/2015-03-26-popgen-cpp-programs/</guid>
       <description>I maintain a Github repository that contains a bunch of very basic C++ programs that use Markov chains and other types of simulations to infer basic statistical parameters. The applications mainly focus on Population Genetics problems, although this is not always the case. At the moment, the list of programs is:
 bookshelf.cpp Bookshelf Markov chain brownian_motion_mcmc.cpp Simulate standard Brownian motion (Wiener process) coin_toss_mcmc.cpp Run a coin toss MCMC simulation cube_mcmc.cpp Simulation of a Markov chain that moves around the eight vertices of a cube ehrenfest_mcmc.</description>
     </item>
-    
     <item>
       <title>A simple MCMC simulation</title>
       <link>https://dschrempf.github.io/coding/2015-01-15-mcmc-coin-toss/</link>
       <pubDate>Thu, 15 Jan 2015 00:00:00 +0100</pubDate>
-      
       <guid>https://dschrempf.github.io/coding/2015-01-15-mcmc-coin-toss/</guid>
       <description>Suppose we observe 58 heads out of 100 coin tosses. Now, we want to know the probability of tossing a head \(\theta\). A maximum likelihood guess would be \(\theta = 0.58\) because then, the probability of observing 58 heads
 \begin{align} P(58 \mathrm{ heads}) = {100 \choose 58} (0.58)^{58} (0.42)^{42} \end{align}
 is greatest (an example of the binomial distribution).
 However, we could also use a Bayesian approach to calculate the posterior distribution of the probability \(\theta\) (i.</description>
     </item>
-    
     <item>
       <title>Easy pretty print in Haskell</title>
       <link>https://dschrempf.github.io/coding/2014-12-23-haskell-pretty-print/</link>
       <pubDate>Tue, 23 Dec 2014 00:00:00 +0100</pubDate>
-      
       <guid>https://dschrempf.github.io/coding/2014-12-23-haskell-pretty-print/</guid>
       <description>I repeatedly struggle with GHCi when I want to print lists and maps and actually look at them and analyze them. Today I came accross pretty-show, a haskell package that allows pretty printing of all objects that are instances of the type class Show.
 The usage is very straight forward:
 import qualified Text.Show.Pretty as Pr This provides Pr.ppShow which can be used in GHCi (or other interpreters):
 putStrLn $ Pr.ppShow object </description>
     </item>
-    
   </channel>
 </rss>
