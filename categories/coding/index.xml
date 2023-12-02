@@ -9,6 +9,15 @@
     <lastBuildDate>Sat, 02 Dec 2023 00:00:00 +0100</lastBuildDate>
     <atom:link href="https://dschrempf.github.io/categories/coding/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Advent of code (2023)</title>
+      <link>https://dschrempf.github.io/coding/2023-12-02-advent-of-code-2023/</link>
+      <pubDate>Sat, 02 Dec 2023 00:00:00 +0100</pubDate>
+      <guid>https://dschrempf.github.io/coding/2023-12-02-advent-of-code-2023/</guid>
+      <description>Alle Jahre wieder &amp;hellip;
+I am not sure how far I get this year, but writing Haskell is just too much fun. Have a look at my solutions to the Advent of code, 2023.
+Cheers!</description>
+    </item>
+    <item>
       <title>Advent of code, 2023</title>
       <link>https://dschrempf.github.io/coding/2023-12-02-advent-of-code-2023/</link>
       <pubDate>Sat, 02 Dec 2023 00:00:00 +0100</pubDate>
