@@ -16,7 +16,7 @@
       <description>Alle Jahre wieder &amp;hellip;&#xA;I am not sure how far I get this year, but writing Haskell is just too much fun. Have a look at my solutions to the Advent of code, 2023.&#xA;Cheers!&#xA;PS: I even added automatic fetching of the full input as well as the samples (see Fetch.hs). For example,&#xA;cabal run fetch 1 # Fetch full input of day one. cabal run fetch 1 1 # Fetch sample one of day one.</description>
     </item>
     <item>
-      <title>Advent of Code (2022)</title>
+      <title>Advent of code (2022)</title>
       <link>https://dschrempf.github.io/coding/2022-12-02-advent-of-code-2022/</link>
       <pubDate>Fri, 02 Dec 2022 00:00:00 +0100</pubDate>
       <guid>https://dschrempf.github.io/coding/2022-12-02-advent-of-code-2022/</guid>
