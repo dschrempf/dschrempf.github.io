@@ -1,0 +1,253 @@
+
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        
+        <title>Monitoring a home server — Minimal setup with Nix and Monit &middot; Dominik Schrempf</title>
+        <meta name="description" content="Minimal setup with Nix and Monit">
+        <meta name="keywords" content="Nix,Monit,Monitoring,SMART">
+
+        
+        <link rel="stylesheet" href="https://dschrempf.github.io/css/skeria.css">
+
+        
+        
+
+        
+        
+        
+        <link rel="stylesheet" href="https://dschrempf.github.io/css/font.awesome.6.1.2.all.min.css" />
+    </head>
+
+    <body>
+        <div class="topbar">
+    <div class="topbar-sticky">
+        <a href="https://dschrempf.github.io/"
+   style="text-decoration: none">
+    <h1>Concept → IO ()</h1>
+</a>
+
+        
+        <span class="topbar-nav">
+    <p>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/linux/">Linux</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/emacs/">Emacs</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/coding/">Coding</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/music/">Music</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/links/">Links</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/about/">About</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/search/">Search</a>
+        </span>
+        
+    </p>
+</span>
+
+    </div>
+</div>
+
+
+        
+        
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">Monitoring a home server — Minimal setup with Nix and Monit</h1>
+    <span class="post-date">
+        Feb 14, 2024
+        &nbsp;&middot;&nbsp; 3 minute read
+        
+        &nbsp;&middot;&nbsp;
+        
+        <a class="label" href="https://dschrempf.github.io/linux">Linux</a>
+        
+        
+    </span>
+    <p>For a long time I have been thinking about possible monitoring solutions for my
+home server. To me, it was important that the solution</p>
+<ul>
+<li>has to be minimal and efficient;</li>
+<li>can be configured in a declarative way.</li>
+</ul>
+<p>Also on my wishlist but not a necessity was a dashboard.</p>
+<p>While thinking about this, I was coming back to an interesting <a href="https://discourse.nixos.org/t/recommended-monitoring-tools-for-nixos-servers/14848/1">NixOS Discourse
+thread</a> again and again. In particular, @ryantm was praising the <em>minimalism of
+<a href="https://mmonit.com/">Monit</a></em>. The home page of M/Monit is promising but, meh, the tool is behind a
+paywall.</p>
+<p>As it turns out, the tool <code>monit</code>, which is the main driver behind <code>M/Monit</code>, is</p>
+<ul>
+<li>open source (see the <a href="https://bitbucket.org/tildeslash/monit/src"><code>monit</code> Git repository</a>), and</li>
+<li>has basic support in NixOS via <a href="https://search.nixos.org/options?show=services.monit">services.monit</a>.</li>
+</ul>
+<p>However, configuration is manual, so I had to write a small NixOS module which I
+am sharing here (see below). Further, documentation and other resources are
+scattered around a bit, so here you go:</p>
+<ul>
+<li>the <a href="https://mmonit.com/monit/documentation/monit.html">Monit manual</a>;</li>
+<li>some <a href="https://mmonit.com/wiki/Monit/ConfigurationExamples">real world configuration examples</a>;</li>
+<li>the <a href="https://wiki.archlinux.org/title/Monit">Arch Wiki entry on Monit</a>.</li>
+</ul>
+<!--listend-->
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">{</span> <span style="color:#000">filesystems</span> <span style="color:#8f5902;font-style:italic"># List of monitored file system paths.</span>
+</span></span><span style="display:flex;"><span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">drives</span>      <span style="color:#8f5902;font-style:italic"># List of monitored drives.</span>
+</span></span><span style="display:flex;"><span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">allowIps</span>    <span style="color:#8f5902;font-style:italic"># Allow access from these IP addresses.</span>
+</span></span><span style="display:flex;"><span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">openPort</span>    <span style="color:#8f5902;font-style:italic"># Open Monit TCP port in firewall?</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">{</span> <span style="color:#000">lib</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#000">pkgs</span><span style="color:#ce5c00;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#000;font-weight:bold">}:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">let</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">port</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">2812</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">hdTemp</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">pkgs</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">writeShellScript</span> <span style="color:#4e9a06">&#34;hd-temp&#34;</span> <span style="color:#4e9a06">&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    SMARTCTL_OUTPUT=$(</span><span style="color:#4e9a06">${</span><span style="color:#000">pkgs</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">smartmontools</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">/bin/smartctl --json=c --nocheck=standby -A &#34;/dev/$1&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    if [[ &#34;$?&#34; = &#34;2&#34; ]]; then
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        echo &#34;STANDBY&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        exit 0
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    fi
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    TEMPERATURE=$(</span><span style="color:#4e9a06">${</span><span style="color:#000">pkgs</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">jq</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">/bin/jq &#39;.temperature.current&#39; &lt;&lt;&lt; &#34;$SMARTCTL_OUTPUT&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    echo &#34;$TEMPERATURE&#34;°C
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    exit &#34;$TEMPERATURE&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">  &#39;&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">hdStatus</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">pkgs</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">writeShellScript</span> <span style="color:#4e9a06">&#34;hd-status&#34;</span> <span style="color:#4e9a06">&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    SMARTCTL_OUTPUT=$(</span><span style="color:#4e9a06">${</span><span style="color:#000">pkgs</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">smartmontools</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">/bin/smartctl --json=c --nocheck=standby -H &#34;/dev/$1&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    if [[ &#34;$?&#34; = &#34;2&#34; ]]; then
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        echo &#34;STANDBY&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        exit 0
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    fi
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    PASSED=$(</span><span style="color:#4e9a06">${</span><span style="color:#000">pkgs</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">jq</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">/bin/jq &#39;.smart_status.passed&#39; &lt;&lt;&lt; &#34;$SMARTCTL_OUTPUT&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    if [ &#34;$PASSED&#34; = &#34;true&#34; ]
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    then
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        echo &#34;PASSED&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        exit 0
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    else
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        echo &#34;FAULTY&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        exit 1
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    fi
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">  &#39;&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">monitorGeneral</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    set daemon 60
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    set httpd port </span><span style="color:#4e9a06">${</span><span style="color:#204a87">builtins</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#204a87">toString</span> <span style="color:#000">port</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        allow localhost </span><span style="color:#4e9a06">${</span><span style="color:#000">lib</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">strings</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">concatMapStringsSep</span> <span style="color:#4e9a06">&#34; &#34;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">ip</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#34;allow &#34;</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">ip</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">allowIps</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#39;&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">monitorSystem</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    check system $HOST
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        if loadavg (15min) &gt; 4 for 5 times within 15 cycles then alert
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        if memory usage &gt; 80% for 4 cycles then alert
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        if swap usage &gt; 20% for 4 cycles then alert&#39;&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">monitorFilesystem</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fs</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    check filesystem &#34;path </span><span style="color:#4e9a06">${</span><span style="color:#000">fs</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34; with path </span><span style="color:#4e9a06">${</span><span style="color:#000">fs</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">        if space usage &gt; 90% then alert&#39;&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">monitorFilesystems</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">lib</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">strings</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">concatMapStringsSep</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">\n</span><span style="color:#4e9a06">&#34;</span> <span style="color:#000">monitorFilesystem</span> <span style="color:#000">filesystems</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">monitorDriveTemperature</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">drive</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    check program &#34;drive temperature: </span><span style="color:#4e9a06">${</span><span style="color:#000">drive</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34; with path &#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">hdTemp</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> </span><span style="color:#4e9a06">${</span><span style="color:#000">drive</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">       every 5 cycles
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">       if status &gt; 40 then alert
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">       group health&#39;&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">monitorDriveTemperatures</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">lib</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">strings</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">concatMapStringsSep</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">\n</span><span style="color:#4e9a06">&#34;</span> <span style="color:#000">monitorDriveTemperature</span> <span style="color:#000">drives</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">monitorDriveStatus</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">drive</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">    check program &#34;drive status: </span><span style="color:#4e9a06">${</span><span style="color:#000">drive</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34; with path &#34;</span><span style="color:#4e9a06">${</span><span style="color:#000">hdStatus</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06"> </span><span style="color:#4e9a06">${</span><span style="color:#000">drive</span><span style="color:#4e9a06">}</span><span style="color:#4e9a06">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">       every 120 cycles
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">       if status &gt; 0 then alert
+</span></span></span><span style="display:flex;"><span><span style="color:#4e9a06">       group health&#39;&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">monitorDriveStatuses</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">lib</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">strings</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">concatMapStringsSep</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">\n</span><span style="color:#4e9a06">&#34;</span> <span style="color:#000">monitorDriveStatus</span> <span style="color:#000">drives</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">in</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">monit</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">enable</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">monit</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">config</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">lib</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">strings</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">concatStringsSep</span> <span style="color:#4e9a06">&#34;</span><span style="color:#4e9a06">\n</span><span style="color:#4e9a06">&#34;</span> <span style="color:#000;font-weight:bold">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">monitorGeneral</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">monitorSystem</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">monitorFilesystems</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">monitorDriveTemperatures</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">monitorDriveStatuses</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">];</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">networking</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">firewall</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">allowedTCPPorts</span> <span style="color:#ce5c00;font-weight:bold">=</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000">openPort</span> <span style="color:#204a87;font-weight:bold">then</span> <span style="color:#000;font-weight:bold">[</span> <span style="color:#000">port</span> <span style="color:#000;font-weight:bold">]</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">[</span> <span style="color:#000;font-weight:bold">];</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>Please note the <code>--nocheck=standby</code> options for <code>smartctl</code>; they inhibit hard
+drive spin ups. Pretty neat!</p>
+<p>The module can be used in your NixOS configuration like so:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">imports</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#4e9a06">./path/to/monit.nix</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#000">filesystems</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span> <span style="color:#4e9a06">&#34;/&#34;</span> <span style="color:#4e9a06">&#34;/nix&#34;</span> <span style="color:#4e9a06">&#34;/mnt/data&#34;</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#000;font-weight:bold">];</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#000">drives</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span> <span style="color:#4e9a06">&#34;sda&#34;</span> <span style="color:#4e9a06">&#34;sdb&#34;</span> <span style="color:#4e9a06">&#34;sdc&#34;</span> <span style="color:#4e9a06">&#34;sdd&#34;</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#000;font-weight:bold">];</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#000">allowIps</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span> <span style="color:#4e9a06">&#34;192.168.0.20&#34;</span> <span style="color:#4e9a06">&#34;10.0.0.2&#34;</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#000;font-weight:bold">];</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#000">openPort</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">})</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">];</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div>
+  </div>
+</div>
+
+
+        
+        
+        <script src="https://dschrempf.github.io/js/mathjax.3.2.2.tex-svg.min.js"></script>
+
+        
+        <div class="bottombar">
+    <div class="bottombar-sticky">
+        <div class="icons">
+            <span class="icons-item"> <a href="https://github.com/dschrempf" target="_blank"><i class="fab fa-github"></i></a>                                   </span> 
+    
+     <span class="icons-item"> <a href="https://www.stackoverflow.com/users/3536806" target="_blank"><i class="fab fa-stack-overflow fa-1x"></i></a>                     </span> 
+    
+    
+    
+          <span class="icons-item"> <a href="https://fosstodon.org/@dschrempf" target="_blank"><i class="fab fa-mastodon fa-1x"></i></a>                           </span> 
+    
+             <span class="icons-item"> <a href="https://orcid.org/0000-0001-8865-9237" target="_blank"><i class="fab fa-orcid fa-1x"></i></a>                              </span> 
+     <span class="icons-item"> <a href="https://scholar.google.com/citations?user=3pvnGAcAAAAJ" target="_blank"><i class="fab fa-google fa-1x"></i></a>                             </span> 
+             <span class="icons-item"> <a href="mailto:dominik.schrempf@gmail.com"><i class="fas fa-envelope fa-1x"></i></a>                                           </span> 
+            <span class="icons-item"> <a href="/gpg_public_key.txt"><i class="fas fa-key fa-1x"></i></a>                                                </span> 
+    
+</div>
+
+
+
+        <div class= "footer">
+    <p>
+        &copy; 2024 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+         <a href="/privacy/" class="" title="Privacy notice">Privacy notice</a> 
+    </p>
+</div>
+
+    </div>
+</div>
+
+
+        
+        
+        
+    </body>
+
+</html>

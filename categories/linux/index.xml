@@ -6,8 +6,15 @@
     <description>Recent content in Linux on Concept → IO ()</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 14 May 2023 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 14 Feb 2024 00:00:00 +0100</lastBuildDate>
     <atom:link href="https://dschrempf.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Monitoring a home server — Minimal setup with Nix and Monit</title>
+      <link>https://dschrempf.github.io/linux/2024-02-14-monitoring-a-home-server/</link>
+      <pubDate>Wed, 14 Feb 2024 00:00:00 +0100</pubDate>
+      <guid>https://dschrempf.github.io/linux/2024-02-14-monitoring-a-home-server/</guid>
+      <description>For a long time I have been thinking about possible monitoring solutions for my home server. To me, it was important that the solution&#xA;has to be minimal and efficient; can be configured in a declarative way. Also on my wishlist but not a necessity was a dashboard.&#xA;While thinking about this, I was coming back to an interesting NixOS Discourse thread again and again. In particular, @ryantm was praising the minimalism of Monit.</description>
+    </item>
     <item>
       <title>Fixing a Tolino Shine 3 ebook reader</title>
       <link>https://dschrempf.github.io/linux/2023-05-14-fixing-a-tolino-shine-3-ebook-reader/</link>

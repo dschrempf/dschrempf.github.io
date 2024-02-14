@@ -115,11 +115,11 @@ code {
 }
 
 .highlight {
-  overflow: scroll;
 }
 
 pre {
   padding: 0.5em;
+  overflow: auto;
 }
 
 .label {
@@ -310,15 +310,15 @@ input[type=text]:focus {
   flex-basis: auto;
 }
 
-@media (max-width: 48em) {
+@media (max-width: 54em) {
   .content {
     width: 100%;
   }
 }
 
-@media (min-width: 48em) {
+@media (min-width: 54em) {
   .content {
-    width: 48em;
+    width: 54em;
   }
 }
 

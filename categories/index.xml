@@ -6,20 +6,20 @@
     <description>Recent content in Categories on Concept → IO ()</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Dec 2023 00:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 14 Feb 2024 00:00:00 +0100</lastBuildDate>
     <atom:link href="https://dschrempf.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>https://dschrempf.github.io/categories/linux/</link>
+      <pubDate>Wed, 14 Feb 2024 00:00:00 +0100</pubDate>
+      <guid>https://dschrempf.github.io/categories/linux/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Coding</title>
       <link>https://dschrempf.github.io/categories/coding/</link>
       <pubDate>Sat, 02 Dec 2023 00:00:00 +0100</pubDate>
       <guid>https://dschrempf.github.io/categories/coding/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Linux</title>
-      <link>https://dschrempf.github.io/categories/linux/</link>
-      <pubDate>Sun, 14 May 2023 00:00:00 +0200</pubDate>
-      <guid>https://dschrempf.github.io/categories/linux/</guid>
       <description></description>
     </item>
     <item>
