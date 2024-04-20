@@ -1,0 +1,207 @@
+
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        
+        <title>Pipewire network setup &middot; Dominik Schrempf</title>
+        <meta name="description" content="Share audio devices managed by Pipewire on a network">
+        <meta name="keywords" content="Pipewire,Audio,Network,Sink,Source,Server,Client,Source,Playback,Linux,NixOS">
+
+        
+        <link rel="stylesheet" href="https://dschrempf.github.io/css/skeria.css">
+
+        
+        
+
+        
+        
+        
+        <link rel="stylesheet" href="https://dschrempf.github.io/css/font.awesome.6.1.2.all.min.css" />
+    </head>
+
+    <body>
+        <div class="topbar">
+    <div class="topbar-sticky">
+        <a href="https://dschrempf.github.io/"
+   style="text-decoration: none">
+    <h1>Concept → IO ()</h1>
+</a>
+
+        
+        <span class="topbar-nav">
+    <p>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/linux/">Linux</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/emacs/">Emacs</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/coding/">Coding</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/music/">Music</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/links/">Links</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/about/">About</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="https://dschrempf.github.io/search/">Search</a>
+        </span>
+        
+    </p>
+</span>
+
+    </div>
+</div>
+
+
+        
+        
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">Pipewire network setup</h1>
+    <span class="post-date">
+        Apr 20, 2024
+        &nbsp;&middot;&nbsp; 2 minute read
+        
+        &nbsp;&middot;&nbsp;
+        
+        <a class="label" href="https://dschrempf.github.io/linux">Linux</a>
+        
+        
+    </span>
+    <p>My goal was to <strong>play audio over the network</strong>.</p>
+<p>In detail, a computer with a sound card and speakers serves the audio device on
+the network (referred to as <em>server</em>). Other computers (referred to as
+<em>clients</em>) play audio which they send to the server to be played on the speakers
+managed by the servers. Ideally, this happens in real time without delay.</p>
+<h2 id="nixos-setup">NixOS setup</h2>
+<p>I had such a service set up using Pulseaudio a while ago, but it being
+Pulseaudio I was eager to switch to <a href="https://pipewire.org/">Pipewire</a> as soon as possible (Pipewire seems
+to be the cool kid on the block). There are numerous sources available talking
+about how easy a network setup was, however, I had trouble setting it up on
+NixOS. So I thought sharing my configuration may be useful to others.</p>
+<h3 id="server-nixos-module">Server NixOS module</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span><span style="color:#000">_</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pipewire</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">enable</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pipewire</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">alsa</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">enable</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pipewire</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pulse</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">enable</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8f5902;font-style:italic"># Publish audio sink on the local network.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pipewire</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">extraConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pipewire-pulse</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#4e9a06">&#34;30-network-publish&#34;</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#4e9a06">&#34;pulse.cmd&#34;</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#000;font-weight:bold">{</span> <span style="color:#000">cmd</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;load-module&#34;</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">args</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;module-native-protocol-tcp&#34;</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#000;font-weight:bold">{</span> <span style="color:#000">cmd</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;load-module&#34;</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">args</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;module-zeroconf-publish&#34;</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">];</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">};</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8f5902;font-style:italic"># Important: Open TCP port used by the Pulseaudio network sink.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">networking</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">firewall</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">allowedTCPPorts</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0000cf;font-weight:bold">4713</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">];</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><h3 id="client-nixos-module">Client NixOS module</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span><span style="color:#000">_</span><span style="color:#000;font-weight:bold">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pipewire</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">enable</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pipewire</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">alsa</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">enable</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pipewire</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pulse</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">enable</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pipewire</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">extraConfig</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">pipewire-pulse</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#4e9a06">&#34;30-network-discover&#34;</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#4e9a06">&#34;pulse.cmd&#34;</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#000;font-weight:bold">{</span> <span style="color:#000">cmd</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;load-module&#34;</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">args</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;module-zeroconf-discover&#34;</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">];</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">};</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><h3 id="avahi">Avahi</h3>
+<p>Further, <a href="https://avahi.org/">Avahi</a> needs to be enabled and corresponding ports need to be opened in
+the firewall. I am not exactly sure how much of the following setup is required,
+but here you go:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-nix" data-lang="nix"><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># I do not know how much of this is necessary, but that&#39;s what I have in my configuration.</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">avahi</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">enable</span> <span style="color:#a40000">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">avahi</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">openFirewall</span> <span style="color:#a40000">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">avahi</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">publish</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">enable</span> <span style="color:#a40000">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">avahi</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">publish</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">addresses</span> <span style="color:#a40000">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">avahi</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">publish</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">domain</span> <span style="color:#a40000">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">avahi</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">publish</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">userServices</span> <span style="color:#a40000">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">services</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">avahi</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">publish</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">workstation</span> <span style="color:#a40000">=</span> <span style="color:#000">true</span><span style="color:#000;font-weight:bold">;</span>
+</span></span></code></pre></div><h2 id="sources-and-links">Sources and links</h2>
+<p>Sources I used to come up with this configuration:</p>
+<ul>
+<li><a href="https://wiki.archlinux.org/title/PipeWire">Arch Linux Wiki article about Pipewire</a></li>
+<li><a href="https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Network">Pipewire Wiki article about Network setup</a></li>
+<li><a href="https://gitlab.freedesktop.org/pipewire/pipewire/-/wikis/Guide-PulseAudio-Tricks#setup-tcp-network-streaming-between-machines">Pipewire Wiki article about Pulseaudio network setup</a></li>
+<li><a href="https://search.nixos.org/options?channel=unstable&amp;from=0&amp;size=50&amp;sort=relevance&amp;type=packages&amp;query=services.pipewire">Help about Pipewire services provided by NixOS options</a></li>
+</ul>
+
+  </div>
+</div>
+
+
+        
+        
+        <script src="https://dschrempf.github.io/js/mathjax.3.2.2.tex-svg.min.js"></script>
+
+        
+        <div class="bottombar">
+    <div class="bottombar-sticky">
+        <div class="icons">
+            <span class="icons-item"> <a href="https://github.com/dschrempf" target="_blank"><i class="fab fa-github"></i></a>                                   </span> 
+    
+     <span class="icons-item"> <a href="https://www.stackoverflow.com/users/3536806" target="_blank"><i class="fab fa-stack-overflow fa-1x"></i></a>                     </span> 
+    
+    
+    
+          <span class="icons-item"> <a href="https://fosstodon.org/@dschrempf" target="_blank"><i class="fab fa-mastodon fa-1x"></i></a>                           </span> 
+    
+             <span class="icons-item"> <a href="https://orcid.org/0000-0001-8865-9237" target="_blank"><i class="fab fa-orcid fa-1x"></i></a>                              </span> 
+     <span class="icons-item"> <a href="https://scholar.google.com/citations?user=3pvnGAcAAAAJ" target="_blank"><i class="fab fa-google fa-1x"></i></a>                             </span> 
+             <span class="icons-item"> <a href="mailto:dominik.schrempf@gmail.com"><i class="fas fa-envelope fa-1x"></i></a>                                           </span> 
+            <span class="icons-item"> <a href="/gpg_public_key.txt"><i class="fas fa-key fa-1x"></i></a>                                                </span> 
+    
+</div>
+
+
+
+        <div class= "footer">
+    <p>
+        &copy; 2024 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+         <a href="/privacy/" class="" title="Privacy notice">Privacy notice</a> 
+    </p>
+</div>
+
+    </div>
+</div>
+
+
+        
+        
+        
+    </body>
+
+</html>

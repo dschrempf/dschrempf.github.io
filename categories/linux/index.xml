@@ -4,10 +4,17 @@
     <title>Linux on Concept → IO ()</title>
     <link>https://dschrempf.github.io/categories/linux/</link>
     <description>Recent content in Linux on Concept → IO ()</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo 0.125.0</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Feb 2024 00:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Sat, 20 Apr 2024 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://dschrempf.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pipewire network setup</title>
+      <link>https://dschrempf.github.io/linux/2024-04-20-pipewire-network-setup/</link>
+      <pubDate>Sat, 20 Apr 2024 00:00:00 +0200</pubDate>
+      <guid>https://dschrempf.github.io/linux/2024-04-20-pipewire-network-setup/</guid>
+      <description>My goal was to play audio over the network.&#xA;In detail, a computer with a sound card and speakers serves the audio device on the network (referred to as server). Other computers (referred to as clients) play audio which they send to the server to be played on the speakers managed by the servers. Ideally, this happens in real time without delay.&#xA;NixOS setup I had such a service set up using Pulseaudio a while ago, but it being Pulseaudio I was eager to switch to Pipewire as soon as possible (Pipewire seems to be the cool kid on the block).</description>
+    </item>
     <item>
       <title>Monitoring a home server — Minimal setup with Nix and Monit</title>
       <link>https://dschrempf.github.io/linux/2024-02-14-monitoring-a-home-server/</link>
