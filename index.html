@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
 
     <head>
-	<meta name="generator" content="Hugo 0.125.0">
+	<meta name="generator" content="Hugo 0.143.0">
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
         
@@ -98,9 +98,17 @@
                 
                 
             </span>
-            My goal was to play audio over the network.
-In detail, a computer with a sound card and speakers serves the audio device on the network (referred to as server). Other computers (referred to as clients) play audio which they send to the server to be played on the speakers managed by the servers. Ideally, this happens in real time without delay.
-NixOS setup I had such a service set up using Pulseaudio a while ago, but it being Pulseaudio I was eager to switch to Pipewire as soon as possible (Pipewire seems to be the cool kid on the block).
+            <p>My goal was to <strong>play audio over the network</strong>.</p>
+<p>In detail, a computer with a sound card and speakers serves the audio device on
+the network (referred to as <em>server</em>). Other computers (referred to as
+<em>clients</em>) play audio which they send to the server to be played on the speakers
+managed by the servers. Ideally, this happens in real time without delay.</p>
+<h2 id="nixos-setup">NixOS setup</h2>
+<p>I had such a service set up using Pulseaudio a while ago, but it being
+Pulseaudio I was eager to switch to <a href="https://pipewire.org/">Pipewire</a> as soon as possible (Pipewire seems
+to be the cool kid on the block). There are numerous sources available talking
+about how easy a network setup was, however, I had trouble setting it up on
+NixOS. So I thought sharing my configuration may be useful to others.</p>
             <a href="https://dschrempf.github.io/linux/2024-04-20-pipewire-network-setup/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -118,9 +126,17 @@ NixOS setup I had such a service set up using Pulseaudio a while ago, but it bei
                 
                 
             </span>
-            For a long time I have been thinking about possible monitoring solutions for my home server. To me, it was important that the solution
-has to be minimal and efficient; can be configured in a declarative way. Also on my wishlist but not a necessity was a dashboard.
-While thinking about this, I was coming back to an interesting NixOS Discourse thread again and again. In particular, @ryantm was praising the minimalism of Monit.
+            <p>For a long time I have been thinking about possible monitoring solutions for my
+home server. To me, it was important that the solution</p>
+<ul>
+<li>has to be minimal and efficient;</li>
+<li>can be configured in a declarative way.</li>
+</ul>
+<p>Also on my wishlist but not a necessity was a dashboard.</p>
+<p>While thinking about this, I was coming back to an interesting <a href="https://discourse.nixos.org/t/recommended-monitoring-tools-for-nixos-servers/14848/1">NixOS Discourse
+thread</a> again and again. In particular, @ryantm was praising the <em>minimalism of
+<a href="https://mmonit.com/">Monit</a></em>. The home page of M/Monit is promising but, meh, the tool is behind a
+paywall.</p>
             <a href="https://dschrempf.github.io/linux/2024-02-14-monitoring-a-home-server/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -138,11 +154,15 @@ While thinking about this, I was coming back to an interesting NixOS Discourse t
                 
                 
             </span>
-            Alle Jahre wieder &hellip;
-I am not sure how far I get this year, but writing Haskell is just too much fun. Have a look at my solutions to the Advent of code, 2023.
-Cheers!
-PS: I even added automatic fetching of the full input as well as the samples (see Fetch.hs). For example,
-cabal run fetch 1 # Fetch full input of day one. cabal run fetch 1 1 # Fetch sample one of day one.
+            <p><em>Alle Jahre wieder &hellip;</em></p>
+<p>I am not sure how far I get this year, but writing Haskell is just too much fun.
+Have a look at <a href="https://github.com/dschrempf/aoc23">my solutions to the Advent of code, 2023</a>.</p>
+<p>Cheers!</p>
+<p>PS: I even added automatic fetching of the full input as well as the samples
+(see <a href="https://github.com/dschrempf/aoc23/blob/main/app/Fetch.hs">Fetch.hs</a>). For example,</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cabal run fetch <span style="color:#0000cf;font-weight:bold">1</span>    <span style="color:#8f5902;font-style:italic"># Fetch full input of day one.</span>
+</span></span><span style="display:flex;"><span>cabal run fetch <span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#0000cf;font-weight:bold">1</span>  <span style="color:#8f5902;font-style:italic"># Fetch sample one of day one.</span>
+</span></span></code></pre></div>
             <a href="https://dschrempf.github.io/coding/2023-12-02-advent-of-code-2023/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -160,8 +180,14 @@ cabal run fetch 1 # Fetch full input of day one. cabal run fetch 1 1 # Fetch sam
                 
                 
             </span>
-            An update of my Tolino Shine 3 reader failed. The system recovery did not work aborting with the following error:
-Batterie fast leer! Ein-/Ausschalter druecken, Geraet mind. 2 h aufladen und neu starten. Low battery! Press the power button, charge the device for a minimum of 2 hours and restart. Weird. Charging did not help either. In fact, I am not not the only one experiencing this problem. Be sure to read the linked blog post, it contains important information.
+            <p>An update of my Tolino Shine 3 reader failed. The system recovery did not work
+aborting with the following error:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Batterie fast leer! Ein-/Ausschalter druecken, Geraet mind. 2 h aufladen und neu starten.
+</span></span><span style="display:flex;"><span>Low battery! Press the power button, charge the device for a minimum of 2 hours and restart.
+</span></span></code></pre></div><p>Weird. Charging did not help either. In fact, I am not <a href="https://test.freifunk-gera-greiz.de/namespace/reparatur-tolino-shine-3">not the only one</a>
+experiencing this problem. Be sure to read the linked blog post, it contains
+important information. In particular, <strong>the battery check is flawed and the
+Tolino Shine 3 system recovery is broken</strong>!</p>
             <a href="https://dschrempf.github.io/linux/2023-05-14-fixing-a-tolino-shine-3-ebook-reader/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -179,8 +205,18 @@ Batterie fast leer! Ein-/Ausschalter druecken, Geraet mind. 2 h aufladen und neu
                 
                 
             </span>
-            Do you want to use Emacs for Java development? I suggest using the language server protocol with lsp-mode and lsp-java together with the Eclipse JDT language server (jdtls). And do you also want a declarative development environment without surprises? Use Nix Direnv, envrc.el, and a Nix Flake! I assume familiarity with these concepts. In the following, I will focus on the Java-related Emacs setup.
-The reason of this post is that I have stumbled upon problems when using a declarative, project-specific configuration.
+            <p>Do you want to use Emacs for Java development? I suggest using the language
+server protocol with <a href="https://github.com/emacs-lsp/lsp-mode"><code>lsp-mode</code></a> and <a href="https://github.com/emacs-lsp/lsp-java"><code>lsp-java</code></a> together with the <a href="https://github.com/eclipse/eclipse.jdt.ls">Eclipse JDT
+language server</a> (<code>jdtls</code>). And do you also want a declarative development
+environment without surprises? Use <a href="https://github.com/nix-community/nix-direnv">Nix Direnv</a>, <a href="https://github.com/purcell/envrc">envrc.el</a>, and a <a href="https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-flake.html">Nix Flake</a>! I
+assume familiarity with these concepts. In the following, I will focus on the
+Java-related Emacs setup.</p>
+<p>The reason of this post is that I have stumbled upon problems when using a
+declarative, project-specific configuration. In particular, <code>lsp-java</code> uses a
+global variable <code>lsp-java-server-install-dir</code> which specifies the installation
+directory of <code>jdtls</code>. Further, it uses global workspace and configuration
+directories which are <a href="https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line"><code>jdtls</code> specific settings</a>; we want those to be
+project-specific.</p>
             <a href="https://dschrempf.github.io/emacs/2023-03-02-emacs-java-and-nix/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -198,10 +234,14 @@ The reason of this post is that I have stumbled upon problems when using a decla
                 
                 
             </span>
-            Everybody posts their solutions in Haskell to the Advent of code (described well on Wikipedia). So I thought I am going to join the crowd.
-Here are mine! I did clean the code after submission, but I did not change anything substantial such as algorithms or data structures.
-(Want some more? And &mdash; well &mdash; more?)
-If you ask me, the solutions of Sheinxy and Scriptim are great! Also, do not miss the ones posted by Monday Morning Haskell, although they do have some boilerplate.
+            <p><a href="https://mmhaskell.com/blog/2022/11/30/advent-of-code-2022">Everybody</a> <a href="https://www.reddit.com/r/haskell/comments/z9mjcz/advent_of_code_2022_day_1/">posts</a> <a href="https://news.ycombinator.com/item?id=33811958">their</a> <a href="https://wjwh.eu/posts/2022-11-30-haskell-aoc-tricks.html">solutions</a> <a href="https://gitlab.com/slotThe/advent2022">in</a> <a href="https://github.com/borisskert/Advent-of-Code-2022.hs">Haskell</a> to the <a href="https://adventofcode.com/2022">Advent of code</a> (described well
+on <a href="https://en.wikipedia.org/wiki/Advent_of_Code">Wikipedia</a>). So I thought I am going to join the crowd.</p>
+<p><a href="https://github.com/dschrempf/advent-of-code-twentytwo"><strong>Here are mine</strong></a>! I did clean the code after submission, but I did not change
+anything substantial such as algorithms or data structures.</p>
+<p>(<a href="https://github.com/Scriptim/AdventOfCode2022">Want</a> <a href="https://github.com/hrichharms/AoC_2022">some</a> <a href="https://github.com/Lorin-Lange/Advent-of-Code-2022">more</a>? <a href="https://github.com/prikhi/advent-of-code-2022">And</a> &mdash; <a href="https://github.com/Sheinxy/Advent2022">well</a> &mdash; <a href="https://github.com/IndecisionTree/adventofcode2022">more</a>?)</p>
+<p>If you ask me, the solutions of <a href="https://github.com/Sheinxy/Advent2022">Sheinxy</a> and <a href="https://github.com/Scriptim/AdventOfCode2022">Scriptim</a> are great! Also, do not
+miss the ones posted by <a href="https://github.com/MondayMorningHaskell/AdventOfCode/tree/aoc-2022/src">Monday Morning Haskell</a>, although they do have some
+boilerplate.</p>
             <a href="https://dschrempf.github.io/coding/2022-12-02-advent-of-code-2022/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -219,11 +259,21 @@ If you ask me, the solutions of Sheinxy and Scriptim are great! Also, do not mis
                 
                 
             </span>
-            &lt;2023-02-27 Mon&gt; Note: I have taken the application offline.
-I created a minimalist weather predicition application &mdash; a short proof of concept and stake.
-The main elements of the Haskell tech stack are:
-Scotty: A web framework. Lucid: A domain specific language for HTML. Mcmc: A Markov chain Monte Carlo sampler. Other noteworthy components of this project:
-The development environment is managed by the Nix package manager. The application is deployed using a Nix Flake.
+            <p><span class="timestamp-wrapper"><span class="timestamp">&lt;2023-02-27 Mon&gt; </span></span> Note: I have taken the application offline.</p>
+<p>I created a minimalist <a href="https://dschrempf.duckdns.org/">weather predicition application</a> &mdash; a short proof of
+concept and stake.</p>
+<p>The main elements of the Haskell tech stack are:</p>
+<ul>
+<li><a href="https://hackage.haskell.org/package/scotty">Scotty</a>: A web framework.</li>
+<li><a href="https://hackage.haskell.org/package/lucid">Lucid</a>: A domain specific language for HTML.</li>
+<li><a href="https://hackage.haskell.org/package/mcmc">Mcmc</a>: A Markov chain Monte Carlo sampler.</li>
+</ul>
+<p>Other noteworthy components of this project:</p>
+<ul>
+<li>The development environment is managed by the <a href="https://github.com/NixOS/nix">Nix package manager</a>.</li>
+<li>The application is deployed using a <a href="https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-flake.html">Nix Flake</a>.</li>
+</ul>
+<p>For details, have a look at the <a href="https://github.com/dschrempf/webapp">project source code</a>.</p>
             <a href="https://dschrempf.github.io/coding/2022-12-02-weather-prediction-application/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -241,9 +291,44 @@ The development environment is managed by the Nix package manager. The applicati
                 
                 
             </span>
-            We analyze the number of worldwide airline fatal accidents:
-Year 1976 1977 1978 1979 1980 1981 1982 1983 1984 1985 Fatalities 24 25 31 31 22 21 26 20 16 22 This table is an excerpt of Table 2.2 in Gelman, Andrew and Carlin, John B and Stern, Hal S and Rubin, Donald B (2014).
-We assume that the number of fatal accidents \(X\) is Poisson distributed with fatal accident rate \(\lambda\)
+            <p>We analyze the number of worldwide airline fatal accidents:</p>
+<div class="ox-hugo-table right-aligned">
+<table>
+  <thead>
+      <tr>
+          <th>Year</th>
+          <th>1976</th>
+          <th>1977</th>
+          <th>1978</th>
+          <th>1979</th>
+          <th>1980</th>
+          <th>1981</th>
+          <th>1982</th>
+          <th>1983</th>
+          <th>1984</th>
+          <th>1985</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Fatalities</td>
+          <td>24</td>
+          <td>25</td>
+          <td>31</td>
+          <td>31</td>
+          <td>22</td>
+          <td>21</td>
+          <td>26</td>
+          <td>20</td>
+          <td>16</td>
+          <td>22</td>
+      </tr>
+  </tbody>
+</table>
+</div>
+<p>This table is an excerpt of Table 2.2 in Gelman, Andrew and Carlin, John B and Stern, Hal S and Rubin, Donald B (2014).</p>
+<p>We assume that the number of fatal accidents \(X\) is <a href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distributed</a> with
+fatal accident rate \(\lambda\)</p>
             <a href="https://dschrempf.github.io/coding/2022-06-28-sample-from-a-posterior-using-markov-chain-monte-carlo-algorithms-and-haskell/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -261,8 +346,40 @@ We assume that the number of fatal accidents \(X\) is Poisson distributed with f
                 
                 
             </span>
-            I started this encyclopedic overview because in the Markov chain Monte Carlo (MCMC) community many people call the same or similar concepts by very different names. Please let me know, if you have suggestions or comments, or if you would like to add some definitions or synonyms to this overview.
-Bibliography Books The nomenclature here is taken from the excellent introduction to Markov chain Monte Carlo (MCMC) methods by Geyer, Charles J (2011), Chapter 1 in Brooks, Steve and Gelman, Andrew and Jones, Galin and Meng, Xiao-Li (2011).
+            <p>I started this encyclopedic overview because in the Markov chain Monte Carlo
+(MCMC) community many people call the same or similar concepts by very different
+names. Please let me know, if you have suggestions or comments, or if you would
+like to add some definitions or synonyms to this overview.</p>
+<h2 id="bibliography">Bibliography</h2>
+<h3 id="books">Books</h3>
+<ul>
+<li>The nomenclature here is taken from the excellent introduction to Markov chain
+Monte Carlo (MCMC) methods by Geyer, Charles J (2011), Chapter 1 in
+Brooks, Steve and Gelman, Andrew and Jones, Galin and Meng, Xiao-Li (2011).</li>
+<li>More advanced topics such as population based MCMC methods are covered in
+Liang, Faming and Liu, Chuanhai and Carroll, Raymond (2011).</li>
+<li>See Arnaud Doucet and Nando de Freitas and Neil Gordon (2001) for sequential Monte Carlo algorithms.</li>
+</ul>
+<h3 id="articles">Articles</h3>
+<ul>
+<li>Walter R. Gilks and Carlo Berzuini (2001)</li>
+<li>Del Moral, Pierre and Doucet, Arnaud and Jasra, Ajay (2006)</li>
+<li>Andrieu, Christophe and Doucet, Arnaud and Holenstein, Roman (2010)</li>
+<li>A. {Doucet} and A. M. {Johansen} (2011)</li>
+<li>Chopin, N. and Jacob, P. E. and Papaspiliopoulos, O. (2012)</li>
+<li>Heng, Jeremy and Bishop, Adrian N. and Deligiannidis, George and Doucet, Arnaud (2020)</li>
+</ul>
+<h3 id="articles-tailored-to-a-phylogenetic-audience">Articles tailored to a phylogenetic audience</h3>
+<ul>
+<li>Bouchard-Côté, Alexandre and Sankararaman, Sriram and Jordan, Michael I. (2012)</li>
+<li>Vu Dinh and Aaron E Darling and Frederick A Matsen IV (2018)</li>
+<li>Mathieu Fourment and Brian C. Claywell and Vu Dinh and Connor McCoy and Frederick A. Matsen IV and Aaron E. Darling (2018)</li>
+</ul>
+<h2 id="necessary-definitions">Necessary definitions</h2>
+<p><strong>Elementary updates</strong> are instructions about how to advance a Markov chain so
+that it possibly reaches a new state. That is, elementary updates specify how
+the chain traverses the state space. Elementary updates cannot be decomposed
+into smaller updates.</p>
             <a href="https://dschrempf.github.io/coding/2020-11-12-encyclopedia-of-markov-chain-monte-carlo-methods/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -280,9 +397,21 @@ Bibliography Books The nomenclature here is taken from the excellent introductio
                 
                 
             </span>
-            The Algebraic Graphs Haskell library (Alga) is a fast, minimalist, and elegant approach to working with graphs that allows for equational reasoning about the correctness of algorithms. For reference, please also see the accompanying paper.
-The advantages are:
-algebraic graphs have a small core with just four graph construction primitives; the core has a mathematical structure characterized by a set of laws or properties. A directed graph in the mathematical sense is a set \(V\) of vertices \(v_i\) together with a set \(E\) of directed edges \((v_i, v_j)\), and is denoted \((V,E)\).
+            <p>The <a href="https://hackage.haskell.org/package/algebraic-graphs">Algebraic Graphs Haskell library</a> (Alga) is a fast, minimalist, and elegant
+approach to working with graphs that allows for equational reasoning about the
+correctness of algorithms. For reference, please also see the <a href="https://github.com/snowleopard/alga-paper">accompanying
+paper</a>.</p>
+<p>The advantages are:</p>
+<ul>
+<li>algebraic graphs have a small core with just four graph construction primitives;</li>
+<li>the core has a mathematical structure characterized by a set of laws or
+properties.</li>
+</ul>
+<p>A <strong>directed graph</strong> in the mathematical sense is a set \(V\) of vertices \(v_i\)
+together with a set \(E\) of directed edges \((v_i, v_j)\), and is denoted
+\((V,E)\). The beauty about algebraic graphs is that they are not defined
+explicitly by lists of vertices and edges but in a recursive manner, similar to
+the definition of algebraic trees.</p>
             <a href="https://dschrempf.github.io/coding/2019-11-21-algebraic-graphs/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -300,8 +429,18 @@ algebraic graphs have a small core with just four graph construction primitives;
                 
                 
             </span>
-            I have been working on Markov chains for quite a while now and wanted to assess how Haskell can deal with simulating a simple, discrete chain.
-Many sources can be found online. The code presented here is partly taken from a question on stackoverflow. However, I was unsatisfied with the nomenclature and parts of the code. So I refactored most of it. Also, there is a Haskell library markov-chain, which I am unsatisfied with because of code readability (it&rsquo;s pretty abstruse).
+            <p>I have been working on Markov chains for quite a while now and wanted to assess how
+Haskell can deal with simulating a simple, discrete chain.</p>
+<p>Many sources can be found online. The code presented here is partly taken from a
+<a href="https://stackoverflow.com/questions/25286816/generating-sequence-from-markov-chain-in-haskell">question on stackoverflow</a>. However, I was unsatisfied with the nomenclature and
+parts of the code. So I refactored most of it. Also, there is a Haskell library
+<a href="https://hackage.haskell.org/package/markov-chain">markov-chain</a>, which I am unsatisfied with because of code readability (it&rsquo;s
+pretty abstruse). Furthermore, I looked through a lengthy post about using
+Markov chains to simulate <a href="https://idontgetoutmuch.wordpress.com/2013/12/07/haskell-ising-markov-metropolis/">interaction of magnetic spins</a> using the Ising model.
+The concept of a Markov chain is explained well in this article but I believe
+that the example is too complicated to understand in a reasonable amount of
+time. Also, the <a href="https://hackage.haskell.org/package/repa">Repa package</a> is used to represent the transition matrices. This
+seemed a little bit of an overkill to me, so I decided to go with <a href="http://hackage.haskell.org/package/containers-0.5.11.0/docs/Data-Map-Strict.html">maps</a>.</p>
             <a href="https://dschrempf.github.io/coding/2018-02-10-markov-chains-in-haskell/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -319,8 +458,11 @@ Many sources can be found online. The code presented here is partly taken from a
                 
                 
             </span>
-            Sometimes you discover online resources that you want to remember and share. These tutorials by the developers of iptables (mainly Paul &lsquo;Rusty&rsquo; Russell) are one of those gems. They discuss how the internet works, how packets can be adequately filtered and how a firewall can be setup.
-Enjoy!
+            <p>Sometimes you discover online resources that you want to remember and share.
+<a href="https://www.netfilter.org/documentation/index.html#documentation-howto">These tutorials</a> by the developers of <a href="http://iptables.org/"><code>iptables</code></a> (mainly Paul &lsquo;Rusty&rsquo; Russell)
+are one of those gems. They discuss how the internet works, how packets can be
+adequately filtered and how a firewall can be setup.</p>
+<p>Enjoy!</p>
             <a href="https://dschrempf.github.io/linux/2017-09-13-networking-tutorials/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -338,8 +480,14 @@ Enjoy!
                 
                 
             </span>
-            [2019-03-01 Fri] See comment below; some Linux operating systems already provide native support for the Marvell RAID controller in legacy mode.
-Marvell SATA controller Recently I purchased an HPE ProLiant MicroServer Gen10 which comes with the Marvell SATA controller 88SE9230, also called Marvell Storage Utility (MSU). As far as I know, this controller has an ARM chip to provide RAID 0 (non-redundant combination of disks), RAID 1 (straight mirroring) or RAID 10 (a combination of RAID 0 and RAID 1).
+            <p><span class="timestamp-wrapper"><span class="timestamp">[2019-03-01 Fri] </span></span> See <a href="http://disq.us/p/1zy3urq">comment below</a>; some Linux operating systems already provide
+native support for the Marvell RAID controller in legacy mode.</p>
+<h2 id="marvell-sata-controller">Marvell SATA controller</h2>
+<p>Recently I purchased an HPE ProLiant MicroServer Gen10 which comes with the
+Marvell SATA controller 88SE9230, also called Marvell Storage Utility (MSU). As
+far as I know, this controller has an ARM chip to provide RAID 0 (non-redundant
+combination of disks), RAID 1 (straight mirroring) or RAID 10 (a combination of
+RAID 0 and RAID 1).</p>
             <a href="https://dschrempf.github.io/linux/2017-09-05-hpe-microserver-msu/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -357,9 +505,13 @@ Marvell SATA controller Recently I purchased an HPE ProLiant MicroServer Gen10 w
                 
                 
             </span>
-            Folds are complicated themselves, but monadic folds always have blown my mind. In what follows, I try to dissect foldlM for a specific example.
-Monadic folds can be used to perform a series of actions that depend on the previous output. The following function produces an action b from a value a also taking into account the output of the previous action b.
-f :: (b -&gt; a -&gt; m b) And here the definition of foldlM (which is the same as foldM).
+            <p>Folds are complicated themselves, but monadic folds always have blown my mind.
+In what follows, I try to dissect <code>foldlM</code> for a specific example.</p>
+<p>Monadic folds can be used to <strong>perform a series of actions that depend on the
+previous output</strong>. The following function produces an <em>action b</em> from a <em>value a</em>
+also taking into account the output of the previous <em>action b</em>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#000">f</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">b</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">a</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">m</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div><p>And here the definition of <code>foldlM</code> (which is the same as <code>foldM</code>).</p>
             <a href="https://dschrempf.github.io/coding/2017-07-20-folding-around-monads-in-haskell/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -377,8 +529,13 @@ f :: (b -&gt; a -&gt; m b) And here the definition of foldlM (which is the same 
                 
                 
             </span>
-            I like a lot of stuff that Google is doing, especially that it supports open source. However, I really dislike their attitude towards user privacy. That is why I decided to get rid of Google on my Android phone. However, I had to solve some problems in order to keep user-friendliness at a high level and to be able to use all applications that I need.
-The main issues are:
+            <p>I like a lot of stuff that Google is doing, especially that it
+supports open source.  However, I really dislike their attitude
+towards user privacy.  That is why I decided to get rid of Google on
+my Android phone.  However, I had to solve some problems in order to
+keep user-friendliness at a high level and to be able to use all
+applications that I need.</p>
+<p>The main issues are:</p>
             <a href="https://dschrempf.github.io/linux/2016-08-05-android-without-google/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -396,9 +553,15 @@ The main issues are:
                 
                 
             </span>
-            Autojump is a cd command that learns! It enables you to easily navigate directories from the command line:
-Autojump on GitHub It is readily available in most Linux distributions. The sole thing that has to be done manually is sourcing a script in your .bashrc.
-source /etc/profile.d/autojump.sh Jumping around with j is awesome :-)!
+            <p><strong>Autojump</strong> is a <code>cd</code> command that learns!  It enables you to easily
+navigate directories from the command line:</p>
+<ul>
+<li><a href="https://github.com/wting/autojump">Autojump on GitHub</a></li>
+</ul>
+<p>It is readily available in most Linux distributions.  The sole thing
+that has to be done manually is sourcing a script in your <code>.bashrc</code>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#204a87">source</span> /etc/profile.d/autojump.sh
+</span></span></code></pre></div><p>Jumping around with <code>j</code> is awesome :-)!</p>
             <a href="https://dschrempf.github.io/linux/2016-05-20-autojump/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -416,9 +579,17 @@ source /etc/profile.d/autojump.sh Jumping around with j is awesome :-)!
                 
                 
             </span>
-            [2016-04-09 Sat] I extended my set of C++ programs to include a simulator for generic continuous-time Markov chains. I.e., any transition rate matrix can be used.
-If you are interested, just get the GitHub repository and compile the whole set of programs with make all. Documentation can be found in the doc/ folder (check the CTMC class).
-There is a sample program src/moran_model_boundary_mutation, that runs the Moran model with boundary mutation (De Maio, N.
+            <p><span class="timestamp-wrapper"><span class="timestamp">[2016-04-09 Sat] </span></span> I extended <a href="/coding/2015-03-26-popgen-cpp-programs/">my set of C++ programs</a> to include a
+simulator for generic continuous-time Markov chains.  I.e., any
+transition rate matrix can be used.</p>
+<p>If you are interested, just get the <a href="https://github.com/dschrempf/popgen-cpp-programs">GitHub repository</a> and compile the
+whole set of programs with <code>make all</code>.  Documentation can be found in
+the <code>doc/</code> folder (check the <code>CTMC</code> class).</p>
+<p>There is a sample program <code>src/moran_model_boundary_mutation</code>, that
+runs the Moran model with boundary mutation (De Maio, N., Schrempf,
+D., &amp; Kosiol, C. (2015). PoMo: An Allele Frequency-Based Approach for
+Species Tree Estimation. Systematic Biology, 64(6),
+1018–1031. <a href="https://doi.org/10.1093/sysbio/syv048)">https://doi.org/10.1093/sysbio/syv048)</a>.</p>
             <a href="https://dschrempf.github.io/coding/2016-04-09-continuous-time-markov-chain/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -436,9 +607,24 @@ There is a sample program src/moran_model_boundary_mutation, that runs the Moran
                 
                 
             </span>
-            Did you ever get sick of typing the IP of your SSH server. There is an incredible feature of SSH that saves you a lot of time typing host names, IP addresses or passwords.
-Login with SSH key First, you want to create your own SSH key so that your server accepts your login without any password.
-# Create an SSH key (use the standard path). Be careful, if you do # not set a passphrase, anybody that has access to your computer can # log into servers that have been set up to accept your key.
+            <p>Did you ever get sick of typing the IP of your SSH server.  There is
+an incredible feature of SSH that saves you a lot of time typing
+host names, IP addresses or passwords.</p>
+<h2 id="login-with-ssh-key">Login with SSH key</h2>
+<p>First, you want to create your own <a href="https://wiki.archlinux.org/index.php/SSH_keys">SSH key</a> so that your server accepts
+your login without any password.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># Create an SSH key (use the standard path).  Be careful, if you do</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># not set a passphrase, anybody that has access to your computer can</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># log into servers that have been set up to accept your key.</span>
+</span></span><span style="display:flex;"><span>ssh-keygen
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># Copy the key on your server.</span>
+</span></span><span style="display:flex;"><span>ssh-copy-id yourusername@yourserver.example.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic"># Try it out and be happy!</span>
+</span></span><span style="display:flex;"><span>ssh yourusername@yourserver.example.com
+</span></span></code></pre></div><h2 id="use-dot-ssh-config">Use <code>~/.ssh/config</code></h2>
+<p>Now, it is getting better; edit or create the file <code>~/.ssh.config</code>:</p>
             <a href="https://dschrempf.github.io/linux/2016-04-09-ssh-config/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -456,9 +642,19 @@ Login with SSH key First, you want to create your own SSH key so that your serve
                 
                 
             </span>
-            In my free time I love to make music and that&rsquo;s why I am participating in the choir Cantus Novus Wien. We are about 40 people and perform sacred as well as secular music pieces.
-Audio samples Audio samples can be found on Soundcloud.
-A short quote from the homepage (in German) Der Cantus Novus Wien besteht aus engagierten Sängerinnen und Sängern, die am Wiener Diözesankonservatorium für Kirchenmusik zusammenfinden. Das gemeinsame, lebendige Singen zielt auf hohe musikalische Qualität; ein Schwerpunkt ist dabei zeitgenössische Chormusik mit Uraufführungen von Auftragswerken österreichischer Komponisten wie Wolfgang Sauseng, Ruth McGuire, Wolfgang Reisinger, Markus Pfandler und Wolfram Wagner.
+            <p>In my free time I love to make music and that&rsquo;s why I am participating
+in the choir <a href="http://www.cantusnovuswien.at/chor">Cantus Novus Wien</a>.  We are about 40 people and perform
+sacred as well as secular music pieces.</p>
+<h2 id="audio-samples">Audio samples</h2>
+<p>Audio samples can be found on <a href="https://soundcloud.com/cantusnovuswien">Soundcloud</a>.</p>
+<h2 id="a-short-quote-from-the-homepage--in-german">A short quote from the homepage (in German)</h2>
+<p>Der Cantus Novus Wien besteht aus engagierten Sängerinnen und Sängern,
+die am Wiener Diözesankonservatorium für Kirchenmusik
+zusammenfinden. Das gemeinsame, lebendige Singen zielt auf hohe
+musikalische Qualität; ein Schwerpunkt ist dabei zeitgenössische
+Chormusik mit Uraufführungen von Auftragswerken österreichischer
+Komponisten wie Wolfgang Sauseng, Ruth McGuire, Wolfgang Reisinger,
+Markus Pfandler und Wolfram Wagner.</p>
             <a href="https://dschrempf.github.io/music/2015-08-31-cantus-novus/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -476,8 +672,17 @@ A short quote from the homepage (in German) Der Cantus Novus Wien besteht aus en
                 
                 
             </span>
-            Introduction Erroneous source code can be a nasty issue to tackle. Print statements that inform you about the states of variables are handy but sometimes they are unable to represent the intrinsic structure of the code. Debuggers allow you to run your code step by step, display and watch variables and see what is going on inside another program while it executes.
-The GNU poject debugger Here, we will use the GNU project debugger (GDB), because it is freely available, very actively developed and can be used on many operating systems.
+            <h2 id="introduction">Introduction</h2>
+<p>Erroneous source code can be a nasty issue to tackle.  Print
+statements that inform you about the states of variables are handy but
+sometimes they are unable to represent the intrinsic structure of the
+code.  Debuggers allow you to run your code step by step, display and
+watch variables and see what is going on <em>inside</em> another program
+while it executes.</p>
+<h2 id="the-gnu-poject-debugger">The GNU poject debugger</h2>
+<p>Here, we will use the <a href="http://www.gnu.org/software/gdb/">GNU project debugger (GDB)</a>, because it is freely
+available, very actively developed and can be used on many operating
+systems.  It can</p>
             <a href="https://dschrempf.github.io/emacs/2015-06-24-debugging-with-emacs-and-gdb/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -495,8 +700,14 @@ The GNU poject debugger Here, we will use the GNU project debugger (GDB), becaus
                 
                 
             </span>
-            Does this sound familiar to you: You come back from a holiday with your family or friends and want to merge photos taken with 4 different cameras. However, somebody forgot to adjust the date (or did not set the daylight saving time accordingly). Hmm.
-This problem can be solved easily. exiv2 is a program to read and write Exif image metadata and image comments. It offers a very easy command line interface and shortcuts to batch rename files (e.
+            <p>Does this sound familiar to you: You come back from a holiday with your family
+or friends and want to merge photos taken with 4 different cameras. However,
+somebody forgot to adjust the date (or did not set the daylight saving time
+accordingly). Hmm.</p>
+<p>This problem can be solved easily.  <code>exiv2</code> is a program to read and
+write Exif image metadata and image comments.  It offers a very easy
+command line interface and shortcuts to batch rename files (e.g., by
+time and date) or to change Exif flags.</p>
             <a href="https://dschrempf.github.io/linux/2015-04-25-exiv2-command-line-power/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -514,9 +725,19 @@ This problem can be solved easily. exiv2 is a program to read and write Exif ima
                 
                 
             </span>
-            Introduction Recently, I have explained how to configure BitTorrent Sync over an SSH SOCKS proxy. However, due to various problems with BTSync, I tried Syncthing and I am very satisfied with it.
-Advantages that I have experienced so far:
-open source; publicly available synchronization protocol; very reliable if the configuration is fine; it&rsquo;s a young project with motivated developers; it is fast (if enough CPU is available). Disadvantages that I have experienced so far:
+            <h2 id="introduction">Introduction</h2>
+<p>Recently, I have explained how to configure <a href="/linux/2015-01-30-btsync/">BitTorrent Sync over an SSH SOCKS
+proxy</a>. However, due to various problems with BTSync, I tried Syncthing and I am
+very satisfied with it.</p>
+<p>Advantages that I have experienced so far:</p>
+<ul>
+<li>open source;</li>
+<li>publicly available synchronization protocol;</li>
+<li>very reliable if the configuration is fine;</li>
+<li>it&rsquo;s a young project with motivated developers;</li>
+<li>it is fast (if enough CPU is available).</li>
+</ul>
+<p>Disadvantages that I have experienced so far:</p>
             <a href="https://dschrempf.github.io/linux/2015-04-22-syncthing/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -534,9 +755,20 @@ open source; publicly available synchronization protocol; very reliable if the c
                 
                 
             </span>
-            Recently, I stumbled upon two nice Emacs minor modes.
-Helm mode Helm mode offers an incremental completion and selection narrowing framework. It will help you to find what you&rsquo;re looking for in Emacs (like buffers, files, commands etc). Resources and discussions can be found at the following homepages:
-development and installation instructions at the Helm mode GitHub page; the Emacs initialization files and configuration of the Helm maintainer; a good overview of the features and a sample configuration.
+            <p>Recently, I stumbled upon two nice Emacs minor modes.</p>
+<h2 id="helm-mode">Helm mode</h2>
+<p>Helm mode offers an <strong>incremental completion</strong> and <strong>selection narrowing</strong>
+framework.  It will help you to find what you&rsquo;re looking for in Emacs
+(like buffers, files, commands etc).  Resources and discussions can be
+found at the following homepages:</p>
+<ul>
+<li>development and installation instructions at the <a href="https://github.com/emacs-helm/helm">Helm mode GitHub page</a>;</li>
+<li>the Emacs initialization files and <a href="https://github.com/thierryvolpiatto/emacs-tv-config">configuration of the Helm maintainer</a>;</li>
+<li><a href="http://tuhdo.github.io/helm-intro.html">a good overview of the features</a> and a sample configuration.</li>
+</ul>
+<p>I can recommend to use the <code>TAB</code> key for completion and not for other
+actions.  You can bind the <code>TAB</code> key back to
+<code>helm-execute-persistent-action</code> with</p>
             <a href="https://dschrempf.github.io/emacs/2015-04-04-helm-hydra-modes/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -554,8 +786,39 @@ development and installation instructions at the Helm mode GitHub page; the Emac
                 
                 
             </span>
-            I maintain a Github repository that contains a bunch of very basic C++ programs that use Markov chains and other types of simulations to infer basic statistical parameters. The applications mainly focus on Population Genetics problems, although this is not always the case. At the moment, the list of programs is:
-bookshelf.cpp Bookshelf Markov chain brownian_motion_mcmc.cpp Simulate standard Brownian motion (Wiener process) coin_toss_mcmc.cpp Run a coin toss MCMC simulation cube_mcmc.cpp Simulation of a Markov chain that moves around the eight vertices of a cube ehrenfest_mcmc.
+            <p>I maintain a <a href="https://github.com/fazky/popgen-cpp-programs">Github repository</a> that contains a bunch of very basic C++ programs
+that use Markov chains and other types of simulations to infer basic statistical
+parameters. The applications mainly focus on Population Genetics problems,
+although this is not always the case. At the moment, the list of programs is:</p>
+<dl>
+<dt><code>bookshelf.cpp</code></dt>
+<dd>Bookshelf Markov chain</dd>
+<dt><code>brownian_motion_mcmc.cpp</code></dt>
+<dd>Simulate standard Brownian motion
+(Wiener process)</dd>
+<dt><code>coin_toss_mcmc.cpp</code></dt>
+<dd>Run a coin toss MCMC simulation</dd>
+<dt><code>cube_mcmc.cpp</code></dt>
+<dd>Simulation of a Markov chain that moves around the
+eight vertices of a cube</dd>
+<dt><code>ehrenfest_mcmc.cpp</code></dt>
+<dd>Simulate gas particles in a divided box</dd>
+<dt><code>general_discrete_distributions.cpp</code></dt>
+<dd>Given K discrete events with
+different probabilities P[k], produce a random value k consistent
+with its probability</dd>
+<dt><code>general_discrete_markov_chain.cpp</code></dt>
+<dd>Simulate a general discrete
+Markov chain with a given transition probability matrix P</dd>
+<dt><code>genetic_drift.cpp</code></dt>
+<dd>Simulate genetic drift</dd>
+<dt><code>hitchhiking.c</code></dt>
+<dd>Simulate hitchhiking along a positively selected locus</dd>
+<dt><code>stepping_stone_model.cpp</code></dt>
+<dd>Simulate Stepping Stone Model with a
+Markov chain</dd>
+</dl>
+<p>Please check out the detailed <a href="https://github.com/fazky/popgen-cpp-programs/tree/master/doc/html">documentation on the github repository</a>.</p>
             <a href="https://dschrempf.github.io/coding/2015-03-26-popgen-cpp-programs/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -573,8 +836,18 @@ bookshelf.cpp Bookshelf Markov chain brownian_motion_mcmc.cpp Simulate standard 
                 
                 
             </span>
-            &lt;2015-04-22 Wed&gt; I have switched from BitTorrent Sync to Syncthing. Reasons are:
-the synchronization was not reliable (synchronization stalled sometimes; every update leads to a re-synchronization of all files); the corporate policy is not to my liking (a Pro version is available; the free version only supports a limited amount of folders and clients; it is not sure if it will stay free in the future). Please also refer to the blog entry that describes how to configure Syncthing with SSH port forwarding.
+            <p><span class="timestamp-wrapper"><span class="timestamp">&lt;2015-04-22 Wed&gt; </span></span> I have switched from BitTorrent Sync to <a href="https://syncthing.net/">Syncthing</a>.
+Reasons are:</p>
+<ul>
+<li>the synchronization was not reliable (synchronization stalled
+sometimes; every update leads to a re-synchronization of all files);</li>
+<li>the corporate policy is not to my liking (a Pro version is
+available; the free version only supports a limited amount of
+folders and clients; it is not sure if it will stay free in the
+future).</li>
+</ul>
+<p>Please also refer to the blog entry that describes how to configure
+<a href="/linux/2015-04-22-syncthing/">Syncthing with SSH port forwarding</a>.</p>
             <a href="https://dschrempf.github.io/linux/2015-01-30-btsync/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -592,10 +865,16 @@ the synchronization was not reliable (synchronization stalled sometimes; every u
                 
                 
             </span>
-            Suppose we observe 58 heads out of 100 coin tosses. Now, we want to know the probability of tossing a head \(\theta\). A maximum likelihood guess would be \(\theta = 0.58\) because then, the probability of observing 58 heads
-\begin{align} P(58 \mathrm{ heads}) = {100 \choose 58} (0.58)^{58} (0.42)^{42} \end{align}
-is greatest (an example of the binomial distribution).
-However, we could also use a Bayesian approach to calculate the posterior distribution of the probability \(\theta\) (i.
+            <p>Suppose we observe 58 heads out of 100 coin tosses. Now, we want to know the
+probability of tossing a head \(\theta\). A maximum likelihood guess would be
+\(\theta = 0.58\) because then, the probability of observing 58 heads</p>
+<p>\begin{align}
+P(58 \mathrm{ heads}) = {100 \choose 58} (0.58)^{58} (0.42)^{42}
+\end{align}</p>
+<p>is greatest (an example of the binomial distribution).</p>
+<p>However, we could also use a Bayesian approach to calculate the posterior
+distribution of the probability \(\theta\) (i.e., the probability that
+\(\theta\) is a certain value conditioned on our observation).</p>
             <a href="https://dschrempf.github.io/coding/2015-01-15-mcmc-coin-toss/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -613,8 +892,11 @@ However, we could also use a Bayesian approach to calculate the posterior distri
                 
                 
             </span>
-            Did you ever need to calculate the time difference between two consecutive time stamps from a log file or something similar? Check out dateutils, it is really useful:
-ddiff -i &#39;%H:%M:%S&#39; &#39;19:09:43,683&#39; &#39;19:34:10,350&#39; 
+            <p>Did you ever need to calculate the time difference between two consecutive time
+stamps from a log file or something similar? Check out <a href="http://www.fresse.org/dateutils/">dateutils</a>, it is really
+useful:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ddiff -i <span style="color:#4e9a06">&#39;%H:%M:%S&#39;</span> <span style="color:#4e9a06">&#39;19:09:43,683&#39;</span> <span style="color:#4e9a06">&#39;19:34:10,350&#39;</span>
+</span></span></code></pre></div>
             <a href="https://dschrempf.github.io/linux/2015-01-07-dateutils/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -632,8 +914,22 @@ ddiff -i &#39;%H:%M:%S&#39; &#39;19:09:43,683&#39; &#39;19:34:10,350&#39;
                 
                 
             </span>
-            Working with large files takes a long time. Sometimes, it is worth to zip folders individually, so that a single archive does not get too large. GNU Parallel is a shell tool to execute jobs in parallel. Here, I show one of possibly many methods to use it to zip many folders (or files) in parallel.
-Create a file with all folders that you want to zip, e.g with: ls -1 &gt; folders Use GNU Parallel to zip them: parallel -a folders &#34;tar -czf {}.
+            <p>Working with large files takes a long time. Sometimes, it is worth to zip
+folders individually, so that a single archive does not get too large. <a href="http://www.gnu.org/s/parallel">GNU
+Parallel</a> is a shell tool to execute jobs in parallel. Here, I show one of
+possibly many methods to use it to zip many folders (or files) in parallel.</p>
+<ol>
+<li>Create a file with all folders that you want to zip, e.g with:</li>
+</ol>
+<!--listend-->
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>ls -1 &gt; folders
+</span></span></code></pre></div><ol>
+<li>Use GNU Parallel to zip them:</li>
+</ol>
+<!--listend-->
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>parallel -a folders <span style="color:#4e9a06">&#34;tar -czf {}.tar.gz {}&#34;</span>
+</span></span></code></pre></div><p>In order to unzip many files at ones (this method can also be used to
+zip the files if their names follow certain patterns):</p>
             <a href="https://dschrempf.github.io/linux/2015-01-07-gnu-parallel/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -651,10 +947,29 @@ Create a file with all folders that you want to zip, e.g with: ls -1 &gt; folder
                 
                 
             </span>
-            This homepage was created with Emacs and Org mode. It is hosted at github.io and comments can be done using Disqus. I assume a working Org mode setup and a GitHub as well as a Disqus account.
-[2015-03-26 Thu] Update; general revision of code and text.
-[2016-04-09 Sat] Another update.
-General idea Org mode A great tool for taking notes and exporting them to all kind of formats. One of this formats is HTML.
+            <p>This homepage was created with Emacs and <a href="http://orgmode.org/">Org mode</a>. It is hosted at <a href="https://pages.github.com/">github.io</a> and
+comments can be done using <a href="https://disqus.com/">Disqus</a>. I assume a working Org mode setup and a
+GitHub as well as a Disqus account.</p>
+<p><span class="timestamp-wrapper"><span class="timestamp">[2015-03-26 Thu] </span></span> Update; general revision of code and text.</p>
+<p><span class="timestamp-wrapper"><span class="timestamp">[2016-04-09 Sat] </span></span> Another update.</p>
+<h2 id="general-idea">General idea</h2>
+<dl>
+<dt>Org mode</dt>
+<dd>A great tool for taking notes and exporting them to
+all kind of formats.  One of this formats is <strong>HTML</strong>.  The idea
+here is to use the publishing capabilities of Org mode to create
+a very basic website that can be used to blog and publish
+articles.</dd>
+<dt>GitHub</dt>
+<dd>Offers a freely available hosting service, a very easy way
+to make the website available.</dd>
+<dt>Disqus</dt>
+<dd>Provides the ability to comment posts.</dd>
+</dl>
+<p>Many people also use <a href="http://jekyllrb.com/">Jekyll</a> to create homepages and blogs together
+with Org mode and GitHub.  This is certainly a very appealing
+alternative but I prefer a setting that is easier to set up and has
+fewer options.</p>
             <a href="https://dschrempf.github.io/emacs/2014-12-26-how-to-create-this-homepage/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -672,10 +987,15 @@ General idea Org mode A great tool for taking notes and exporting them to all ki
                 
                 
             </span>
-            I repeatedly struggle with GHCi when I want to print lists and maps and actually look at them and analyze them. Today I came accross pretty-show, a haskell package that allows pretty printing of all objects that are instances of the type class Show.
-The usage is very straight forward:
-import qualified Text.Show.Pretty as Pr This provides Pr.ppShow which can be used in GHCi (or other interpreters):
-putStrLn $ Pr.ppShow object 
+            <p>I repeatedly struggle with GHCi when I want to print lists and maps and actually
+look at them and analyze them. Today I came accross <a href="https://hackage.haskell.org/package/pretty-show">pretty-show</a>, a haskell
+package that allows pretty printing of all objects that are instances of the
+type class Show.</p>
+<p>The usage is very straight forward:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#204a87;font-weight:bold">qualified</span> <span style="color:#000">Text.Show.Pretty</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">Pr</span>
+</span></span></code></pre></div><p>This provides Pr.ppShow which can be used in GHCi (or other interpreters):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#000">putStrLn</span> <span style="color:#ce5c00;font-weight:bold">$</span> <span style="color:#204a87;font-weight:bold">Pr</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">ppShow</span> <span style="color:#000">object</span>
+</span></span></code></pre></div>
             <a href="https://dschrempf.github.io/coding/2014-12-23-haskell-pretty-print/">&nbsp;Read on &hellip;</a>
         </div>
         
@@ -710,7 +1030,7 @@ putStrLn $ Pr.ppShow object
 
         <div class= "footer">
     <p>
-        &copy; 2024 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
+        &copy; 2025 Dominik Schrempf, <a href="https://dschrempf.github.io/license/">License</a><br/>
          <a href="/privacy/" class="" title="Privacy notice">Privacy notice</a> 
     </p>
 </div>
