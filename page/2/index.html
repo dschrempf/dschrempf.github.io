@@ -1,0 +1,158 @@
+
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+
+    <head>
+	<meta name="generator" content="Hugo 0.143.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        
+        <title>Concept → IO () &middot; Dominik Schrempf</title>
+        <meta name="description" content="Linux, Emacs, coding and more.">
+        <meta name="keywords" content="Arch Linux, Emacs, Haskell, C&#43;&#43;, Python">
+
+        
+        <link rel="stylesheet" href="http://localhost:1313/css/skeria.css">
+
+        
+        
+
+        
+        
+        
+        <link rel="stylesheet" href="http://localhost:1313/css/font.awesome.6.1.2.all.min.css" />
+    </head>
+
+    <body>
+        <div class="topbar">
+    <div class="topbar-sticky">
+        <a href="http://localhost:1313/"
+   style="text-decoration: none">
+    <h1>Concept → IO ()</h1>
+</a>
+
+        
+        <span class="topbar-nav">
+    <p>
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/linux/">Linux</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/emacs/">Emacs</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/coding/">Coding</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/music/">Music</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/links/">Links</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/about/">About</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/search/">Search</a>
+        </span>
+        
+    </p>
+</span>
+
+    </div>
+</div>
+
+
+        
+        
+<div class="content container">
+    <div class="posts">
+        
+        
+        <div class="post">
+            <h1 class="post-title">
+                <a href="http://localhost:1313/coding/2014-12-23-haskell-pretty-print/">Easy pretty print in Haskell</a>
+            </h1>
+            <span class="post-date">
+                Dec 23, 2014
+                &nbsp;&middot;&nbsp; 1 minute read
+                
+                &nbsp;&middot;&nbsp;
+                
+                <a class="label" href="http://localhost:1313/coding">Coding</a>
+                
+                
+            </span>
+            <p>I repeatedly struggle with GHCi when I want to print lists and maps and actually
+look at them and analyze them. Today I came accross <a href="https://hackage.haskell.org/package/pretty-show">pretty-show</a>, a haskell
+package that allows pretty printing of all objects that are instances of the
+type class Show.</p>
+<p>The usage is very straight forward:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#204a87;font-weight:bold">qualified</span> <span style="color:#000">Text.Show.Pretty</span> <span style="color:#204a87;font-weight:bold">as</span> <span style="color:#000">Pr</span>
+</span></span></code></pre></div><p>This provides Pr.ppShow which can be used in GHCi (or other interpreters):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#000">putStrLn</span> <span style="color:#ce5c00;font-weight:bold">$</span> <span style="color:#204a87;font-weight:bold">Pr</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">ppShow</span> <span style="color:#000">object</span>
+</span></span></code></pre></div>
+            <a href="http://localhost:1313/coding/2014-12-23-haskell-pretty-print/">&nbsp;Read on &hellip;</a>
+        </div>
+        
+    </div>
+</div>
+
+
+        
+        
+        <script src="http://localhost:1313/js/mathjax.3.2.2.tex-svg.min.js"></script>
+
+        
+        <div class="bottombar">
+    <div class="bottombar-sticky">
+        <div class="icons">
+            <span class="icons-item"> <a href="https://github.com/dschrempf" target="_blank"><i class="fab fa-github"></i></a>                                   </span> 
+    
+     <span class="icons-item"> <a href="https://www.stackoverflow.com/users/3536806" target="_blank"><i class="fab fa-stack-overflow fa-1x"></i></a>                     </span> 
+    
+    
+    
+          <span class="icons-item"> <a href="https://fosstodon.org/@dschrempf" target="_blank"><i class="fab fa-mastodon fa-1x"></i></a>                           </span> 
+    
+             <span class="icons-item"> <a href="https://orcid.org/0000-0001-8865-9237" target="_blank"><i class="fab fa-orcid fa-1x"></i></a>                              </span> 
+     <span class="icons-item"> <a href="https://scholar.google.com/citations?user=3pvnGAcAAAAJ" target="_blank"><i class="fab fa-google fa-1x"></i></a>                             </span> 
+             <span class="icons-item"> <a href="mailto:dominik.schrempf@gmail.com"><i class="fas fa-envelope fa-1x"></i></a>                                           </span> 
+            <span class="icons-item"> <a href="/gpg_public_key.txt"><i class="fas fa-key fa-1x"></i></a>                                                </span> 
+    
+</div>
+
+
+
+        <div class= "footer">
+    <p>
+        &copy; 2025 Dominik Schrempf, <a href="http://localhost:1313/license/">License</a><br/>
+         <a href="/privacy/" class="" title="Privacy notice">Privacy notice</a> 
+    </p>
+</div>
+
+    </div>
+</div>
+
+
+        
+        
+        
+    </body>
+
+</html>
