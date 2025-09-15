@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Emacs on Concept → IO ()</title>
-    <link>https://dschrempf.github.io/categories/emacs/</link>
+    <link>https://blog.composef.org/categories/emacs/</link>
     <description>Recent content in Emacs on Concept → IO ()</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 02 Mar 2023 00:00:00 +0100</lastBuildDate>
-    <atom:link href="https://dschrempf.github.io/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://blog.composef.org/categories/emacs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Emacs, Java, and Nix — An interesting journey</title>
-      <link>https://dschrempf.github.io/emacs/2023-03-02-emacs-java-and-nix/</link>
+      <link>https://blog.composef.org/emacs/2023-03-02-emacs-java-and-nix/</link>
       <pubDate>Thu, 02 Mar 2023 00:00:00 +0100</pubDate>
-      <guid>https://dschrempf.github.io/emacs/2023-03-02-emacs-java-and-nix/</guid>
+      <guid>https://blog.composef.org/emacs/2023-03-02-emacs-java-and-nix/</guid>
       <description>&lt;p&gt;Do you want to use Emacs for Java development? I suggest using the language&#xA;server protocol with &lt;a href=&#34;https://github.com/emacs-lsp/lsp-mode&#34;&gt;&lt;code&gt;lsp-mode&lt;/code&gt;&lt;/a&gt; and &lt;a href=&#34;https://github.com/emacs-lsp/lsp-java&#34;&gt;&lt;code&gt;lsp-java&lt;/code&gt;&lt;/a&gt; together with the &lt;a href=&#34;https://github.com/eclipse/eclipse.jdt.ls&#34;&gt;Eclipse JDT&#xA;language server&lt;/a&gt; (&lt;code&gt;jdtls&lt;/code&gt;). And do you also want a declarative development&#xA;environment without surprises? Use &lt;a href=&#34;https://github.com/nix-community/nix-direnv&#34;&gt;Nix Direnv&lt;/a&gt;, &lt;a href=&#34;https://github.com/purcell/envrc&#34;&gt;envrc.el&lt;/a&gt;, and a &lt;a href=&#34;https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-flake.html&#34;&gt;Nix Flake&lt;/a&gt;! I&#xA;assume familiarity with these concepts. In the following, I will focus on the&#xA;Java-related Emacs setup.&lt;/p&gt;&#xA;&lt;p&gt;The reason of this post is that I have stumbled upon problems when using a&#xA;declarative, project-specific configuration. In particular, &lt;code&gt;lsp-java&lt;/code&gt; uses a&#xA;global variable &lt;code&gt;lsp-java-server-install-dir&lt;/code&gt; which specifies the installation&#xA;directory of &lt;code&gt;jdtls&lt;/code&gt;. Further, it uses global workspace and configuration&#xA;directories which are &lt;a href=&#34;https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line&#34;&gt;&lt;code&gt;jdtls&lt;/code&gt; specific settings&lt;/a&gt;; we want those to be&#xA;project-specific.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Debugging with Emacs and GDB</title>
-      <link>https://dschrempf.github.io/emacs/2015-06-24-debugging-with-emacs-and-gdb/</link>
+      <link>https://blog.composef.org/emacs/2015-06-24-debugging-with-emacs-and-gdb/</link>
       <pubDate>Wed, 24 Jun 2015 00:00:00 +0200</pubDate>
-      <guid>https://dschrempf.github.io/emacs/2015-06-24-debugging-with-emacs-and-gdb/</guid>
+      <guid>https://blog.composef.org/emacs/2015-06-24-debugging-with-emacs-and-gdb/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Erroneous source code can be a nasty issue to tackle.  Print&#xA;statements that inform you about the states of variables are handy but&#xA;sometimes they are unable to represent the intrinsic structure of the&#xA;code.  Debuggers allow you to run your code step by step, display and&#xA;watch variables and see what is going on &lt;em&gt;inside&lt;/em&gt; another program&#xA;while it executes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-gnu-poject-debugger&#34;&gt;The GNU poject debugger&lt;/h2&gt;&#xA;&lt;p&gt;Here, we will use the &lt;a href=&#34;http://www.gnu.org/software/gdb/&#34;&gt;GNU project debugger (GDB)&lt;/a&gt;, because it is freely&#xA;available, very actively developed and can be used on many operating&#xA;systems.  It can&lt;/p&gt;</description>
     </item>
     <item>
       <title>Emacs Helm and Hydra minor modes</title>
-      <link>https://dschrempf.github.io/emacs/2015-04-04-helm-hydra-modes/</link>
+      <link>https://blog.composef.org/emacs/2015-04-04-helm-hydra-modes/</link>
       <pubDate>Sat, 04 Apr 2015 00:00:00 +0200</pubDate>
-      <guid>https://dschrempf.github.io/emacs/2015-04-04-helm-hydra-modes/</guid>
+      <guid>https://blog.composef.org/emacs/2015-04-04-helm-hydra-modes/</guid>
       <description>&lt;p&gt;Recently, I stumbled upon two nice Emacs minor modes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;helm-mode&#34;&gt;Helm mode&lt;/h2&gt;&#xA;&lt;p&gt;Helm mode offers an &lt;strong&gt;incremental completion&lt;/strong&gt; and &lt;strong&gt;selection narrowing&lt;/strong&gt;&#xA;framework.  It will help you to find what you&amp;rsquo;re looking for in Emacs&#xA;(like buffers, files, commands etc).  Resources and discussions can be&#xA;found at the following homepages:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;development and installation instructions at the &lt;a href=&#34;https://github.com/emacs-helm/helm&#34;&gt;Helm mode GitHub page&lt;/a&gt;;&lt;/li&gt;&#xA;&lt;li&gt;the Emacs initialization files and &lt;a href=&#34;https://github.com/thierryvolpiatto/emacs-tv-config&#34;&gt;configuration of the Helm maintainer&lt;/a&gt;;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://tuhdo.github.io/helm-intro.html&#34;&gt;a good overview of the features&lt;/a&gt; and a sample configuration.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;I can recommend to use the &lt;code&gt;TAB&lt;/code&gt; key for completion and not for other&#xA;actions.  You can bind the &lt;code&gt;TAB&lt;/code&gt; key back to&#xA;&lt;code&gt;helm-execute-persistent-action&lt;/code&gt; with&lt;/p&gt;</description>
     </item>
     <item>
       <title>How to create this homepage</title>
-      <link>https://dschrempf.github.io/emacs/2014-12-26-how-to-create-this-homepage/</link>
+      <link>https://blog.composef.org/emacs/2014-12-26-how-to-create-this-homepage/</link>
       <pubDate>Fri, 26 Dec 2014 00:00:00 +0100</pubDate>
-      <guid>https://dschrempf.github.io/emacs/2014-12-26-how-to-create-this-homepage/</guid>
+      <guid>https://blog.composef.org/emacs/2014-12-26-how-to-create-this-homepage/</guid>
       <description>&lt;p&gt;This homepage was created with Emacs and &lt;a href=&#34;http://orgmode.org/&#34;&gt;Org mode&lt;/a&gt;. It is hosted at &lt;a href=&#34;https://pages.github.com/&#34;&gt;github.io&lt;/a&gt; and&#xA;comments can be done using &lt;a href=&#34;https://disqus.com/&#34;&gt;Disqus&lt;/a&gt;. I assume a working Org mode setup and a&#xA;GitHub as well as a Disqus account.&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;timestamp-wrapper&#34;&gt;&lt;span class=&#34;timestamp&#34;&gt;[2015-03-26 Thu] &lt;/span&gt;&lt;/span&gt; Update; general revision of code and text.&lt;/p&gt;&#xA;&lt;p&gt;&lt;span class=&#34;timestamp-wrapper&#34;&gt;&lt;span class=&#34;timestamp&#34;&gt;[2016-04-09 Sat] &lt;/span&gt;&lt;/span&gt; Another update.&lt;/p&gt;&#xA;&lt;h2 id=&#34;general-idea&#34;&gt;General idea&lt;/h2&gt;&#xA;&lt;dl&gt;&#xA;&lt;dt&gt;Org mode&lt;/dt&gt;&#xA;&lt;dd&gt;A great tool for taking notes and exporting them to&#xA;all kind of formats.  One of this formats is &lt;strong&gt;HTML&lt;/strong&gt;.  The idea&#xA;here is to use the publishing capabilities of Org mode to create&#xA;a very basic website that can be used to blog and publish&#xA;articles.&lt;/dd&gt;&#xA;&lt;dt&gt;GitHub&lt;/dt&gt;&#xA;&lt;dd&gt;Offers a freely available hosting service, a very easy way&#xA;to make the website available.&lt;/dd&gt;&#xA;&lt;dt&gt;Disqus&lt;/dt&gt;&#xA;&lt;dd&gt;Provides the ability to comment posts.&lt;/dd&gt;&#xA;&lt;/dl&gt;&#xA;&lt;p&gt;Many people also use &lt;a href=&#34;http://jekyllrb.com/&#34;&gt;Jekyll&lt;/a&gt; to create homepages and blogs together&#xA;with Org mode and GitHub.  This is certainly a very appealing&#xA;alternative but I prefer a setting that is easier to set up and has&#xA;fewer options.&lt;/p&gt;</description>
     </item>
   </channel>
