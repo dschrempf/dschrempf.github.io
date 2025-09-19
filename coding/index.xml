@@ -6,8 +6,15 @@
     <description>Recent content in Codings on Concept → IO ()</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Dec 2023 00:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 19 Sep 2025 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://blog.composef.org/coding/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Notes on MuniHac 2025 talks</title>
+      <link>https://blog.composef.org/coding/2025-09-19-munihac-2025/</link>
+      <pubDate>Fri, 19 Sep 2025 00:00:00 +0200</pubDate>
+      <guid>https://blog.composef.org/coding/2025-09-19-munihac-2025/</guid>
+      <description>&lt;p&gt;MuniHac has happened again. I enjoyed it a lot. Below you can find my personal&#xA;notes on the talks. Free free to contact me if you have any comments!&lt;/p&gt;&#xA;&lt;div class=&#34;ox-hugo-toc toc&#34;&gt;&#xA;&lt;div class=&#34;heading&#34;&gt;Table of Contents&lt;/div&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#rodrigo-mesquita-a-modern-step-through-debugger-for-haskell&#34;&gt;Rodrigo Mesquita: A modern step-through debugger for Haskell&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#ga%C3%ABl-deest-hindsight-type-safe-evolvable-event-sourcing&#34;&gt;Gaël Deest: Hindsight - Type-safe, evolvable event sourcing&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#andrew-lelechenko-linear-haskell-for-string-builders&#34;&gt;Andrew Lelechenko: Linear Haskell for string builders&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#steve-shuck-the-pcre2-regular-expression-library&#34;&gt;Steve Shuck: The &lt;code&gt;pcre2&lt;/code&gt; regular expression library&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#tommy-engstr%C3%B6m-domaindriven-type-safe-event-sourcing-in-haskell&#34;&gt;Tommy Engström: &lt;code&gt;domaindriven&lt;/code&gt; - Type-safe event sourcing in Haskell&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#joe-warren-how-i-use-haskell-for-3d-printing&#34;&gt;Joe Warren: How I use Haskell for 3D printing&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;#mike-sperber-six-years-of-funar-teaching-software-architecture-and-functional-programming-to-the-uninitiated&#34;&gt;Mike Sperber: Six years of FUNAR - Teaching software architecture and functional programming to the uninitiated&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/div&gt;&#xA;&lt;!--endtoc--&gt;&#xA;&lt;h2 id=&#34;rodrigo-mesquita-a-modern-step-through-debugger-for-haskell&#34;&gt;Rodrigo Mesquita: A modern step-through debugger for Haskell&lt;/h2&gt;&#xA;&lt;p&gt;&lt;span class=&#34;timestamp-wrapper&#34;&gt;&lt;span class=&#34;timestamp&#34;&gt;[2025-09-12 Fri 11:30]&lt;/span&gt;&lt;/span&gt;&#xA;&lt;a href=&#34;https://youtu.be/urYtE15ryA0&#34;&gt;Link to talk&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Advent of code (2023)</title>
       <link>https://blog.composef.org/coding/2023-12-02-advent-of-code-2023/</link>

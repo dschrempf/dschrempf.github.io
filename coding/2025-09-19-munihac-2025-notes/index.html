@@ -1,0 +1,418 @@
+
+
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+        
+        <title>Notes on MuniHac 2025 talks &middot; Dominik Schrempf</title>
+        <meta name="description" content="Personal notes I took on the MuniHac 2025 talks">
+        <meta name="keywords" content="Haskell,MuniHac,Programming languages,Well-Typed,GHC">
+
+        
+        <link rel="stylesheet" href="http://localhost:1313/css/skeria.css">
+
+        
+        
+
+        
+        
+        
+        <link rel="stylesheet" href="http://localhost:1313/css/font.awesome.6.1.2.all.min.css" />
+    </head>
+
+    <body>
+        <div class="topbar">
+    <div class="topbar-sticky">
+        <a href="http://localhost:1313/"
+   style="text-decoration: none">
+    <h1>Concept → IO ()</h1>
+</a>
+
+        
+        <span class="topbar-nav">
+    <p>
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/linux/">Linux</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/emacs/">Emacs</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/coding/">Coding</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/music/">Music</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/links/">Links</a>
+        </span>
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/about/">About</a>
+        </span>
+        
+        
+        <span class="topbar-nav-item">
+            <a href="http://localhost:1313/search/">Search</a>
+        </span>
+        
+    </p>
+</span>
+
+    </div>
+</div>
+
+
+        
+        
+<div class="content container">
+  <div class="post">
+    <h1 class="post-title">Notes on MuniHac 2025 talks</h1>
+    <span class="post-date">
+        Sep 19, 2025
+        &nbsp;&middot;&nbsp; 8 minute read
+        
+        &nbsp;&middot;&nbsp;
+        
+        <a class="label" href="http://localhost:1313/coding">Coding</a>
+        
+        
+    </span>
+    <p>MuniHac has happened again. I enjoyed it a lot. Below you can find my personal
+notes on the talks. Free free to contact me if you have any comments!</p>
+<h2 id="rodrigo-mesquita-a-modern-step-through-debugger-for-haskell">Rodrigo Mesquita: A modern step-through debugger for Haskell</h2>
+<p><span class="timestamp-wrapper"><span class="timestamp">[2025-09-12 Fri 11:30]</span></span>
+<a href="https://youtu.be/urYtE15ryA0">Link to talk</a>.</p>
+<p>Rodrigo gives a pitch about <code>haskell-debugger</code>:</p>
+<ul>
+<li>Uses Debug Adapter Protocol (DAP); <a href="https://emacs-lsp.github.io/dap-mode/">dap-mode</a> for Emacs.</li>
+<li>Can show evaluation order (helps understand lazy evaluation).</li>
+</ul>
+<p>We also observe <a href="https://en.wikipedia.org/wiki/Tail_call">tail call optimization</a>, a fundamental feature of functional
+languages, where no stack frame is created for intermediate function calls.</p>
+<h2 id="gaël-deest-hindsight-type-safe-evolvable-event-sourcing">Gaël Deest: Hindsight - Type-safe, evolvable event sourcing</h2>
+<p><span class="timestamp-wrapper"><span class="timestamp">[2025-09-13 Sat 09:30]</span></span>
+Event sourcing:</p>
+<ul>
+<li>Events are the single source of truth.</li>
+<li>Program is fold over events
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#000">applyEvent</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">State</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Event</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">State</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="drawbacks-of-event-sourcing">Drawbacks of event sourcing</h3>
+<ul>
+<li>Complex (indirection, cognitive load)</li>
+<li>Asynchronous events may lead to problems in consistency</li>
+<li>Schema design is hard</li>
+<li>Tests</li>
+</ul>
+<h3 id="hindsight-the-library">Hindsight - The library</h3>
+<ul>
+<li>Opinionated event store abstraction</li>
+<li>Handles versioned events (e.g., <code>MoneyDepositedV0</code>) using type families</li>
+<li>The code base contains all event versions, but see the talk of <a href="#tommy-engstr%C3%B6m-domaindriven-type-safe-event-sourcing-in-haskell">Tommy Engström:
+<code>domaindriven</code> - Type-safe event sourcing in Haskell</a></li>
+</ul>
+<h3 id="other-notes">Other notes</h3>
+<ul>
+<li>Events are single source of truth. If they are inserted into the database,
+they happened. That&rsquo;s why it is key to distinguish between requests (e.g.,
+`DoThis`) and commands (e.g., `DoneThis`).</li>
+</ul>
+<h2 id="andrew-lelechenko-linear-haskell-for-string-builders">Andrew Lelechenko: Linear Haskell for string builders</h2>
+<p><a href="https://youtu.be/ONE6ex8zB00">Link to talk</a>.</p>
+<h3 id="string">String</h3>
+<ul>
+<li>String concatenation <code>(++)</code> is linear in the length of the left argument.</li>
+<li>Even for long strings, this is not too much of a problem, when concatenation
+happens once.</li>
+<li>However, it does make a big difference when folding over lists (fast <code>foldr</code>
+vs slow <code>foldl</code>).</li>
+<li>Often, left concatenation is hidden, for example, with hierarchical <code>Show</code>
+instances. That&rsquo;s part of the reason, why we use <code>shows :: String -&gt; String</code>.</li>
+<li>For <strong>function composition</strong>, left or right association does not matter much
+(i.e., only by a constant amount of time)!
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#000">f</span> <span style="color:#ce5c00;font-weight:bold">.</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">g</span> <span style="color:#ce5c00;font-weight:bold">.</span> <span style="color:#000">h</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">~</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">f</span> <span style="color:#ce5c00;font-weight:bold">.</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">.</span> <span style="color:#000">h</span> <span style="color:#8f5902;font-style:italic">-- In time.</span>
+</span></span></code></pre></div></li>
+<li>Difference lists
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">newtype</span> <span style="color:#204a87;font-weight:bold">DList</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">DList</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">String</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">String</span><span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div>ensure that we always use function composition. However, using functions
+everywhere does have a performance impact.</li>
+</ul>
+<h3 id="text">Text</h3>
+<ul>
+<li>We want to use <code>Text</code> anyways.
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">data</span> <span style="color:#204a87;font-weight:bold">Text</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">Text</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">buffer</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">ByteArray</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">,</span> <span style="color:#000">offset</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Int</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">,</span> <span style="color:#000">length</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Int</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div>Left and right concatenation have the same runtime, but are both <em>slow</em>! (It
+is linear in <em>both</em> of its arguments; we have to copy both byte arrays).</li>
+<li>We&rsquo;d have to know the final length of concatenated pieces of text, so we can
+allocate the final length, and copy everything in.</li>
+<li>Lazy text sidesteps the issue by managing a list of byte arrays.</li>
+<li>Lazy types can treat with lazy/streamed input/output.</li>
+<li>However, they still do not look into the future and repetitively allocate
+chunks of, e.g., 4 kb.</li>
+</ul>
+<h3 id="textbuilder"><code>TextBuilder</code></h3>
+<ul>
+<li>Strict builder by summing the individual lengths of text fragments before
+allocating memory.</li>
+<li>Fast, but needs to track (pre-compute) maximum lengths of text fragments.</li>
+</ul>
+<h3 id="java-style-string-builder">Java-style string builder</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">data</span> <span style="color:#204a87;font-weight:bold">Buffer</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">Buffer</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">buffer</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">ByteArray</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">,</span> <span style="color:#000">used</span>   <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Int</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Buffer</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Text</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Buffer</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">...</span> <span style="color:#8f5902;font-style:italic">-- Mutates buffer (`freeze . copy bytes . thaw`).</span>
+</span></span></code></pre></div><p>Unsafe! We can not just mutate buffers, we need to copy them somewhere else.</p>
+<p>We can be honest about having a mutable buffer:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">data</span> <span style="color:#204a87;font-weight:bold">MutBuffers</span> <span style="color:#000">s</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">MutBuffer</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">buffer</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">MutableByteArray</span> <span style="color:#000">s</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">,</span> <span style="color:#000">used</span>   <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Int</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">MutBuffer</span> <span style="color:#000">s</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Text</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">ST</span> <span style="color:#000">s</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">MutBuffer</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span>
+</span></span></code></pre></div><p>Impractical. Can not be used with standard library functions.</p>
+<h3 id="linear-types">Linear types</h3>
+<p>Instead of <em>poisoning the context</em> with <code>ST</code>, we would like to restrict our
+functions in that they can only use the buffer <em>once</em>.</p>
+<p>First use hidden in <code>attoparsec</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">data</span> <span style="color:#204a87;font-weight:bold">Builder</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">Builder</span> <span style="color:#000;font-weight:bold">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">gen</span>    <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Int</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">,</span> <span style="color:#000">buffer</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">ByteArray</span> <span style="color:#8f5902;font-style:italic">-- Also stores the generation counter `gen` at start.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">,</span> <span style="color:#000">used</span>   <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Int</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000;font-weight:bold">}</span>
+</span></span></code></pre></div><p>If somebody is tempering with the mutable <code>buffer</code>, one can detect it using the
+immutable generation counter <code>gen</code>. (Bryan o Sullivan).</p>
+<h3 id="linear-and-unlifted-types">Linear and unlifted types</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">data</span> <span style="color:#204a87;font-weight:bold">Buffer</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">TYPE</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">&#39;BoxedRep</span> <span style="color:#204a87;font-weight:bold">&#39;Unlifted</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">where</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#204a87;font-weight:bold">Buffer</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#8f5902;font-style:italic">{-# UNPACK #-}</span> <span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#204a87;font-weight:bold">Text</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Buffer</span>
+</span></span></code></pre></div><p>Combines idea of Java and <code>attoparsec</code>.</p>
+<p>(Values of unlifted types are never bottom.)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#000">appendBounded</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Int</span> <span style="color:#204a87;font-weight:bold">_</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#204a87;font-weight:bold">_</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Buffer</span> <span style="color:#ce5c00;font-weight:bold">%</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Buffer</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&gt;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Buffer</span> <span style="color:#ce5c00;font-weight:bold">%</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Text</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Buffer</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">runBuffer</span>   <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">Buffer</span> <span style="color:#ce5c00;font-weight:bold">%</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Buffer</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">%</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Text</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">runBufferBS</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">Buffer</span> <span style="color:#ce5c00;font-weight:bold">%</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Buffer</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">%</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">StrictByteString</span>
+</span></span></code></pre></div><p><code>%1 -&gt;</code> (also printed as lollipop arrow) means the old value becomes invalid,
+i.e., is mutated.</p>
+<p>We wrap the <code>Buffer</code> type into an exposed <code>Builder</code> type we are used. Affects
+performance, again.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">data</span> <span style="color:#204a87;font-weight:bold">Builder</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">Builder</span> <span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">Buffer</span> <span style="color:#ce5c00;font-weight:bold">%</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Buffer</span> <span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">fromText</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">Text</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#204a87;font-weight:bold">Builder</span>
+</span></span><span style="display:flex;"><span><span style="color:#8f5902;font-style:italic">-- ...</span>
+</span></span></code></pre></div><p>Benchmarks show that the library <code>linear-builder</code> is extremely fast (especially
+the linear interface, not so much the builder interface).</p>
+<h2 id="steve-shuck-the-pcre2-regular-expression-library">Steve Shuck: The <code>pcre2</code> regular expression library</h2>
+<h3 id="in-haskell-it-is-currently-too-complicated-to-use-regular-expressions">In Haskell, it is currently too complicated to use regular expressions</h3>
+<ul>
+<li>We need two libraries: <code>regex-base</code> and a corresponding backend, e.g.,
+<code>regex-pcre</code>.</li>
+<li>We need two imports: <code>Text.Regex.Base</code>, and <code>Text.Regex.PCRE.String</code>.</li>
+<li>Type signatures are complicated and too general.</li>
+</ul>
+<h3 id="usage-of-pcre2">Usage of <code>pcre2</code></h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-haskell" data-lang="haskell"><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">module</span> <span style="color:#000">Main</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">main</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">where</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">ipmort</span> <span style="color:#204a87;font-weight:bold">System</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#204a87;font-weight:bold">Exit</span>      <span style="color:#000;font-weight:bold">(</span><span style="color:#000">die</span><span style="color:#000;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">Text.Regex.Pcre2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">main</span> <span style="color:#204a87;font-weight:bold">::</span> <span style="color:#204a87;font-weight:bold">IO</span> <span style="color:#204a87">()</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">main</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">do</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#204a87;font-weight:bold">let</span> <span style="color:#000">re</span> <span style="color:#204a87;font-weight:bold">=</span> <span style="color:#000">matchOpt</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">Caseless</span> <span style="color:#ce5c00;font-weight:bold">&lt;&gt;</span> <span style="color:#204a87;font-weight:bold">NotEmpty</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#4e9a06">&#34;a*&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#204a87;font-weight:bold">case</span> <span style="color:#000">re</span> <span style="color:#4e9a06">&#34;aa b Aaa&#34;</span> <span style="color:#204a87;font-weight:bold">of</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#204a87;font-weight:bold">[]</span>      <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">die</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">results</span> <span style="color:#204a87;font-weight:bold">-&gt;</span> <span style="color:#000">print</span> <span style="color:#000">results</span>
+</span></span></code></pre></div><p>Compilation of expressions happens once and is stored in a lookup table. (But
+GHC is smart enough to reuse the compiled regular expressions anyways; i.e., the
+lookup is not even performed). That is, each regular expression is compiled only
+once, even when it is matched multiple times.</p>
+<p>Also impressive, Steve provides <strong>Template Haskell splices</strong>:</p>
+<ul>
+<li>In expressions, the splice defines a function that can directly applied to the
+string to match against.</li>
+<li>The quasi quoter can also be used in patter matching contexts. We can even
+refer to match groups!</li>
+</ul>
+<h2 id="tommy-engström-domaindriven-type-safe-event-sourcing-in-haskell">Tommy Engström: <code>domaindriven</code> - Type-safe event sourcing in Haskell</h2>
+<p>This talk is a reply to the talk of <a href="#ga%C3%ABl-deest-hindsight-type-safe-evolvable-event-sourcing">Gaël Deest: Hindsight - Type-safe, evolvable
+event sourcing</a>.</p>
+<p>Tommy shows how he is handling events in Haskell. He uses <code>servant</code>, and
+<a href="https://hackage.haskell.org/package/domaindriven"><code>domaindriven</code></a>, a library he is developing.</p>
+<p>If event types changes (e.g., a record is added), Tommy migrates all events in
+the store using a function with <code>ShapeCoercible</code> type class constraint. (You
+need to define how to <code>shapeCoerce</code> <code>EventV1</code> to <code>EventV2</code>).</p>
+<p>He also argues that the big downside of event sourcing is that the initial
+design is too important. Months into projects, we usually have collected
+knowledge about how the initial design can be improved, but major changes are
+difficult to implement when using event sourcing.</p>
+<h2 id="joe-warren-how-i-use-haskell-for-3d-printing">Joe Warren: How I use Haskell for 3D printing</h2>
+<ul>
+<li><a href="http://doscienceto.it/cad-talk/slides.html">Link to slides</a>.</li>
+<li><a href="https://doscienceto.it/blog/">Blog of Joe</a>.</li>
+</ul>
+<p>How do 3D printers work:</p>
+<ul>
+<li>Printer follows GCode, which is a list of path instructions (tool path).</li>
+<li>STL format: Describes a raw, unstructured triangulated surface by the unit
+normal and vertices of triangles. Can be compiled to GCode.</li>
+</ul>
+<p>We can construct objects using <a href="https://en.wikipedia.org/wiki/Constructive_solid_geometry">constructive solid geometry</a>, a Boolean algebra
+for superimposing 3D shapes.</p>
+<dl>
+<dt>1991</dt>
+<dd>OpenCascade release (Non-uniform rational B-spline, NURB).</dd>
+<dt>2006</dt>
+<dd>In anticipation of the expiration of the FDM patend, first projects
+start to design open 3D printers.</dd>
+<dt>2009</dt>
+<dd>FDM patent expires (most available 3D printers use this technology)</dd>
+<dt>2010</dt>
+<dd>OpenSCAD release.</dd>
+<dt>2018</dt>
+<dd>Joe writes CSG library.</dd>
+<dt>2023</dt>
+<dd>Waterfall CAD (bindings to OpenCascade).</dd>
+</dl>
+<p>Joe makes a point for using programmable CAD frameworks: Abstraction and code
+reuse.</p>
+<p>Producing a number of Christmas logos from SVG images induced Jow to develop an
+SVG importer into Waterfall CAD, and and exporter from Waterfall CAD to SVG.</p>
+<h2 id="mike-sperber-six-years-of-funar-teaching-software-architecture-and-functional-programming-to-the-uninitiated">Mike Sperber: Six years of FUNAR - Teaching software architecture and functional programming to the uninitiated</h2>
+<p><a href="https://youtu.be/WRoYKBXWJes">Link to talk</a>.</p>
+<ul>
+<li><a href="https://www.active-group.de/">Active group</a>.</li>
+<li><a href="https://bobkonf.de/2025/en/">Bob conference</a> March 13 2026, Berlin.</li>
+<li><a href="https://haskell.foundation/podcast/">Haskell Interlude</a>.</li>
+<li><a href="https://conf.researchr.org/home/icfp-splash-2025/funarch-2025">FUNARCH 2025</a>. Online ticket available; still looking for contributions.</li>
+</ul>
+<h3 id="what-is--specifically--functional-software-architecture">What is (specifically) functional software architecture?</h3>
+<p>Replies from MuniHac audience.</p>
+<ul>
+<li>Pure business logic</li>
+<li>Keep interaction with outside world edges</li>
+<li>Design data types that capture domain logic</li>
+<li>Parse, don&rsquo;t validate</li>
+<li>Be declarative</li>
+<li>Capture laws/properties of data at design stage</li>
+</ul>
+<h3 id="what-is-software-architecture">What is software architecture?</h3>
+<ul>
+<li>Designs long-lived software, large software involving multiple people teams</li>
+</ul>
+<p><strong>Functional design and architecture</strong> - Alexander Granin.</p>
+<p>FUNAR module: Functional software architecture (iSAQB).</p>
+<p><strong>Structure and interpretation of computer programs</strong> (SICP) - Abelson, Sussman.</p>
+<p><strong>How to design programs</strong> - Felleisen, Findler, Flatt, Krishnamurthi.</p>
+<p><strong>Schreibe dein Programm</strong> - Sperber, Klaeren.</p>
+<h3 id="software-architecture-in-haskell">Software architecture in Haskell</h3>
+<p>Functional programming excels in data modeling:</p>
+<ul>
+<li>Sums (!) and products (algebraic data types).</li>
+</ul>
+<p>For example, model the &ldquo;Hearts&rdquo; game.</p>
+<ul>
+<li>Data: What is a card, rank, hand, game, and so on.</li>
+<li>Events, commands.</li>
+<li>Domain logic, gameplay workflow.</li>
+</ul>
+<p>The modulith - salvation for the monolith?</p>
+<p><strong>Structured design: Fundamentals of discipline of computer program and systems
+design</strong> - Yourdon, Constantine.</p>
+<p>Managing, changing code is expensive. The more interdependencies/coupling you
+have in your code, the harder it is to change code. Optimize code to have low
+coupling.</p>
+<p>Immutability, abstraction boundaries, expressive interface languages, expressive
+effects.</p>
+<h3 id="functional-software-architecture">Functional software architecture</h3>
+<ul>
+<li>Bottom-up architecture</li>
+<li>Late software architecture / architecture avoidance (so architecture is easy
+to change)</li>
+<li>Functional qualities first (adapt your code; rest through changes, which are
+easy; refactor!)</li>
+</ul>
+<h3 id="conclusions">Conclusions</h3>
+<ul>
+<li>Positive feedback</li>
+<li>We need good books</li>
+<li>We need good communications</li>
+<li>The ability to teach well does matter; if something works well in teaching, it
+usually works well in production</li>
+<li>Usability may be more important than efficiency or type-level foo</li>
+</ul>
+<h3 id="questions-comments">Questions/comments</h3>
+<ul>
+<li>Primitive obsession and Boolean blindness. Use algebraic data types, not
+primitive data types.</li>
+<li>Abstract data types (information hiding; preserve invariances) vs full export
+(extensibility).</li>
+</ul>
+
+  </div>
+</div>
+
+
+        
+        
+        <script src="http://localhost:1313/js/mathjax.3.2.2.tex-svg.min.js"></script>
+
+        
+        <div class="bottombar">
+    <div class="bottombar-sticky">
+        <div class="icons">
+            <span class="icons-item"> <a href="https://github.com/dschrempf" target="_blank"><i class="fab fa-github"></i></a>                                   </span> 
+    
+     <span class="icons-item"> <a href="https://www.stackoverflow.com/users/3536806" target="_blank"><i class="fab fa-stack-overflow fa-1x"></i></a>                     </span> 
+          <span class="icons-item"> <a href="https://www.linkedin.com/in/dominik-schrempf-579b0b244/" target="_blank"><i class="fab fa-linkedin fa-1x"></i></a>                           </span> 
+    
+    
+          <span class="icons-item"> <a href="https://fosstodon.org/@dschrempf" target="_blank"><i class="fab fa-mastodon fa-1x"></i></a>                           </span> 
+    
+             <span class="icons-item"> <a href="https://orcid.org/0000-0001-8865-9237" target="_blank"><i class="fab fa-orcid fa-1x"></i></a>                              </span> 
+     <span class="icons-item"> <a href="https://scholar.google.com/citations?user=3pvnGAcAAAAJ" target="_blank"><i class="fab fa-google fa-1x"></i></a>                             </span> 
+             <span class="icons-item"> <a href="mailto:dominik.schrempf@gmail.com"><i class="fas fa-envelope fa-1x"></i></a>                                           </span> 
+            <span class="icons-item"> <a href="/gpg_public_key.txt"><i class="fas fa-key fa-1x"></i></a>                                                </span> 
+    
+</div>
+
+
+
+        <div class= "footer">
+    <p>
+        &copy; 2025 Dominik Schrempf, <a href="http://localhost:1313/license/">License</a><br/>
+         <a href="/privacy/" class="" title="Privacy notice">Privacy notice</a> 
+    </p>
+</div>
+
+    </div>
+</div>
+
+
+        
+        
+        
+    </body>
+
+</html>

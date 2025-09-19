@@ -6,20 +6,20 @@
     <description>Recent content in Categories on Concept → IO ()</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Apr 2024 00:00:00 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 19 Sep 2025 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://blog.composef.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Coding</title>
+      <link>https://blog.composef.org/categories/coding/</link>
+      <pubDate>Fri, 19 Sep 2025 00:00:00 +0200</pubDate>
+      <guid>https://blog.composef.org/categories/coding/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Linux</title>
       <link>https://blog.composef.org/categories/linux/</link>
       <pubDate>Sat, 20 Apr 2024 00:00:00 +0200</pubDate>
       <guid>https://blog.composef.org/categories/linux/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Coding</title>
-      <link>https://blog.composef.org/categories/coding/</link>
-      <pubDate>Sat, 02 Dec 2023 00:00:00 +0100</pubDate>
-      <guid>https://blog.composef.org/categories/coding/</guid>
       <description></description>
     </item>
     <item>

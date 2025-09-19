@@ -2,14 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://blog.composef.org/categories/</loc>
+    <lastmod>2025-09-19T00:00:00+02:00</lastmod>
+  </url><url>
+    <loc>https://blog.composef.org/categories/coding/</loc>
+    <lastmod>2025-09-19T00:00:00+02:00</lastmod>
+  </url><url>
     <loc>https://blog.composef.org/coding/</loc>
-    <lastmod>2024-11-22T00:00:00+01:00</lastmod>
+    <lastmod>2025-09-19T00:00:00+02:00</lastmod>
   </url><url>
     <loc>https://blog.composef.org/</loc>
-    <lastmod>2025-09-15T11:09:57+02:00</lastmod>
+    <lastmod>2025-09-19T21:46:16+02:00</lastmod>
   </url><url>
-    <loc>https://blog.composef.org/categories/</loc>
-    <lastmod>2024-04-20T00:00:00+02:00</lastmod>
+    <loc>https://blog.composef.org/coding/2025-09-19-munihac-2025/</loc>
+    <lastmod>2025-09-19T00:00:00+02:00</lastmod>
   </url><url>
     <loc>https://blog.composef.org/categories/linux/</loc>
     <lastmod>2024-04-20T00:00:00+02:00</lastmod>
@@ -24,9 +30,6 @@
     <lastmod>2024-02-14T00:00:00+01:00</lastmod>
   </url><url>
     <loc>https://blog.composef.org/coding/2023-12-02-advent-of-code-2023/</loc>
-    <lastmod>2023-12-02T00:00:00+01:00</lastmod>
-  </url><url>
-    <loc>https://blog.composef.org/categories/coding/</loc>
     <lastmod>2023-12-02T00:00:00+01:00</lastmod>
   </url><url>
     <loc>https://blog.composef.org/linux/2023-05-14-fixing-a-tolino-shine-3-ebook-reader/</loc>
@@ -51,7 +54,7 @@
     <lastmod>2022-06-28T00:00:00+02:00</lastmod>
   </url><url>
     <loc>https://blog.composef.org/privacy/</loc>
-    <lastmod>2025-09-15T11:09:56+02:00</lastmod>
+    <lastmod>2025-09-19T21:46:16+02:00</lastmod>
   </url><url>
     <loc>https://blog.composef.org/coding/2020-11-12-encyclopedia-of-markov-chain-monte-carlo-methods/</loc>
     <lastmod>2020-12-18T00:00:00+01:00</lastmod>
@@ -60,10 +63,10 @@
     <lastmod>2019-11-21T00:00:00+01:00</lastmod>
   </url><url>
     <loc>https://blog.composef.org/search/</loc>
-    <lastmod>2025-09-15T11:09:57+02:00</lastmod>
+    <lastmod>2025-09-19T21:46:16+02:00</lastmod>
   </url><url>
     <loc>https://blog.composef.org/links/</loc>
-    <lastmod>2025-09-15T11:09:56+02:00</lastmod>
+    <lastmod>2025-09-19T21:46:16+02:00</lastmod>
   </url><url>
     <loc>https://blog.composef.org/coding/2018-02-10-markov-chains-in-haskell/</loc>
     <lastmod>2018-02-10T00:00:00+01:00</lastmod>
@@ -129,7 +132,7 @@
     <lastmod>2014-12-26T00:00:00+01:00</lastmod>
   </url><url>
     <loc>https://blog.composef.org/about/</loc>
-    <lastmod>2025-09-15T11:09:56+02:00</lastmod>
+    <lastmod>2025-09-19T21:46:15+02:00</lastmod>
   </url><url>
     <loc>https://blog.composef.org/coding/2014-12-23-haskell-pretty-print/</loc>
     <lastmod>2014-12-23T00:00:00+01:00</lastmod>
